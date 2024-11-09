@@ -9,14 +9,24 @@ public class PlayerMovement:MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-     void Start()
+
+    // Reference to the jump sound effect
+    [SerializeField] private AudioClip jumpSound;
+    private AudioSource audioSource;
+
+    void Start()
     {
-      
+        // Get the AudioSource component attached to the player
+        audioSource = GetComponent<AudioSource>();
     }
      void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump") && IsGrounded()) {
+
+            // Play jump sound
+            audioSource.PlayOneShot(jumpSound);
+
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);  
         }
         Flip();
