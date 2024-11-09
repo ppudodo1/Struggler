@@ -1681,8 +1681,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!82 &794516309
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1780,10 +1778,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-=======
->>>>>>> parent of 86b2750 (Jump sound)
-=======
->>>>>>> parent of 86b2750 (Jump sound)
 --- !u!1 &875280351
 GameObject:
   m_ObjectHideFlags: 0
