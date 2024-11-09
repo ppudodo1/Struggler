@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System;
 public class PlayerMovement:MonoBehaviour
 {
     private float horizontal;
@@ -20,6 +20,7 @@ public class PlayerMovement:MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);  
         }
         Flip();
+        gameObject.GetComponent<Animator>().SetFloat("MoveValue", Math.Abs(horizontal));
     }
     // treba rijesiti double jump sada
     private bool IsGrounded() {
