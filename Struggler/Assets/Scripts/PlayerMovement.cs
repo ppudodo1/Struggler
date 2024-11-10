@@ -9,14 +9,17 @@ public class PlayerMovement:MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-     void Start()
+    [SerializeField] private AudioClip jumpSound;
+    private AudioSource jumpAudio;
+    void Start()
     {
-      
+        jumpAudio = GetComponent<AudioSource>();
     }
      void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump") && IsGrounded()) {
+            jumpAudio.PlayOneShot(jumpSound);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);  
         }
         Flip();
