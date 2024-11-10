@@ -18,12 +18,19 @@ public class PlayerMovement:MonoBehaviour
      void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump") && IsGrounded()) {
+        if (Input.GetButtonDown("Jump") && IsGrounded())
+        {
             jumpAudio.PlayOneShot(jumpSound);
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);  
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            gameObject.GetComponent<Animator>().SetBool("isJumping", true);
+        }
+        else {
+            gameObject.GetComponent<Animator>().SetBool("isJumping", false);
         }
         Flip();
         gameObject.GetComponent<Animator>().SetFloat("MoveValue", Math.Abs(horizontal));
+      
+        //Debug.Log("Velocity: " + rb.linearVelocity.y);
     }
     // treba rijesiti double jump sada
     private bool IsGrounded() {
@@ -32,6 +39,7 @@ public class PlayerMovement:MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        gameObject.GetComponent<Animator>().SetFloat("yVelocity", rb.linearVelocity.y);
     }
     private void Flip()
     {
