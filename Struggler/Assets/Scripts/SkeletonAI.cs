@@ -7,6 +7,8 @@ public class SkeletonAI : MonoBehaviour
    private float playerX;
    private float speed = 1.5f;
    private float jumpingPower = 5f;
+    public float activationDistance = 8f;
+
    private BoxCollider2D obstacleCollider;
    [SerializeField] private Rigidbody2D rb;
     private SpriteRenderer m_SpriteRenderer;
@@ -28,14 +30,14 @@ public class SkeletonAI : MonoBehaviour
         position = player.transform.position;
         playerX = position.x;
 
-        if (transform.position.x > playerX){
+        if (transform.position.x > playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
             m_SpriteRenderer.flipX = false;
             transform.Translate(Vector2.left * speed * Time.deltaTime);
             obstacleCollider.offset = new Vector2(-1f,0f); 
 
         }
 
-        else if (transform.position.x < playerX){
+        else if (transform.position.x < playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
             m_SpriteRenderer.flipX = true;
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             obstacleCollider.offset = new Vector2(1f,0f); 
