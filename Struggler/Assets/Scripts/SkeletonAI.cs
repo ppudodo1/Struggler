@@ -49,11 +49,13 @@ public class SkeletonAI : MonoBehaviour
         { 
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         }
+
+        /*
         else if(collision.gameObject.CompareTag("Player")){
             UnityEditor.EditorApplication.isPlaying = false;
 
         }
-            
+            */
 
     }
 }
