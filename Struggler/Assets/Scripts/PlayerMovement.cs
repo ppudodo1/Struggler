@@ -22,11 +22,7 @@ public class PlayerMovement:MonoBehaviour
      void Update()
     {
         
-
         horizontal = Input.GetAxisRaw("Horizontal");
-
-
-        
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -45,9 +41,7 @@ public class PlayerMovement:MonoBehaviour
             hasSecondJump = false;
 
         }
-        else {
-            gameObject.GetComponent<Animator>().SetBool("isJumping", false);
-        }
+        
         Flip();
         gameObject.GetComponent<Animator>().SetFloat("MoveValue", Math.Abs(horizontal));
       
@@ -77,10 +71,10 @@ public class PlayerMovement:MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         { 
             audioSource.PlayOneShot(landingSound);
-            hasSecondJump = true; 
+            hasSecondJump = true;
+            gameObject.GetComponent<Animator>().SetBool("isJumping", false);
         }
    
-            
 
     }
 }
