@@ -19,6 +19,8 @@ public class PlayerMovement:MonoBehaviour
 
     private Color defaultColor;
 
+    public HealthSystem healthSystem;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -95,7 +97,8 @@ public class PlayerMovement:MonoBehaviour
 
 
         else if(collision.gameObject.CompareTag("Enemy")){
-            
+
+
             if (collision.gameObject.transform.position.x > transform.position.x){
                 StartCoroutine(PushBack(false));
             }
@@ -105,9 +108,16 @@ public class PlayerMovement:MonoBehaviour
             }
             
         }
+        else if(collision.gameObject.CompareTag("Heal")){
+            healthSystem.addHeart();
+            Destroy(collision.gameObject);
+        }
    
     //kada primi damage
     IEnumerator PushBack(bool pushRight){
+
+        healthSystem.removeHeart();
+
         isBeingPushed = true; 
         Color currentColor = spriteRenderer.color;
 
