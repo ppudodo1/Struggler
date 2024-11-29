@@ -116,7 +116,7 @@ public class PlayerMovement:MonoBehaviour
             spriteRenderer.color = new Color(currentColor.r + 0.5f, currentColor.g * 0.7f,currentColor.b * 0.7f);
 
             // da ne playa vise hurt zvukova u isto vrime
-            audioSource.PlayOneShot(hurtSound);
+            audioSource.PlayOneShot(hurtSound, 0.3f);
         }
 
         gameObject.GetComponent<Animator>().SetBool("isJumping", true);
