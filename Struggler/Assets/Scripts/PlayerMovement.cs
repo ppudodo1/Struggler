@@ -26,6 +26,7 @@ public class PlayerMovement:MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip landingSound;
 
@@ -55,7 +56,7 @@ public class PlayerMovement:MonoBehaviour
         //double jump
         else if(Input.GetButtonDown("Jump") && !(IsGrounded()) && hasSecondJump){
 
-            audioSource.PlayOneShot(jumpSound);
+            audioSource.PlayOneShot(dashSound);
 
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower + 3f);
             gameObject.GetComponent<Animator>().SetBool("isJumping", true);
