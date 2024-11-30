@@ -9,14 +9,19 @@ public class HealthSystem : MonoBehaviour
 
     //razlog float jer ako cemo dodavat difficulty onda na easy mode moze gubiti pola srca
     private int numberOfHearts = 3;
+    private int numberOfCollectedHearts = 0;
     private Image heartsPrefab;
     public Canvas HUD;
     public Sprite fullHeart;
     public Sprite emptyHeart;
     private List<Image> heartsList = new List<Image>();
+    public AudioClip collectedHeartSFX;
+    private AudioSource audioSource;
     private Vector2 startHeartPosition = new Vector2(-900f,385.5f);
     void Start()
     {
+
+        audioSource = GetComponent<AudioSource>();
 
 
         for(int i = 0; i < numberOfHearts; i ++){
@@ -40,6 +45,7 @@ public class HealthSystem : MonoBehaviour
     public void removeHeart(){
         
         numberOfHearts--;
+        if(numberOfHearts < 0) numberOfHearts = 0;
 
         if(numberOfHearts >= 0){
             Image heartToRemove = heartsList[numberOfHearts]; 
@@ -51,11 +57,16 @@ public class HealthSystem : MonoBehaviour
 
 //moguc dodatak koda da se dodaju dodatna srca, tipa 4 5 itd, vjv bi trebalo samo  numberOfHearts ++  i ponovno start() pozvat
     public void addHeart(){
+        numberOfCollectedHearts++;
+
+        audioSource.PlayOneShot(collectedHeartSFX,0.3f);
+
         numberOfHearts++;
         if(numberOfHearts > 3) numberOfHearts = 3;
 
         Image heartToAdd = heartsList[numberOfHearts - 1]; 
         heartToAdd.sprite = fullHeart;
+
     }
 
     void Update()

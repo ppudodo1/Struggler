@@ -98,6 +98,7 @@ public class PlayerMovement:MonoBehaviour
 
         else if(collision.gameObject.CompareTag("Enemy")){
 
+            healthSystem.removeHeart();
 
             if (collision.gameObject.transform.position.x > transform.position.x){
                 StartCoroutine(PushBack(false));
@@ -116,7 +117,6 @@ public class PlayerMovement:MonoBehaviour
     //kada primi damage
     IEnumerator PushBack(bool pushRight){
 
-        healthSystem.removeHeart();
 
         isBeingPushed = true; 
         Color currentColor = spriteRenderer.color;
