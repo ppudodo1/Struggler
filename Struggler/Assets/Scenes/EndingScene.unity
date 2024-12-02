@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 2
+  skipToTime: 115.5
   timeline: {fileID: 1236889382}
   fairyDust: {fileID: 1826396240}
   skipText: {fileID: 996759833}
@@ -3495,7 +3496,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.2
-      minScalar: 0.6
+      minScalar: 0.7
       maxCurve:
         serializedVersion: 2
         m_Curve:
