@@ -2,7 +2,10 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
+
 
 public class HealthSystem : MonoBehaviour
 {
@@ -10,6 +13,7 @@ public class HealthSystem : MonoBehaviour
     //razlog float jer ako cemo dodavat difficulty onda na easy mode moze gubiti pola srca
     private int numberOfHearts = 3;
     private int numberOfCollectedHearts = 0;
+    private string gameOver = "GameOver";
     private Image heartsPrefab;
     public Canvas HUD;
     public Sprite fullHeart;
@@ -42,16 +46,23 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    void Update(){
+        
+    }
+
     public void removeHeart(){
         
         numberOfHearts--;
         if(numberOfHearts < 0) numberOfHearts = 0;
 
-        if(numberOfHearts >= 0){
+        if(numberOfHearts > 0){
             Image heartToRemove = heartsList[numberOfHearts]; 
             heartToRemove.sprite = emptyHeart;
         }
-        //else gameOver
+        else if(numberOfHearts <= 0){
+            StartCoroutine(transitionToGameOver());
+
+        }
     }
 
 
@@ -69,10 +80,20 @@ public class HealthSystem : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        
+    IEnumerator transitionToGameOver(){
+
+
+        yield return StartCoroutine(DarkenAndSlowTheScene());
+        SceneManager.LoadScene(gameOver);
+
     }
+
+    IEnumerator DarkenAndSlowTheScene(){
+        
+
+        yield return new WaitForSeconds(3f);
+    }
+   
 
     
 }
