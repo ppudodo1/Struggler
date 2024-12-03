@@ -55,11 +55,12 @@ public class HealthSystem : MonoBehaviour
         numberOfHearts--;
         if(numberOfHearts < 0) numberOfHearts = 0;
 
-        if(numberOfHearts > 0){
+        //u oba slucaja sam stavia jednako jer ocu da se na ekranu vidi da si izgubio srce
+        if(numberOfHearts >= 0){
             Image heartToRemove = heartsList[numberOfHearts]; 
             heartToRemove.sprite = emptyHeart;
         }
-        else if(numberOfHearts <= 0){
+        if(numberOfHearts <= 0){
             StartCoroutine(transitionToGameOver());
 
         }
@@ -90,8 +91,8 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator DarkenAndSlowTheScene(){
         
-
-        yield return new WaitForSeconds(3f);
+        yield return null;
+        //yield return new WaitForSeconds(3f);
     }
    
 
