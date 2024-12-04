@@ -6,6 +6,11 @@ public class PlayerMovement:MonoBehaviour
     private float horizontal;
     private float speed = 5f;
 
+    public float invicibilityFrames = 1f;
+    private float invicibilityTimer;
+    private bool playerCanTakeDmg = true;
+    private bool fadingFinished = true;
+
     public float jumpingPower = 4f;
     public float pushBackForce = -5f;
 
@@ -37,10 +42,21 @@ public class PlayerMovement:MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultColor = spriteRenderer.color;
+
+        invicibilityTimer = invicibilityFrames;
     }
      void Update()
     {
+        if(!playerCanTakeDmg){
+            invicibilityTimer -= Time.deltaTime;
+
+        }
+        if(invicibilityTimer < 0){
+            invicibilityTimer = invicibilityFrames;
+            playerCanTakeDmg = true;
+        }
         
+
        
         horizontal = Input.GetAxisRaw("Horizontal");
         
@@ -97,8 +113,8 @@ public class PlayerMovement:MonoBehaviour
         }
 
 
-        else if(collision.gameObject.CompareTag("Enemy")){
-
+        else if(collision.gameObject.CompareTag("Enemy") && playerCanTakeDmg){
+            playerCanTakeDmg = false;
             healthSystem.removeHeart();
 
             if (collision.gameObject.transform.position.x > transform.position.x){
@@ -114,7 +130,7 @@ public class PlayerMovement:MonoBehaviour
             healthSystem.addHeart();
             Destroy(collision.gameObject);
         }
-   
+    }
     //kada primi damage
     IEnumerator PushBack(bool pushRight){
 
@@ -122,24 +138,23 @@ public class PlayerMovement:MonoBehaviour
         isBeingPushed = true; 
         Color currentColor = spriteRenderer.color;
 
+        audioSource.PlayOneShot(hurtSound, 0.3f);
+
 
         if(defaultColor == spriteRenderer.color){
             spriteRenderer.color = new Color(currentColor.r + 0.5f, currentColor.g * 0.7f,currentColor.b * 0.7f);
-
-            // da ne playa vise hurt zvukova u isto vrime
-            audioSource.PlayOneShot(hurtSound, 0.3f);
         }
 
         gameObject.GetComponent<Animator>().SetBool("isJumping", true);
         if (!pushRight){
 
-            rb.linearVelocity = new Vector2(pushBackForce, jumpingPower * 0.7f);
+            rb.linearVelocity = new Vector2(pushBackForce, jumpingPower * 0.5f);
 
         }
 
         else{
 
-            rb.linearVelocity = new Vector2(-pushBackForce, jumpingPower * 0.7f);
+            rb.linearVelocity = new Vector2(-pushBackForce, jumpingPower * 0.5f);
 
         }
 
@@ -147,7 +162,24 @@ public class PlayerMovement:MonoBehaviour
 
         spriteRenderer.color = defaultColor;
         isBeingPushed = false; 
+
+        StartCoroutine(FadingInAnOut());
     }
 
+    
+
+    IEnumerator FadingInAnOut(){
+        while (invicibilityTimer > 0){
+            fadingFinished = false;
+        if (spriteRenderer.color.a == 1f){
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.6f); // Half transparent
+        }
+        else{
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f); // Fully opaque
+        }
+            yield return new WaitForSeconds(0.3f);
+        }
+        fadingFinished  = true;
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
     }
 }
