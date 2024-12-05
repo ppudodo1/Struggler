@@ -12,7 +12,6 @@ public class ChoiceManager : MonoBehaviour
     public TMP_Text gameOverBot;
     public TMP_Text choiceResponse;
 
-
     private AudioSource audioSource;
     public AudioClip typewriterSFX;
 
@@ -57,7 +56,7 @@ public class ChoiceManager : MonoBehaviour
             hasGivenUp = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Input.GetKeyDown(KeyCode.Return) && !choiceMade){
             choiceMade = true;
 
             Destroy(giveUp);

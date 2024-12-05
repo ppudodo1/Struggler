@@ -2875,7 +2875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6d040aa26f3874ebbf7a1b854f9d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invicibilityFrames: 5
+  invicibilityFrames: 3
   jumpingPower: 7.5
   pushBackForce: -3.5
   healthSystem: {fileID: 1670707417}
@@ -9092,6 +9092,7 @@ MonoBehaviour:
   fullHeart: {fileID: 21300000, guid: 41077be16222555429f6466207eb4e18, type: 3}
   emptyHeart: {fileID: 21300000, guid: 9c62116270a09a74bbf634ce980a2a0a, type: 3}
   collectedHeartSFX: {fileID: 8300000, guid: f674e2046f3b23048b5c3cdabf857fff, type: 3}
+  backGroundTrees: {fileID: 0}
 --- !u!4 &1670707418
 Transform:
   m_ObjectHideFlags: 0

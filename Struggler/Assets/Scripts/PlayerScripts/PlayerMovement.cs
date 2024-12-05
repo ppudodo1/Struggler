@@ -9,7 +9,6 @@ public class PlayerMovement:MonoBehaviour
     public float invicibilityFrames = 1f;
     private float invicibilityTimer;
     private bool playerCanTakeDmg = true;
-    private bool fadingFinished = true;
 
     public float jumpingPower = 4f;
     public float pushBackForce = -5f;
@@ -39,22 +38,19 @@ public class PlayerMovement:MonoBehaviour
    
     void Start()
     {
+        invicibilityTimer = invicibilityFrames;
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultColor = spriteRenderer.color;
 
-        invicibilityTimer = invicibilityFrames;
     }
      void Update()
     {
         if(!playerCanTakeDmg){
             invicibilityTimer -= Time.deltaTime;
-
         }
-        if(invicibilityTimer < 0){
-            invicibilityTimer = invicibilityFrames;
-            playerCanTakeDmg = true;
-        }
+ 
+        
         
 
        
@@ -111,9 +107,14 @@ public class PlayerMovement:MonoBehaviour
             hasSecondJump = true;
             gameObject.GetComponent<Animator>().SetBool("isJumping", false);
         }
-
-
-        else if(collision.gameObject.CompareTag("Enemy") && playerCanTakeDmg){
+        else if(collision.gameObject.CompareTag("Heal")){
+            healthSystem.addHeart();
+            Destroy(collision.gameObject);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision){
+        
+        if(collision.gameObject.CompareTag("Enemy") && playerCanTakeDmg){
             playerCanTakeDmg = false;
             healthSystem.removeHeart();
 
@@ -124,12 +125,16 @@ public class PlayerMovement:MonoBehaviour
             else{
             StartCoroutine(PushBack(true)); 
             }
-            
         }
-        else if(collision.gameObject.CompareTag("Heal")){
-            healthSystem.addHeart();
-            Destroy(collision.gameObject);
+
+        /*
+        katkad ce jumping animacija i dalje biti aktivna premda igrac je na podu ako knockback od enemy napada ga ne podigne dovoljno u zrak
+        pa čisto reda radi da provjera i to pa da makne tu jumping animaciju
+        */
+        else if (collision.gameObject.CompareTag("Ground")){ 
+            gameObject.GetComponent<Animator>().SetBool("isJumping", false);
         }
+        
     }
     //kada primi damage
     IEnumerator PushBack(bool pushRight){
@@ -148,18 +153,18 @@ public class PlayerMovement:MonoBehaviour
         gameObject.GetComponent<Animator>().SetBool("isJumping", true);
         if (!pushRight){
 
-            rb.linearVelocity = new Vector2(pushBackForce, jumpingPower * 0.5f);
+            rb.linearVelocity = new Vector2(pushBackForce, jumpingPower * 0.6f);
 
         }
 
         else{
 
-            rb.linearVelocity = new Vector2(-pushBackForce, jumpingPower * 0.5f);
+            rb.linearVelocity = new Vector2(-pushBackForce, jumpingPower * 0.6f);
 
         }
 
         yield return new WaitForSeconds(0.5f);
-
+    
         spriteRenderer.color = defaultColor;
         isBeingPushed = false; 
 
@@ -170,16 +175,18 @@ public class PlayerMovement:MonoBehaviour
 
     IEnumerator FadingInAnOut(){
         while (invicibilityTimer > 0){
-            fadingFinished = false;
-        if (spriteRenderer.color.a == 1f){
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.6f); // Half transparent
-        }
-        else{
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f); // Fully opaque
-        }
+
+            if (spriteRenderer.color.a == 1f){
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.6f); // Half transparent
+            }
+            else{
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f); // Fully opaque
+            }
+
             yield return new WaitForSeconds(0.3f);
         }
-        fadingFinished  = true;
-        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+            playerCanTakeDmg = true;
+            invicibilityTimer = invicibilityFrames;
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
     }
 }

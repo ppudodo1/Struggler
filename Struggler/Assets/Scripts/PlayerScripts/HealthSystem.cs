@@ -22,6 +22,7 @@ public class HealthSystem : MonoBehaviour
     public AudioClip collectedHeartSFX;
     private AudioSource audioSource;
     private Vector2 startHeartPosition = new Vector2(-900f,385.5f);
+    public SpriteRenderer backGroundTrees;
     void Start()
     {
 
@@ -92,9 +93,13 @@ public class HealthSystem : MonoBehaviour
     }
 
     IEnumerator DarkenAndSlowTheScene(){
-        
+
+
+        /*kod za grayscalanje*/
+        //yield return new WaitForSeconds(5f);
+
         yield return null;
-        //yield return new WaitForSeconds(3f);
+
     }
    
 
