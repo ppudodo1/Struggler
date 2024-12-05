@@ -10,6 +10,7 @@ public class GhoulAI : MonoBehaviour
     public float speed = 3f;
     private float xDistance;
     private float yDistance;
+    private float distanceToPlayer;
 
     //player
     public GameObject player;
@@ -69,6 +70,7 @@ public class GhoulAI : MonoBehaviour
 
         xDistance = ghoulPosition.x - playerPosition.x;
         yDistance = ghoulPosition.y - playerPosition.y;
+        distanceToPlayer = (float)Math.Sqrt(Math.Pow(yDistance,2) + Math.Pow(xDistance,2));
     }
 
     private void Attack(){
@@ -87,12 +89,12 @@ public class GhoulAI : MonoBehaviour
     }
 
     private void Warp(){
-        if(ghoulPosition.x >= playerPosition.x && Math.Abs(xDistance) < 2f && Math.Abs(yDistance) < 2f){
-            transform.Translate(new Vector3(3f,3f,0f));
+        if(distanceToPlayer < 2.5f){
+            Debug.Log("Blizu je!");
+            transform.Translate(new Vector3(2f, 2f, 0));
         }
-
-        else if(ghoulPosition.x <= playerPosition.x && Math.Abs(xDistance) < 2f && Math.Abs(yDistance) < 2f){
-            transform.Translate(new Vector3(-3f,3f,0f));
+        if(yDistance < 0){
+            transform.position = new Vector2(transform.position.x, UnityEngine.Random.Range(playerPosition.y,2.5f));
         }
     }
 }
