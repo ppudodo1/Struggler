@@ -89,12 +89,14 @@ public class GhoulAI : MonoBehaviour
     }
 
     private void Warp(){
+
         if(distanceToPlayer < 2.5f){
+            
             Debug.Log("Blizu je!");
-            transform.Translate(new Vector3(2f, 2f, 0));
+            transform.position = new Vector2(transform.position.x + 2f, UnityEngine.Random.Range(playerPosition.y,2.5f));
+
+            
         }
-        if(yDistance < 0){
-            transform.position = new Vector2(transform.position.x, UnityEngine.Random.Range(playerPosition.y,2.5f));
-        }
+  
     }
 }
