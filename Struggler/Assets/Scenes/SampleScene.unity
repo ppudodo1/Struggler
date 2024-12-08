@@ -350,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Black monkey nigga forest
+  m_text: Ninja go get some bitches
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
   m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
