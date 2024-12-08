@@ -2828,7 +2828,7 @@ Transform:
   m_GameObject: {fileID: 794516301}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.38, y: -0.31, z: 0}
+  m_LocalPosition: {x: -7.11, y: -0.31, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3150,6 +3150,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
+  attackCooldown: 0.5
+  lastAttackTime: 0
 --- !u!1 &842290646
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,7 +4145,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100276284}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 438cab81e6460734f9378f8d7fe9c392, type: 3}
   m_Name: 
@@ -9154,7 +9156,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669145421}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8650afecaf0ce114692ac875074fd6ed, type: 3}
   m_Name: 
