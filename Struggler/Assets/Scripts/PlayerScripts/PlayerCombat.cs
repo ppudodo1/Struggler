@@ -8,11 +8,14 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float lastAttackTime = 0f;
  
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime+attackCooldown ) {
             Attack();
+            lastAttackTime = Time.time;
         }
     }
     void Attack() {
