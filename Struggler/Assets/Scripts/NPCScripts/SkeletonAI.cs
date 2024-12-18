@@ -16,6 +16,8 @@ public class SkeletonAI : MonoBehaviour
     public LayerMask groundLayer;
     public float groundCheckDistance = 1f;
 
+    public GameObject droppedHeart;
+
 
     void Start()
     {
@@ -23,6 +25,16 @@ public class SkeletonAI : MonoBehaviour
         position = player.transform.position;
         playerX = position.x;
         Debug.Log(playerX);
+    }
+    void OnDestroy(){
+        int randomNumber = UnityEngine.Random.Range(1, 6);
+        Vector2 spawnPosition = new Vector2(transform.position.x,transform.position.y - 0.5f);
+
+
+        if(randomNumber < 3){
+            Instantiate(droppedHeart, spawnPosition, Quaternion.Euler(0, 0, 0));
+        }
+        
     }
 
     
@@ -60,11 +72,13 @@ public class SkeletonAI : MonoBehaviour
     }
 
 
-    void Jump(){
+    private void Jump(){
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         
 
     }
+
+
 
 
 }
