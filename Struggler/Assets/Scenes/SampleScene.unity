@@ -7992,8 +7992,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38d46ca213bd544c8176f6c9073b89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 794516308}
   attackPoint: {fileID: 726304726}
+  pushBackForce: -3
+  jumpingPower: 2.5
   attackRange: 0.7
   enemyLayers:
     serializedVersion: 2
