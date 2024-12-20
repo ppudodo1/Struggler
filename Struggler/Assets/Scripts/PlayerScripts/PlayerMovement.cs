@@ -113,18 +113,22 @@ public class PlayerMovement:MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-    private void OnTriggerStay2D(Collider2D collision){
-        
-        if(collision.gameObject.CompareTag("Enemy") && playerCanTakeDmg){
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Enemy") && playerCanTakeDmg)
+        {
             playerCanTakeDmg = false;
             healthSystem.removeHeart();
 
-            if (collision.gameObject.transform.position.x > transform.position.x){
+            if (collision.gameObject.transform.position.x > transform.position.x)
+            {
                 StartCoroutine(PushBack(false));
             }
 
-            else{
-            StartCoroutine(PushBack(true)); 
+            else
+            {
+                StartCoroutine(PushBack(true));
             }
         }
 
@@ -132,10 +136,17 @@ public class PlayerMovement:MonoBehaviour
         katkad ce jumping animacija i dalje biti aktivna premda igrac je na podu ako knockback od enemy napada ga ne podigne dovoljno u zrak
         pa čisto reda radi da provjera i to pa da makne tu jumping animaciju
         */
-        else if (collision.gameObject.CompareTag("Ground")){ 
+        else if (collision.gameObject.CompareTag("Ground"))
+        {
             gameObject.GetComponent<Animator>().SetBool("isJumping", false);
         }
-        
+        if (collision.gameObject.CompareTag("spikes") && playerCanTakeDmg)
+        {
+            playerCanTakeDmg = false;
+            healthSystem.removeHeart();
+            healthSystem.removeHeart();
+            healthSystem.removeHeart();
+        }
     }
     //kada primi damage
     IEnumerator PushBack(bool pushRight){
