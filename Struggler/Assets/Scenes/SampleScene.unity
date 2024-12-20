@@ -7781,6 +7781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 60
+  currentHealth: 0
 --- !u!1 &631906520
 GameObject:
   m_ObjectHideFlags: 0
@@ -8509,7 +8510,7 @@ Transform:
   m_GameObject: {fileID: 794516301}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.21, y: -1.67, z: 0}
+  m_LocalPosition: {x: -7.67, y: -1.28, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9988,6 +9989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!1 &1112279876
 GameObject:
   m_ObjectHideFlags: 0
@@ -25134,6 +25136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!1 &1670707416
 GameObject:
   m_ObjectHideFlags: 0

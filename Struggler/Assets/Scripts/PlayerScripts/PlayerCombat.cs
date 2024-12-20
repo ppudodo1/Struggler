@@ -45,7 +45,7 @@ public class PlayerCombat : MonoBehaviour
     void CheckAttackAnimationEnd(){
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1.0f){
+        if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.9f){
             if (!attackAnimationFinished){
                 attackAnimationFinished = true; 
                 Debug.Log("Attack animation finished!");
@@ -65,14 +65,14 @@ public class PlayerCombat : MonoBehaviour
                 break;
             } 
             enemy.GetComponent<Enenmy>().TakeDamage(40);
-            if(enemy != null)
+
+            if(enemy.GetComponent<Enenmy>().currentHealth > 0)
                 PushBackEnemy(enemy);
 
         }
     }
 
     private void PushBackEnemy(Collider2D enemy){
-
         SpriteRenderer enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
         StartCoroutine(ChangeEnemyColor(enemySpriteRenderer));
 
