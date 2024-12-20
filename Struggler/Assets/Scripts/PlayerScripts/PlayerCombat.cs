@@ -78,7 +78,7 @@ public class PlayerCombat : MonoBehaviour
     private void PushBackEnemy(Collider2D enemy){
 
         SpriteRenderer enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
-        StartCoroutine(ChangeEnemyColor(enemySpriteRenderer));
+       // StartCoroutine(ChangeEnemyColor(enemySpriteRenderer));
 
         Transform enemyTransform = enemy.transform;
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
@@ -103,7 +103,7 @@ public class PlayerCombat : MonoBehaviour
 
 
     }
-
+    // Ovdje je isto bug kad ubijes enemya da svejedno trazi unisteni enemy game object
     private IEnumerator ChangeEnemyColor(SpriteRenderer enemySpriteRenderer){
         Color enemyDefaultColor = enemySpriteRenderer.color;
         enemySpriteRenderer.color = new Color(1f, 0.8f, 0.8f, 1f);

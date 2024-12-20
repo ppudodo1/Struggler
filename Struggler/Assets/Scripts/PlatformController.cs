@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlatformControllerž : MonoBehaviour
 {
-    // Start is called once befor1e the first execution of Update after the MonoBehaviour is created
+   
     public Transform posA, posB;
     public int speed;
     Vector2 targetPos;
@@ -11,7 +11,7 @@ public class PlatformControllerž : MonoBehaviour
         targetPos = posB.position;
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         if (Vector2.Distance(transform.position, posA.position) < .1f) {

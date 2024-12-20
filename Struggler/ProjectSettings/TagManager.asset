@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Enemy
   - Heal
+  - spikes
   layers:
   - Default
   - TransparentFX
