@@ -5,7 +5,6 @@ public class PlayerCombat : MonoBehaviour
 
 
     private Animator animator;
-    private bool isAttacking = false;
     public Transform attackPoint;
     public float pushBackForce = -5f;
     public float jumpingPower = 2f;
@@ -21,11 +20,9 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime+attackCooldown ) {
-            isAttacking = true;
             Attack();
             lastAttackTime = Time.time;
         }
-        if(isAttacking)
             CheckAttackAnimationEnd();
         
     }
@@ -61,16 +58,15 @@ public class PlayerCombat : MonoBehaviour
     }
 
     void OnAttackAnimationEnd(){
-        isAttacking = false;
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies) {
             if(enemy == null){
-                isAttacking = false;
                 break;
             } 
             enemy.GetComponent<Enenmy>().TakeDamage(40);
-            PushBackEnemy(enemy);
+            if(enemy != null)
+                PushBackEnemy(enemy);
 
         }
     }
@@ -78,7 +74,7 @@ public class PlayerCombat : MonoBehaviour
     private void PushBackEnemy(Collider2D enemy){
 
         SpriteRenderer enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
-       // StartCoroutine(ChangeEnemyColor(enemySpriteRenderer));
+        StartCoroutine(ChangeEnemyColor(enemySpriteRenderer));
 
         Transform enemyTransform = enemy.transform;
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();

@@ -24991,6 +24991,7 @@ GameObject:
   - component: {fileID: 1669145422}
   - component: {fileID: 1669145424}
   - component: {fileID: 1669145425}
+  - component: {fileID: 1669145426}
   m_Layer: 0
   m_Name: Ghoul
   m_TagString: Enemy
@@ -25062,7 +25063,7 @@ Transform:
   m_GameObject: {fileID: 1669145421}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.47, y: 2.71, z: -9.631743}
+  m_LocalPosition: {x: 11.45, y: 1.24, z: -9.631743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25120,6 +25121,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.2, y: 0}
   m_Radius: 0.7
+--- !u!114 &1669145426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669145421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eec1cb176974e548a3eb3a00cb64313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1670707416
 GameObject:
   m_ObjectHideFlags: 0
