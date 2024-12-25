@@ -1623,7 +1623,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7782,6 +7782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 60
   currentHealth: 0
+  droppedHeart: {fileID: 2029138884}
 --- !u!1 &631906520
 GameObject:
   m_ObjectHideFlags: 0
@@ -9990,6 +9991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  droppedHeart: {fileID: 2029138884}
 --- !u!1 &1112279876
 GameObject:
   m_ObjectHideFlags: 0
@@ -25137,6 +25139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  droppedHeart: {fileID: 2029138884}
 --- !u!1 &1670707416
 GameObject:
   m_ObjectHideFlags: 0

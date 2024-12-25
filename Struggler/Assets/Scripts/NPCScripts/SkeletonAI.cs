@@ -26,17 +26,6 @@ public class SkeletonAI : MonoBehaviour
         playerX = position.x;
         Debug.Log(playerX);
     }
-    void OnDestroy(){
-        int randomNumber = UnityEngine.Random.Range(1, 6);
-        Vector2 spawnPosition = new Vector2(transform.position.x,transform.position.y - 0.5f);
-
-
-        if(randomNumber < 3){
-            Instantiate(droppedHeart, spawnPosition, Quaternion.Euler(0, 0, 0));
-        }
-        
-    }
-
     
     void Update()
     {
