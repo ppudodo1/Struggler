@@ -30,6 +30,8 @@ public class PlatformController : MonoBehaviour
     private void FixedUpdate(){
 
         Vector2 platformVelocity = ((Vector2)transform.position - lastPosition) / Time.deltaTime;
+
+        Debug.Log(platformVelocity.x);
         lastPosition = transform.position;
 
         Collider2D playerCollider = Physics2D.OverlapBox(transform.position, new Vector2(1, 1), 0f, LayerMask.GetMask("Player"));
