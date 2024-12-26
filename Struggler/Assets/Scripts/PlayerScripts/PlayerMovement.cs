@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+
 public class PlayerMovement:MonoBehaviour
 {
     private float horizontal;
@@ -18,6 +19,10 @@ public class PlayerMovement:MonoBehaviour
 
     //ima neki overlap sa fixed update pa ga nebi pravilno "gurnulo"
     private bool isBeingPushed = false;
+
+    private bool isOnMovingPlatform = false;
+    private GameObject movingPlatform;
+    
 
     private SpriteRenderer spriteRenderer;
 
@@ -50,10 +55,6 @@ public class PlayerMovement:MonoBehaviour
             invicibilityTimer -= Time.deltaTime;
         }
  
-        
-        
-
-       
         horizontal = Input.GetAxisRaw("Horizontal");
         
 
@@ -90,6 +91,21 @@ public class PlayerMovement:MonoBehaviour
         if(!isBeingPushed)
             rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
         gameObject.GetComponent<Animator>().SetFloat("yVelocity", rb.linearVelocity.y);
+
+        if(isOnMovingPlatform){
+            Rigidbody2D platformRb = movingPlatform.GetComponent<Rigidbody2D>();
+            PlatformController platformScript = movingPlatform.GetComponent<PlatformController>();
+
+            if(platformRb.linearVelocity.x > 0){
+
+                rb.linearVelocity = new Vector2(platformScript.speed * Time.deltaTime,rb.linearVelocity.y);
+                
+            }
+            else{
+                rb.linearVelocity = new Vector2(platformScript.speed * Time.deltaTime,rb.linearVelocity.y);
+            }
+
+        }
     }
     private void Flip()
     {
@@ -103,16 +119,36 @@ public class PlayerMovement:MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
+
         if (collision.gameObject.CompareTag("Ground")){ 
             audioSource.PlayOneShot(landingSound);
             hasSecondJump = true;
+            gameObject.GetComponent<Animator>().SetBool("isJumping", false);
+        }
+        else if (collision.gameObject.CompareTag("MovingPlatform")){ 
+            Debug.Log("Damn <3");
+
+            movingPlatform = collision.gameObject;
+            audioSource.PlayOneShot(landingSound);
+            hasSecondJump = true;
+            isOnMovingPlatform = true;
             gameObject.GetComponent<Animator>().SetBool("isJumping", false);
         }
         else if(collision.gameObject.CompareTag("Heal")){
             healthSystem.addHeart();
             Destroy(collision.gameObject);
         }
+
     }
+
+    private void OnTriggerExit2D(Collider2D other){
+        if (other.gameObject.tag == "MovingPlatform"){
+            isOnMovingPlatform = false;
+        
+        }
+
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
 

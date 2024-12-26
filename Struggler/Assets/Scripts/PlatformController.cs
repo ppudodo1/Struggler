@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class PlatformControllerž : MonoBehaviour
+public class PlatformController : MonoBehaviour
 {
    
     public Transform posA, posB;
     public int speed;
     Vector2 targetPos;
+    public Transform player;
     void Start()
     {
         targetPos = posB.position;
@@ -23,6 +24,14 @@ public class PlatformControllerž : MonoBehaviour
         }
         transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
+/*
+    void OnTriggerStay2D(Collider2D collision){
+        if (collision.CompareTag("Player"))
+        {
+            player.transform.position = new Vector2(transform.position.x, player.transform.position.y);
+        }
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -38,4 +47,5 @@ public class PlatformControllerž : MonoBehaviour
             collision.transform.SetParent(null); // Detach the player from the platform
         }
     }
+    */
 }

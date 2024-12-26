@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Heal
   - spikes
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX

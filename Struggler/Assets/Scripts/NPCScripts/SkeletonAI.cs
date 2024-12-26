@@ -16,7 +16,6 @@ public class SkeletonAI : MonoBehaviour
     public LayerMask groundLayer;
     public float groundCheckDistance = 1f;
 
-    public GameObject droppedHeart;
 
 
     void Start()
