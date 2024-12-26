@@ -6,7 +6,7 @@ public class Interact : MonoBehaviour
     public GameObject player;
     private Vector3 playerPosition;
 
-    public GameObject E;
+    private GameObject E;
     private GameObject initializedE;
     private SpriteRenderer E_spriteRenderer;
 
@@ -20,6 +20,7 @@ public class Interact : MonoBehaviour
 
     void Start()
     {
+        E = Resources.Load<GameObject>("Prefabs/Interact");
 
         itemPosition = transform.position;
         playerPosition = player.transform.position;

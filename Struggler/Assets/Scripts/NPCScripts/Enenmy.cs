@@ -4,9 +4,10 @@ public class Enenmy : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
-    public GameObject droppedHeart;
+    private GameObject droppedHeart;
     void Start()
     {
+        droppedHeart = Resources.Load<GameObject>("Prefabs/HealingItem");
         currentHealth = maxHealth;
     }
 

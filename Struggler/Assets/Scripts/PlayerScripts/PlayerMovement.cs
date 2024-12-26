@@ -93,18 +93,12 @@ public class PlayerMovement:MonoBehaviour
         gameObject.GetComponent<Animator>().SetFloat("yVelocity", rb.linearVelocity.y);
 
         if(isOnMovingPlatform){
+
+            
             Rigidbody2D platformRb = movingPlatform.GetComponent<Rigidbody2D>();
             PlatformController platformScript = movingPlatform.GetComponent<PlatformController>();
-
-            if(platformRb.linearVelocity.x > 0){
-
-                rb.linearVelocity = new Vector2(platformScript.speed * Time.deltaTime,rb.linearVelocity.y);
-                
-            }
-            else{
-                rb.linearVelocity = new Vector2(platformScript.speed * Time.deltaTime,rb.linearVelocity.y);
-            }
-
+            Debug.Log("Linear velovity x :" + platformRb.linearVelocity.x);
+            
         }
     }
     private void Flip()
