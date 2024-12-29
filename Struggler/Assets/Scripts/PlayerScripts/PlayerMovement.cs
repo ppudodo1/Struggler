@@ -1,14 +1,13 @@
 using UnityEngine;
-using System;
 using System.Collections;
 
-public class PlayerMovement:MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private float speed = 5f;
 
-    public float invicibilityFrames = 1f;
-    private float invicibilityTimer;
+    public float invincibilityFrames = 1f;
+    private float invincibilityTimer;
     private bool playerCanTakeDmg = true;
 
     public float jumpingPower = 4f;
@@ -17,17 +16,14 @@ public class PlayerMovement:MonoBehaviour
     private bool isFacingRight = true;
     private bool hasSecondJump = true;
 
-    //ima neki overlap sa fixed update pa ga nebi pravilno "gurnulo"
     private bool isBeingPushed = false;
 
     private bool isOnMovingPlatform = false;
     private GameObject movingPlatform;
-    
 
     private SpriteRenderer spriteRenderer;
-
+    private bool wasGrounded;
     private Color defaultColor;
-
     public HealthSystem healthSystem;
 
     [SerializeField] private Rigidbody2D rb;
@@ -40,195 +36,118 @@ public class PlayerMovement:MonoBehaviour
     [SerializeField] private AudioClip landingSound;
 
     private AudioSource audioSource;
-   
-    void Start()
+
+    private Animator animator;
+
+    private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+    private void Start()
     {
-        invicibilityTimer = invicibilityFrames;
+        invincibilityTimer = invincibilityFrames;
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         defaultColor = spriteRenderer.color;
-
     }
-     void Update()
+
+    private void Update()
     {
-        if(!playerCanTakeDmg){
-            invicibilityTimer -= Time.deltaTime;
-        }
- 
-        horizontal = Input.GetAxisRaw("Horizontal");
-        
-
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (!playerCanTakeDmg)
         {
-            audioSource.PlayOneShot(jumpSound);
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
-            gameObject.GetComponent<Animator>().SetBool("isJumping", true);
-
+            invincibilityTimer -= Time.deltaTime;
         }
 
-        //double jump
-        else if(Input.GetButtonDown("Jump") && !(IsGrounded()) && hasSecondJump){
+        horizontal = Input.GetAxisRaw("Horizontal");
 
-            audioSource.PlayOneShot(dashSound);
-
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower + 3f);
-            gameObject.GetComponent<Animator>().SetBool("isJumping", true);
-            hasSecondJump = false;
-
+     
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            Jump(false);
         }
-        
+        else if (Input.GetButtonDown("Jump") && !isGrounded && hasSecondJump)
+        {
+            Jump(true);
+        }
+       
+
+
         Flip();
-        gameObject.GetComponent<Animator>().SetFloat("MoveValue", Math.Abs(horizontal));
-      
-        //Debug.Log("Velocity: " + rb.linearVelocity.y);
-    }
-    private bool IsGrounded() {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+        animator.SetFloat("MoveValue", Mathf.Abs(horizontal));
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
+
+     
+        if (isGrounded && !wasGrounded) 
+        {
+            Land();
+        }
+
+        wasGrounded = isGrounded;
     }
 
-
-    private void FixedUpdate(){
-        if(!isBeingPushed)
+    private void FixedUpdate()
+    {
+        if (!isBeingPushed)
+        {
             rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
-        gameObject.GetComponent<Animator>().SetFloat("yVelocity", rb.linearVelocity.y);
-
-        if(isOnMovingPlatform){
-
-            
-            Rigidbody2D platformRb = movingPlatform.GetComponent<Rigidbody2D>();
-            PlatformController platformScript = movingPlatform.GetComponent<PlatformController>();
-            Debug.Log("Linear velovity x :" + platformRb.linearVelocity.x);
-            
         }
     }
+
+    private void Jump(bool isDoubleJump)
+    {
+        audioSource.PlayOneShot(isDoubleJump ? dashSound : jumpSound);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower + (isDoubleJump ? 3f : 0f));
+        animator.SetBool("isJumping", true);
+
+        if (isDoubleJump)
+        {
+            hasSecondJump = false;
+        }
+    }
+
     private void Flip()
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
             isFacingRight = !isFacingRight;
-            
+
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision){
-
-        if (collision.gameObject.CompareTag("Ground")){ 
-            audioSource.PlayOneShot(landingSound);
-            hasSecondJump = true;
-            gameObject.GetComponent<Animator>().SetBool("isJumping", false);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ground"))
+        {
+            Land();
         }
-        else if (collision.gameObject.CompareTag("MovingPlatform")){ 
-            Debug.Log("Damn <3");
-
+        else if (collision.CompareTag("MovingPlatform"))
+        {
             movingPlatform = collision.gameObject;
-            audioSource.PlayOneShot(landingSound);
-            hasSecondJump = true;
             isOnMovingPlatform = true;
-            gameObject.GetComponent<Animator>().SetBool("isJumping", false);
+            Land();
         }
-        else if(collision.gameObject.CompareTag("Heal")){
+        else if (collision.CompareTag("Heal"))
+        {
             healthSystem.addHeart();
             Destroy(collision.gameObject);
         }
-
     }
 
-    private void OnTriggerExit2D(Collider2D other){
-        if (other.gameObject.tag == "MovingPlatform"){
-            isOnMovingPlatform = false;
-        
-        }
-
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-
-        if (collision.gameObject.CompareTag("Enemy") && playerCanTakeDmg)
+        if (other.CompareTag("MovingPlatform"))
         {
-            playerCanTakeDmg = false;
-            healthSystem.removeHeart();
-
-            if (collision.gameObject.transform.position.x > transform.position.x)
-            {
-                StartCoroutine(PushBack(false));
-            }
-
-            else
-            {
-                StartCoroutine(PushBack(true));
-            }
-        }
-
-        /*
-        katkad ce jumping animacija i dalje biti aktivna premda igrac je na podu ako knockback od enemy napada ga ne podigne dovoljno u zrak
-        pa čisto reda radi da provjera i to pa da makne tu jumping animaciju
-        */
-        else if (collision.gameObject.CompareTag("Ground"))
-        {
-            gameObject.GetComponent<Animator>().SetBool("isJumping", false);
-        }
-        if (collision.gameObject.CompareTag("spikes") && playerCanTakeDmg)
-        {
-            playerCanTakeDmg = false;
-            healthSystem.removeHeart();
-            healthSystem.removeHeart();
-            healthSystem.removeHeart();
+            isOnMovingPlatform = false;
         }
     }
-    //kada primi damage
-    IEnumerator PushBack(bool pushRight){
 
-
-        isBeingPushed = true; 
-        Color currentColor = spriteRenderer.color;
-
-        audioSource.PlayOneShot(hurtSound, 0.3f);
-
-
-        if(defaultColor == spriteRenderer.color){
-            spriteRenderer.color = new Color(currentColor.r + 0.5f, currentColor.g * 0.7f,currentColor.b * 0.7f);
-        }
-
-        gameObject.GetComponent<Animator>().SetBool("isJumping", true);
-        if (!pushRight){
-
-            rb.linearVelocity = new Vector2(pushBackForce, jumpingPower * 0.6f);
-
-        }
-
-        else{
-
-            rb.linearVelocity = new Vector2(-pushBackForce, jumpingPower * 0.6f);
-
-        }
-
-        yield return new WaitForSeconds(0.5f);
-    
-        spriteRenderer.color = defaultColor;
-        isBeingPushed = false; 
-
-        StartCoroutine(FadingInAnOut());
-    }
-
-    
-
-    IEnumerator FadingInAnOut(){
-        while (invicibilityTimer > 0){
-
-            if (spriteRenderer.color.a == 1f){
-                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.6f); // Half transparent
-            }
-            else{
-                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f); // Fully opaque
-            }
-
-            yield return new WaitForSeconds(0.3f);
-        }
-            playerCanTakeDmg = true;
-            invicibilityTimer = invicibilityFrames;
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+    private void Land()
+    {
+        animator.SetBool("isJumping", false);
+        hasSecondJump = true;
+        audioSource.PlayOneShot(landingSound);
     }
 }
