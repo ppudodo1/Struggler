@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float speed = 5f;
 
-    public float invincibilityFrames = 1f;
+    public float invincibilityFrames = 2f;
     private float invincibilityTimer;
     private bool playerCanTakeDmg = true;
 
@@ -134,6 +134,29 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.addHeart();
             Destroy(collision.gameObject);
         }
+
+        else if (collision.CompareTag("Enemy") && playerCanTakeDmg)
+        {
+            playerCanTakeDmg = false;
+            healthSystem.removeHeart();
+
+            if (collision.gameObject.transform.position.x > transform.position.x)
+            {
+                StartCoroutine(PushBack(false));
+            }
+
+            else
+            {
+                StartCoroutine(PushBack(true));
+            }
+        }
+        else if (collision.CompareTag("spikes"))
+        {
+            healthSystem.removeHeart();
+            healthSystem.removeHeart();
+            healthSystem.removeHeart();
+
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -149,5 +172,59 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isJumping", false);
         hasSecondJump = true;
         audioSource.PlayOneShot(landingSound);
+    }
+
+
+    IEnumerator PushBack(bool pushRight){
+
+
+        isBeingPushed = true; 
+        Color currentColor = spriteRenderer.color;
+
+        audioSource.PlayOneShot(hurtSound, 0.3f);
+
+
+        if(defaultColor == spriteRenderer.color){
+            spriteRenderer.color = new Color(currentColor.r + 0.5f, currentColor.g * 0.7f,currentColor.b * 0.7f);
+        }
+
+        gameObject.GetComponent<Animator>().SetBool("isJumping", true);
+        if (!pushRight){
+
+            rb.linearVelocity = new Vector2(pushBackForce, jumpingPower * 0.6f);
+
+        }
+
+        else{
+
+            rb.linearVelocity = new Vector2(-pushBackForce, jumpingPower * 0.6f);
+
+        }
+
+        yield return new WaitForSeconds(0.5f);
+    
+        spriteRenderer.color = defaultColor;
+        isBeingPushed = false; 
+
+        StartCoroutine(FadingInAnOut());
+    }
+
+    
+
+    IEnumerator FadingInAnOut(){
+        while (invincibilityTimer > 0){
+
+            if (spriteRenderer.color.a == 1f){
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.6f); // Half transparent
+            }
+            else{
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f); // Fully opaque
+            }
+
+            yield return new WaitForSeconds(0.3f);
+        }
+            playerCanTakeDmg = true;
+            invincibilityTimer = invincibilityFrames;
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
     }
 }
