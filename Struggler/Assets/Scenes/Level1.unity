@@ -28787,6 +28787,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 794516301}
+    - target: {fileID: 5351325223374020019, guid: a2dcc3e76264fa1468abf5e4aeb890aa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8089999608489640181, guid: a2dcc3e76264fa1468abf5e4aeb890aa, type: 3}
       propertyPath: m_Name
       value: Skeleton (2)

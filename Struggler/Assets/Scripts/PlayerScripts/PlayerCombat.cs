@@ -64,9 +64,9 @@ public class PlayerCombat : MonoBehaviour
             if(enemy == null){
                 break;
             } 
-            enemy.GetComponent<Enenmy>().TakeDamage(40);
+            enemy.GetComponent<Enemy>().TakeDamage(40);
 
-            if(enemy.GetComponent<Enenmy>().currentHealth > 0)
+            if(enemy.GetComponent<Enemy>().currentHealth > 0)
                 PushBackEnemy(enemy);
 
         }
