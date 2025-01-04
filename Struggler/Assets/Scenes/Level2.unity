@@ -350,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 441621236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.041088033}
+  m_LocalPosition: {x: 0, y: -0.3, z: -0.041088033}
   m_LocalScale: {x: 24, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -383,8 +383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 591817776}
-  followSpeed: 2
-  yPos: -0.2
 --- !u!114 &441621242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,8 +503,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 591817776}
-  followSpeed: 2
-  yPos: -1.5
 --- !u!1001 &624439809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -519,13 +515,9 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 50d64011aa5b5b24492352fb4c3da7d3, type: 2}
-    - target: {fileID: 621100814411993348, guid: ff2742579dde7144e96615de02c2850b, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 591817776}
-    - target: {fileID: 621100814411993348, guid: ff2742579dde7144e96615de02c2850b, type: 3}
-      propertyPath: followSpeed
-      value: 4
+    - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: ForceModule.enabled
@@ -557,11 +549,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 400
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -569,15 +561,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 40
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819668567543293487, guid: ff2742579dde7144e96615de02c2850b, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762710849917050670, guid: ff2742579dde7144e96615de02c2850b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1762710849917050670, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -623,7 +631,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowStorm
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6713382877099166645, guid: ff2742579dde7144e96615de02c2850b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 591817776}
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2604,8 +2617,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 591817776}
-  followSpeed: 2
-  yPos: -0.2
 --- !u!114 &958806484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2682,7 +2693,7 @@ Transform:
   m_GameObject: {fileID: 958806482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.041088033}
+  m_LocalPosition: {x: 0, y: -0.3, z: -0.041088033}
   m_LocalScale: {x: 24, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

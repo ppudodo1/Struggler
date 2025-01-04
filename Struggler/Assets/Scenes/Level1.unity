@@ -28941,10 +28941,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 621100814411993348, guid: ff2742579dde7144e96615de02c2850b, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 794516303}
     - target: {fileID: 1762710849917050670, guid: ff2742579dde7144e96615de02c2850b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1657948
@@ -28989,6 +28985,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leaf Particles
       objectReference: {fileID: 0}
+    - target: {fileID: 6713382877099166645, guid: ff2742579dde7144e96615de02c2850b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 794516303}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
