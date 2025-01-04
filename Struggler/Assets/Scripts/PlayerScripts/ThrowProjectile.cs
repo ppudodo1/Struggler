@@ -5,6 +5,7 @@ public class ThrowProjectile : MonoBehaviour
     private GameObject grenade;
     private GameObject instantiatedObject;
     private Rigidbody2D grenadeRb;
+    public int maxGrenades = 2;
     public Vector3 forceAmount = new Vector3(5f,1f,0f);
     void Start()
     {
