@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class Enemy : MonoBehaviour
 {
     public int maxHealth = 100;
@@ -27,4 +27,33 @@ public class Enemy : MonoBehaviour
         }
     }
    
+    public void StartColorChange(){
+        
+        //da privremeno iskljuci skriptu tako da je bolji i cisci knockback
+        if(gameObject.GetComponent<SkeletonAI>() != null)
+            gameObject.GetComponent<SkeletonAI>().enabled = false;
+
+        SpriteRenderer enemySpriteRenderer = GetComponent<SpriteRenderer>();
+        if (enemySpriteRenderer != null){
+
+            StartCoroutine(ChangeColorCoroutine(enemySpriteRenderer));
+        }
+
+        
+    }
+
+    private IEnumerator ChangeColorCoroutine(SpriteRenderer enemySpriteRenderer){
+        Color enemyDefaultColor = enemySpriteRenderer.color;
+        enemySpriteRenderer.color = new Color(1f, 0.8f, 0.8f, 1f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        
+        if(gameObject.GetComponent<SkeletonAI>() != null)
+            gameObject.GetComponent<SkeletonAI>().enabled = true;
+
+        if (enemySpriteRenderer != null){
+        enemySpriteRenderer.color = enemyDefaultColor;
+        }
+    }
 }

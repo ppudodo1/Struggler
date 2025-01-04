@@ -134,6 +134,11 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.addHeart();
             Destroy(collision.gameObject);
         }
+        else if (collision.CompareTag("Projectile")){
+
+            //picked up grenade
+            Destroy(collision.gameObject);
+        }
 
         else if (collision.CompareTag("Enemy") && playerCanTakeDmg)
         {
