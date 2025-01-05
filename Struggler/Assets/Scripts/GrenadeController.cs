@@ -23,7 +23,7 @@ public class GrenadeController : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D collision){
-        if(collision.CompareTag("Ground")){
+        if(collision.CompareTag("Ground") && gameObject.CompareTag("Projectile")){
             Destroy(gameObject);
         }
         else if(collision.CompareTag("Enemy")){

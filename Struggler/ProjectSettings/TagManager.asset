@@ -11,6 +11,8 @@ TagManager:
   - spikes
   - MovingPlatform
   - Projectile
+  - EnemyProjectile
+  - InvisibleWall
   layers:
   - Default
   - TransparentFX

@@ -33,12 +33,10 @@ public class SkeletonAI : MonoBehaviour
 
         if (transform.position.x > playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
             m_SpriteRenderer.flipX = false;
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
         
         }
         else if (transform.position.x < playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
             m_SpriteRenderer.flipX = true;
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
 
         }
 
@@ -56,6 +54,17 @@ public class SkeletonAI : MonoBehaviour
                     Jump();
                 }
             hit = new RaycastHit2D();
+        }
+    }
+
+    void FixedUpdate(){
+         if (transform.position.x > playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        
+        }
+        else if (transform.position.x < playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+
         }
     }
 
