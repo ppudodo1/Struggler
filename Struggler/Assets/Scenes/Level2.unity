@@ -5246,6 +5246,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 84963655}
     - target: {fileID: 555182889065400970, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 555182889065400970, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       propertyPath: invincibilityFrames
       value: 4
       objectReference: {fileID: 0}
