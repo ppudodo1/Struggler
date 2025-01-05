@@ -54,6 +54,9 @@ TagManager:
   - name: Player
     uniqueID: 2040768151
     locked: 0
+  - name: Pass behind Foreground
+    uniqueID: 3352115499
+    locked: 0
   - name: HUD
     uniqueID: 2868454185
     locked: 0
