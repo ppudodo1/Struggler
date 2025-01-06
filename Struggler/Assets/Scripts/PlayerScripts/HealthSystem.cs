@@ -22,7 +22,6 @@ public class HealthSystem : MonoBehaviour
     public AudioClip collectedHeartSFX;
     private AudioSource audioSource;
     private Vector2 startHeartPosition = new Vector2(-900f,385.5f);
-    public SpriteRenderer backGroundTrees;
     void Start()
     {
 
@@ -62,7 +61,13 @@ public class HealthSystem : MonoBehaviour
             heartToRemove.sprite = emptyHeart;
         }
         if(numberOfHearts <= 0){
-            StartCoroutine(transitionToGameOver());
+
+            //GameManager.Instance.levelDiedOn = SceneManager.GetActiveScene().name;
+            //StartCoroutine(transitionToGameOver());
+            //Debug.Log(GameManager.Instance.levelDiedOn);
+
+            SceneManager.LoadScene(gameOver);
+            
 
         }
 
@@ -88,7 +93,9 @@ public class HealthSystem : MonoBehaviour
 
 
         yield return StartCoroutine(DarkenAndSlowTheScene());
-        SceneManager.LoadScene(gameOver);
+
+        
+        
 
     }
 

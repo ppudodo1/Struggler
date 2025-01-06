@@ -117,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //VRLO JE BITAN OVAJ playerCanTakeDmg
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
@@ -134,15 +135,8 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.addHeart();
             Destroy(collision.gameObject);
         }
-        /*
-        else if (collision.CompareTag("Projectile")){
-
-            //picked up grenade
-            Destroy(collision.gameObject);
-        }
-        */
-
-        else if (collision.CompareTag("Enemy") && playerCanTakeDmg)
+        
+        else if (collision.CompareTag("Enemy") && playerCanTakeDmg || collision.CompareTag("EnemyProjectile") && playerCanTakeDmg || collision.CompareTag("Projectile") && playerCanTakeDmg)
         {
             playerCanTakeDmg = false;
             healthSystem.removeHeart();
@@ -156,8 +150,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(PushBack(true));
             }
+
+            if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Projectile")){
+                Destroy(collision.gameObject);
+            }
         }
-        else if (collision.CompareTag("spikes"))
+        else if (collision.CompareTag("Spikes"))
         {
             healthSystem.removeHeart();
             healthSystem.removeHeart();
@@ -182,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    IEnumerator PushBack(bool pushRight){
+    public IEnumerator PushBack(bool pushRight){
 
 
         isBeingPushed = true; 
@@ -218,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
 
     
 
-    IEnumerator FadingInAnOut(){
+    public IEnumerator FadingInAnOut(){
         while (invincibilityTimer > 0){
 
             if (spriteRenderer.color.a == 1f){

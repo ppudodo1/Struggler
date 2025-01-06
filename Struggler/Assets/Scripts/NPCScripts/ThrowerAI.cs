@@ -12,11 +12,14 @@ public class ThrowerAI : MonoBehaviour
     public float speed = 5f;
 
     private bool movingRight = true;
+
     public float switchSidestimer = 2f;
     private float defaultSwitchSidesTimer;
+    
+
     private Rigidbody2D grenadeRb;
 
-
+    private float jumpTimer;
     private float attackTimer;
 
     private Rigidbody2D rb;
@@ -25,7 +28,10 @@ public class ThrowerAI : MonoBehaviour
     void Start()
     {
         grenade = Resources.Load<GameObject>("Prefabs/EnemyProjectile");
+
         defaultSwitchSidesTimer = switchSidestimer;
+        
+        jumpTimer  = UnityEngine.Random.Range(1f,4f);
         attackTimer = UnityEngine.Random.Range(0.5f,3f);
 
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -39,6 +45,7 @@ public class ThrowerAI : MonoBehaviour
     {
         switchSidestimer -= Time.deltaTime;
         attackTimer -= Time.deltaTime;
+        jumpTimer -= Time.deltaTime;
 
 
         if(switchSidestimer < 0f){
@@ -55,28 +62,7 @@ public class ThrowerAI : MonoBehaviour
         }
     
 
-        if(attackTimer < 0f){
-           
-            attackTimer = UnityEngine.Random.Range(1f,3f);
-
-            if(m_SpriteRenderer.flipX){
-
-                instantiatedObject = Instantiate(grenade, new Vector2(transform.position.x - 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
-                grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
-
-                grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(-50, -30), UnityEngine.Random.Range(5, 10)), ForceMode2D.Impulse);
-            }
-
-            else if(!m_SpriteRenderer.flipX){
-                instantiatedObject = Instantiate(grenade, new Vector2(transform.position.x + 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
-                grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
-
-                grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(30,60),UnityEngine.Random.Range(5,10)), ForceMode2D.Impulse);
-            }
-
-            grenadeRb.AddTorque(-2, ForceMode2D.Impulse);
-
-        }
+        
     
 
 
@@ -99,6 +85,37 @@ public class ThrowerAI : MonoBehaviour
             rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
         else 
             rb.linearVelocity = new Vector2(-speed, rb.linearVelocity.y);
+
+
+        if(attackTimer < 0f){
+           
+            attackTimer = UnityEngine.Random.Range(1f,3f);
+
+            if(m_SpriteRenderer.flipX){
+
+                instantiatedObject = Instantiate(grenade, new Vector2(transform.position.x - 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
+                grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
+
+                grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(-30, -20), UnityEngine.Random.Range(10, 20)), ForceMode2D.Impulse);
+            }
+
+            else if(!m_SpriteRenderer.flipX){
+                instantiatedObject = Instantiate(grenade, new Vector2(transform.position.x + 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
+                grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
+
+                grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(20,30),UnityEngine.Random.Range(10,20)), ForceMode2D.Impulse);
+            }
+
+            grenadeRb.AddTorque(-2, ForceMode2D.Impulse);
+
+        }
+
+
+        if(jumpTimer < 0f){
+            jumpTimer = UnityEngine.Random.Range(1f,4f);
+            rb.AddForce(Vector2.up * 5f,ForceMode2D.Impulse);
+
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision){

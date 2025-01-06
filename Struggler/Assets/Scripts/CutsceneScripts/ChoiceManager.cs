@@ -23,13 +23,19 @@ public class ChoiceManager : MonoBehaviour
     private string choiceResponseGivenUp = "I see,\nanother victim of casuality";
     private string choiceResponseArised = "Very well then,\nStruggler";
 
-    public string ariseScene = "SampleScene";
+    private string ariseScene = "Level2";
+    //private string ariseScene;
     public string giveUpScene = "Cutscene";
 
     private bool hasGivenUp = false;
     private bool choiceMade = false;
 
     void Start(){
+
+
+       // ariseScene = GameManager.Instance.levelDiedOn;
+       // Destroy(GameManager.Instance.gameObject);
+
 
         gameOverTop.text = "";
         gameOverBot.text = "";

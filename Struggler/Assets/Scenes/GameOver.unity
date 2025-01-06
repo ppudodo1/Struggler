@@ -1099,7 +1099,6 @@ MonoBehaviour:
   typingSpeed: 0.075
   deathMessageTop: You have perished from the reality of normality.
   deathMessageBot: What do you wish to do?
-  ariseScene: SampleScene
   giveUpScene: Cutscene
 --- !u!4 &1647558957
 Transform:
