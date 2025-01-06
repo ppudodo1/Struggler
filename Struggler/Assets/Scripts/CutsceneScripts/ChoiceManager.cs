@@ -24,7 +24,7 @@ public class ChoiceManager : MonoBehaviour
     private string choiceResponseArised = "Very well then,\nStruggler";
 
     private string ariseScene = "Level2";
-    //private string ariseScene;
+   // private string ariseScene;
     public string giveUpScene = "Cutscene";
 
     private bool hasGivenUp = false;
@@ -34,7 +34,6 @@ public class ChoiceManager : MonoBehaviour
 
 
        // ariseScene = GameManager.Instance.levelDiedOn;
-       // Destroy(GameManager.Instance.gameObject);
 
 
         gameOverTop.text = "";
@@ -51,6 +50,8 @@ public class ChoiceManager : MonoBehaviour
     
     void Update()
     {
+        //if(GameManager.Instance != null){
+
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
             arise.color = Color.yellow;
             giveUp.color = Color.white;
@@ -80,6 +81,7 @@ public class ChoiceManager : MonoBehaviour
             }
 
         }
+        //}
     }
 
     IEnumerator TypeText(string message, TMP_Text textWindow){
@@ -115,6 +117,9 @@ public class ChoiceManager : MonoBehaviour
     typingSpeed *= 1.5f;
 
     yield return StartCoroutine(TypeText(message, textComponent));
+
+    //Destroy(GameManager.Instance.gameObject);
+
     SceneManager.LoadScene(sceneName);
     }
 }

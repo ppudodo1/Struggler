@@ -62,7 +62,7 @@ public class HealthSystem : MonoBehaviour
         }
         if(numberOfHearts <= 0){
 
-            //GameManager.Instance.levelDiedOn = SceneManager.GetActiveScene().name;
+           // GameManager.Instance.levelDiedOn = SceneManager.GetActiveScene().name;
             //StartCoroutine(transitionToGameOver());
             //Debug.Log(GameManager.Instance.levelDiedOn);
 

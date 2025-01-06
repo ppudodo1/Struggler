@@ -723,7 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1608788385}
-  optionalXOffset: 3
+  optionalXOffset: 0
 --- !u!114 &441621242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1608788385}
-  optionalXOffset: 3
+  optionalXOffset: 0
 --- !u!1001 &698203125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -850,11 +850,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 170674432568255007, guid: a2dcc3e76264fa1468abf5e4aeb890aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12
+      value: -9.76
       objectReference: {fileID: 0}
     - target: {fileID: 170674432568255007, guid: a2dcc3e76264fa1468abf5e4aeb890aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3
+      value: -2.09
       objectReference: {fileID: 0}
     - target: {fileID: 170674432568255007, guid: a2dcc3e76264fa1468abf5e4aeb890aa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4637,7 +4637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1608788385}
-  optionalXOffset: 3
+  optionalXOffset: 0
 --- !u!114 &958806484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4850,7 +4850,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.49072984, g: 0.56137085, b: 0.5924529, a: 0}
+  m_BackGroundColor: {r: 0.32487714, g: 0.3690478, b: 0.3886792, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -7086,11 +7086,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 170674432568255007, guid: a2dcc3e76264fa1468abf5e4aeb890aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.01
+      value: -11.04
       objectReference: {fileID: 0}
     - target: {fileID: 170674432568255007, guid: a2dcc3e76264fa1468abf5e4aeb890aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.34
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 170674432568255007, guid: a2dcc3e76264fa1468abf5e4aeb890aa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8507,7 +8507,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 3000
+    maxNumParticles: 2000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -8575,7 +8575,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: -5.43, y: 0.2, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 25, y: 0, z: 0}
+    m_Scale: {x: 24, y: 0, z: 0}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -8773,7 +8773,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 300
+      scalar: 700
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -12687,7 +12687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1608788385}
-  optionalXOffset: 5
+  optionalXOffset: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
