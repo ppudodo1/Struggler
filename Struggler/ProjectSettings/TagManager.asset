@@ -8,11 +8,14 @@ TagManager:
   - Item
   - Enemy
   - Heal
+  - Shield
   - Spikes
   - MovingPlatform
   - Projectile
   - EnemyProjectile
   - InvisibleWall
+  - GameManager
+  - spikes
   layers:
   - Default
   - TransparentFX

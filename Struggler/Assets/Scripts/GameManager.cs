@@ -1,34 +1,40 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public static class GameManager
 {
-    public static GameManager Instance; // Singleton pattern
+    //defaultna vrijednost
+    private static string levelDiedOn;
+    private static int numberOfHearts;
+    private static int numberOfShield;
 
-    public string levelDiedOn = "SampleScene"; // Session-only data
-
-    private void Awake()
+    static GameManager()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Persist across scenes
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        levelDiedOn = "Cutscene";
+        numberOfHearts = 3;
+        numberOfShield = 1;
+    }
+    public static void SetLevelDiedOn(string level){
+        levelDiedOn = level;
     }
 
-    private void Start()
+    public static string GetLevelDiedOn()
     {
-        // Load persistent data into the session (e.g., highest unlocked level)
-        //currentLevel = PlayerPrefs.GetInt("HighestLevel", 1); 
+        return levelDiedOn;
     }
 
-    public void SaveProgress()
-    {
-        // Save session data to PlayerPrefs (e.g., when finishing a level)
-        //PlayerPrefs.SetInt("HighestLevel", currentLevel);
-        //PlayerPrefs.Save();
+    public static void SetNumberOfHearts(int number){
+        numberOfHearts = number;
+    }
+
+    public static int GetNumberOfHearts(){
+        return numberOfHearts;
+    }
+
+    public static void SetNumberOfShield(int number){
+    numberOfShield = number;
+    }
+
+    public static int GetNumberOfShield(){
+        return numberOfShield;
     }
 }

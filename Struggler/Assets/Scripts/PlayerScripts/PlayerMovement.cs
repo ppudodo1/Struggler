@@ -135,6 +135,12 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.addHeart();
             Destroy(collision.gameObject);
         }
+
+        else if (collision.CompareTag("Shield"))
+        {
+            healthSystem.addShield();
+            Destroy(collision.gameObject);
+        }
         
         else if (collision.CompareTag("Enemy") && playerCanTakeDmg || collision.CompareTag("EnemyProjectile") && playerCanTakeDmg || collision.CompareTag("Projectile") && playerCanTakeDmg)
         {
