@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeTime: 40
-  sceneName: SampleScene
+  sceneName: MainMenu
   decreaseDuration: 3.5
   targetVolume: 0
 --- !u!4 &2125069757

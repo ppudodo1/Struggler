@@ -124,6 +124,7 @@ public class HealthSystem : MonoBehaviour
         if(numberOfShield >= 0){
             Image shieldToRemove = shieldList[numberOfShield];
             positionOfLastHeart += 70f;
+
             Destroy(shieldToRemove.gameObject);
         }
     }
