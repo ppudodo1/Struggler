@@ -48,8 +48,8 @@ MonoBehaviour:
   HUD: {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 41077be16222555429f6466207eb4e18, type: 3}
   emptyHeart: {fileID: 21300000, guid: 9c62116270a09a74bbf634ce980a2a0a, type: 3}
+  shield: {fileID: 21300000, guid: 5973bdfa1c7dd4f4daac284d08f7b8c6, type: 3}
   collectedHeartSFX: {fileID: 8300000, guid: f674e2046f3b23048b5c3cdabf857fff, type: 3}
-  backGroundTrees: {fileID: 0}
 --- !u!82 &4059914475213675178
 AudioSource:
   m_ObjectHideFlags: 0
