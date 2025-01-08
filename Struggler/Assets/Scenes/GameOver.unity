@@ -234,8 +234,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Arise
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -389,8 +389,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -533,8 +533,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Give up
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -661,8 +661,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: What do you wish to do?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -876,8 +876,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You have perished from the reality of normality
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

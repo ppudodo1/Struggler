@@ -495,10 +495,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1465971112017841311, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_MatchWidthOrHeight
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2787649798151761997, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -586,90 +582,6 @@ PrefabInstance:
     - target: {fileID: 6992552026020273799, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_text
-      value: Mountains of Velebit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190080
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.topLeft.b
-      value: 0.89433956
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.topLeft.g
-      value: 0.15760899
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.topLeft.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.topRight.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.topRight.g
-      value: 0.5238215
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.topRight.r
-      value: 0.4584905
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.bottomLeft.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.bottomLeft.g
-      value: 0.38634634
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.bottomLeft.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.bottomRight.b
-      value: 0.381132
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.bottomRight.g
-      value: 0.15622187
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705985526659031663, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
-      propertyPath: m_fontColorGradient.bottomRight.r
-      value: 0.11721604
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

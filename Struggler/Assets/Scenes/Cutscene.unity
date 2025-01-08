@@ -241,8 +241,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Is it like the hand of God hovering above?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -498,8 +498,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Even over his own will.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -679,8 +679,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Is the destiny of mankind controlled by some transcendental entity or law?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -948,8 +948,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hold E to skip
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1320,8 +1320,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: At least it is true that man has no control
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1667,8 +1667,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: In this world
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

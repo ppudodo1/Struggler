@@ -349,8 +349,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: So what will you do, Struggler?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
+  m_sharedMaterial: {fileID: 6426554929508162222, guid: 70eb16dfb0a60464cb3a9106ec268dbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -530,8 +530,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Struggler
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -668,8 +668,8 @@ MonoBehaviour:
   m_text: The more I think I'll finally hit rock bottom and push myself back to the
     surface,
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -827,8 +827,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: the further and further it becomes.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1065,8 +1065,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: I'm drowning.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1224,8 +1224,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Meter by meter I go towards that bottom, but it is unreachable
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1405,8 +1405,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hold E to skip
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1542,8 +1542,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: are waiting for my signal to try to float to the surface.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1723,8 +1723,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: by Gale Studio
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1860,8 +1860,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: eager to damage my body and leave me with yet another scar.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2413,8 +2413,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "I forgot how I got here myself. \n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2573,8 +2573,8 @@ MonoBehaviour:
   m_text: The once soft sand that graced that endlessly distant bottom has turned
     into sharp rocks
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2732,8 +2732,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: I'm sinking.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2891,8 +2891,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: And yes, my body. There it is.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3072,8 +3072,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Fate? My will?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3209,8 +3209,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: I'm floating.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3369,8 +3369,8 @@ MonoBehaviour:
   m_text: There are no fish or any life that would break the monotony of darkness
     with its color.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3529,7 +3529,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1426513111
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -8361,8 +8361,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Around me the blackness of the evening sea.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8520,8 +8520,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: My hands, motionless, longing for touch and warmth,
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
-  m_sharedMaterial: {fileID: 1587567622363194877, guid: d20ed249d6d2fab4c9cd657e43b095cb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
