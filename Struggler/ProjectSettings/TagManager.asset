@@ -16,6 +16,8 @@ TagManager:
   - InvisibleWall
   - GameManager
   - spikes
+  - GoldenHeal
+  - Barrier
   layers:
   - Default
   - TransparentFX
