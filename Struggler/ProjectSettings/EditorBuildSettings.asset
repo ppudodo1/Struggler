@@ -21,11 +21,11 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: c5b6bf6d925f26d4bb0a6583e0d02908
   - enabled: 1
-    path: Assets/Scenes/Cutscene.unity
-    guid: c5916bdd8ddfff845a30ac97702f40b1
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 1a26458362a47aa469846f5d86c115c0
+  - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: c5916bdd8ddfff845a30ac97702f40b1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

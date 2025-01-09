@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-
+   
     public void LoadLevel(string levelName){
         SceneManager.LoadScene(levelName);
     }
@@ -13,4 +12,6 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
     }
+
+ 
 }
