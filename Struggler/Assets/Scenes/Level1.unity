@@ -28901,6 +28901,10 @@ PrefabInstance:
       propertyPath: healthSystem
       value: 
       objectReference: {fileID: 686226061}
+    - target: {fileID: 347171818446893119, guid: 711384cf381f1f247a9e131d24e92627, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b3a682f6aaf0cc4b852f067c67e9ed0, type: 3}
     - target: {fileID: 2781318912729144372, guid: 711384cf381f1f247a9e131d24e92627, type: 3}
       propertyPath: m_Name
       value: Shizo
@@ -28911,7 +28915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5555906742425063145, guid: 711384cf381f1f247a9e131d24e92627, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.45
+      value: -0.973
       objectReference: {fileID: 0}
     - target: {fileID: 5555906742425063145, guid: 711384cf381f1f247a9e131d24e92627, type: 3}
       propertyPath: m_LocalPosition.z
