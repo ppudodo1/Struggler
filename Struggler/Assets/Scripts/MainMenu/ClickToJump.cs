@@ -28,7 +28,7 @@ public class ClickToJump : MonoBehaviour
         if(clickCounter == requiredClicks){
             GameManager.SetUnlockedLevels(4);
             GameManager.SetMainMenuEasterEgg(true);
-            audio.pitch = 0.55f;
+            audio.pitch = 0.60f;
             audio.PlayOneShot(theme,0.1f);
 
             GetComponent<SpriteRenderer>().color = new Color(1f, 0.84f, 0.4f, 1f);
