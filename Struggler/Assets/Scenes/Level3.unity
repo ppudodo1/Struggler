@@ -3960,17 +3960,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 555182889065400970, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
+      propertyPath: jumpingPower
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 691315094418630106, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       propertyPath: m_Name
       value: Shizo
       objectReference: {fileID: 0}
+    - target: {fileID: 3328501948789511667, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
+      propertyPath: m_Size.y
+      value: 0.89105535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328501948789511667, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.58244
+      objectReference: {fileID: 0}
     - target: {fileID: 7391533517411551822, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.84
+      value: -18.62
       objectReference: {fileID: 0}
     - target: {fileID: 7391533517411551822, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.78
+      value: -1.38
       objectReference: {fileID: 0}
     - target: {fileID: 7391533517411551822, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       propertyPath: m_LocalPosition.z

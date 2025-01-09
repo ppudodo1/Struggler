@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
-    private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, 1f, groundLayer);
 
     private void Start()
     {
@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetButtonDown("Jump") && !isGrounded && hasSecondJump)
         {
+            
             Jump(true);
         }
        
@@ -74,9 +75,6 @@ public class PlayerMovement : MonoBehaviour
         Flip();
 
         animator.SetFloat("MoveValue", Mathf.Abs(horizontal));
-        animator.SetFloat("yVelocity", rb.linearVelocity.y);
-
-     
         if (isGrounded && !wasGrounded) 
         {
             Land();
@@ -92,19 +90,32 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
         }
     }
-
+    /*private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, 1f);
+    }*/
     private void Jump(bool isDoubleJump)
     {
         audioSource.PlayOneShot(isDoubleJump ? dashSound : jumpSound);
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower + (isDoubleJump ? 3f : 0f));
         animator.SetBool("isJumping", true);
+
+        
+        StartCoroutine(DelayedJump(isDoubleJump));
 
         if (isDoubleJump)
         {
             hasSecondJump = false;
         }
     }
+    private IEnumerator DelayedJump(bool isDoubleJump)
+    {
+        
+        yield return new WaitForSeconds(0.2f);
 
+      
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower + (isDoubleJump ? 3f : 0f));
+    }
     private void Flip()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
