@@ -6,11 +6,11 @@ public class ClickToJump : MonoBehaviour
     private Animator animator;
     private AudioSource audio;
     public AudioClip theme;
+    public int requiredClicks = 42;
 
     void Start(){
         animator = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
-
 
     }
 
@@ -25,14 +25,17 @@ public class ClickToJump : MonoBehaviour
     }
     void OnMouseDown(){
         clickCounter++;
-        if(clickCounter == 42){
+        if(clickCounter == requiredClicks){
             GameManager.SetUnlockedLevels(4);
             GameManager.SetMainMenuEasterEgg(true);
             audio.pitch = 0.55f;
             audio.PlayOneShot(theme,0.1f);
+
+            GetComponent<SpriteRenderer>().color = new Color(1f, 0.84f, 0.4f, 1f);
+
         }
         Debug.Log(clickCounter);
-        animator.SetBool("isJumping",true);
+       
 
     }
 }

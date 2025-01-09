@@ -19,6 +19,7 @@ public class UnlockLevels : MonoBehaviour
         unlockedLevels = GameManager.GetUnlockedLevels();
         int levelNumber = int.Parse(gameObject.name[gameObject.name.Length - 1].ToString());
 
+        if(gameObject.active){
         if(levelNumber > unlockedLevels){
             
             txt.color = new Color(0.851f, 0.400f, 0.400f);
@@ -37,6 +38,7 @@ public class UnlockLevels : MonoBehaviour
                 txt.text = "Boss Fight";
             }
 
+        }
         }
     }
 
