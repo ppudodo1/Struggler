@@ -13,6 +13,8 @@ public class CameraFollow : MonoBehaviour
     private Camera mainCamera;
     private BoxCollider2D boxCollider;
 
+    
+
     void Start()
     {
         LockOnPlayer();
