@@ -26,7 +26,9 @@ public class ParallaxMaterial : MonoBehaviour
 
         Vector2 currentOffset = materialRenderer.material.mainTextureOffset;
         currentOffset.x += deltaX * parallaxEffectMultiplier;
-        materialRenderer.material.mainTextureOffset = currentOffset;
+
+        if(!CameraFollow.touchedBarrier)
+            materialRenderer.material.mainTextureOffset = currentOffset;
 
         previousPlayerPosition = player.position;
     }
