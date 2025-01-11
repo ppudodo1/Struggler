@@ -118,9 +118,11 @@ public class HealthSystem : MonoBehaviour
 
     public void removeShield(){
         numberOfShield--;
-        if(numberOfShield < 0) numberOfShield = 0;
+        if(numberOfShield < 0){
+            numberOfShield = 0;
+        } 
 
-        //u oba slucaja sam stavia jednako jer ocu da se na ekranu vidi da si izgubio srce
+        
         if(numberOfShield >= 0){
             Image shieldToRemove = shieldList[numberOfShield];
             positionOfLastHeart += 70f;

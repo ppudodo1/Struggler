@@ -11,6 +11,10 @@ public class ThrowProjectile : MonoBehaviour
     public int maxGrenades = 2;
     public Vector3 rightThrowVector = new Vector3(5f,1f,0f);
 
+
+    //za funkcije notifikacije
+    public GameObject notification;
+
     void Start(){
         count  = GameObject.FindGameObjectsWithTag("Projectile").Length;
         grenade = Resources.Load<GameObject>("Prefabs/grenade");
@@ -23,8 +27,14 @@ public class ThrowProjectile : MonoBehaviour
         count = GameObject.FindGameObjectsWithTag("Projectile").Length;
 
         if(!PauseMenu.isPaused){
-            if (Input.GetKeyDown(KeyCode.Q) && count < maxGrenades){
 
+            //nazalost njega ne mogu drugacije blokirati, trebao bi i njemu dolje staviti da bool postaje true al onda ovaj if se nikad nebi izvrsio, probat cemo sutra
+            if(count < maxGrenades && !notification.GetComponent<NotificationManager>().currentlyUsed){
+                notification.GetComponent<NotificationManager>().SetNotificationActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q) && count < maxGrenades){
+                
                 Vector3 localScale = transform.localScale;
 
                 //ovisno di sprite gleda
@@ -44,8 +54,12 @@ public class ThrowProjectile : MonoBehaviour
 
             
             }
+            else if(count == maxGrenades && Input.GetKeyDown(KeyCode.Q)){
+                
+                    notification.GetComponent<NotificationManager>().SetNotificationText("You can have 2 grenades active at the time");
+                    notification.GetComponent<NotificationManager>().SetNotificationActive(true);
+            }
+            
         }
-
-
     }
 }

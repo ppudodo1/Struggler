@@ -12,13 +12,18 @@ public class NotificationManager : MonoBehaviour
 
     public GameObject player;
 
-    public static bool isActive = false;
+    private bool isActive;
+    public bool currentlyUsed;
 
-    
+    //notification.GetComponent<NotificationManager>().GetNotificationText() == ""
     void Start()
     {
+        currentlyUsed = false;
+        Debug.Log(Screen.currentResolution);
+        isActive = false;
         AdaptYBasedOnresolution();
-        transform.position = new Vector3(transform.position.x,startY,transform.position.z);
+        SetNotificationText("");
+        //transform.position = new Vector3(transform.position.x,startY,transform.position.z);
     }
 
     
@@ -27,24 +32,24 @@ public class NotificationManager : MonoBehaviour
         
 
         AdaptYBasedOnresolution();
+
         if(isActive){
             MoveNotificationUp();
         }
         else MoveNotificationDown();
        
-       if(player.GetComponent<ThrowProjectile>().count == 2 && Input.GetKeyDown(KeyCode.Q)){
-            SetNotificationText("You can have 2 grenades active at the time");
-            isActive = true;
-       }
-       else if(player.GetComponent<ThrowProjectile>().count < 2){
-            isActive = false;
-       }
+       
     }
 
     public void MoveNotificationUp(){
-        
+
+        if(transform.position.y == endY){
+           // Debug.Log("Already there");
+            return;
+        } 
+
         float step = speed * Time.deltaTime;
-        Debug.Log(Screen.currentResolution + "  "+endY);
+        Debug.Log("MoveNotificationUp");
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 new Vector3(transform.position.x, endY, transform.position.z),
@@ -56,6 +61,11 @@ public class NotificationManager : MonoBehaviour
     }
 
     public void MoveNotificationDown(){
+
+        if(transform.position.y == startY){
+           // Debug.Log("Already there");
+            return;
+        } 
 
         float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(
@@ -73,8 +83,17 @@ public class NotificationManager : MonoBehaviour
 
     }
 
+    public string GetNotificationText(){
+        return GetComponentInChildren<TMP_Text>().text;
+
+    }
+
     public void SetNotificationActive(bool boolean){
         isActive = boolean;
+    }
+
+    public bool GetNotificationActive(){
+        return isActive;
     }
 
     public void AdaptYBasedOnresolution(){

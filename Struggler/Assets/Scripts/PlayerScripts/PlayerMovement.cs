@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 5f;
+    public float speed = 5f;
 
     public float invincibilityFrames = 2f;
     private float invincibilityTimer;
