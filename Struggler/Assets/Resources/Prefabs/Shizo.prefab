@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6d040aa26f3874ebbf7a1b854f9d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibilityFrames: 1
+  invincibilityFrames: 4
   jumpingPower: 10
   pushBackForce: -3.5
   healthSystem: {fileID: 0}
@@ -194,27 +194,30 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.5625, y: 0.375}
-      - {x: 1.4375, y: 0.5}
-      - {x: 0.8982438, y: 0.52994955}
+    - - {x: 1.2498832, y: 0.47920564}
+      - {x: 1.0154669, y: 0.50521064}
+      - {x: 0.54394543, y: 0.36322042}
       - {x: 0.54607713, y: 0.64513445}
       - {x: 0.4952607, y: 1.0952244}
       - {x: -0.25586292, y: 1.0798452}
       - {x: -0.46497035, y: 0.67916423}
-      - {x: -1.5323783, y: 0.626157}
-      - {x: -1.8403858, y: 0.2908676}
-      - {x: -1.4882036, y: 0.0013306998}
+      - {x: -0.5177567, y: 0.5312383}
+      - {x: -0.6222797, y: 0.27538958}
+      - {x: -0.67432225, y: 0.1581447}
+      - {x: -0.70134836, y: 0.06769213}
       - {x: -0.7216542, y: 0.029986233}
       - {x: -0.8445883, y: -0.24294531}
       - {x: -1.0060716, y: -0.77861863}
       - {x: -0.96744716, y: -1.5102906}
       - {x: -0.9808611, y: -1.7586728}
-      - {x: -0.6663971, y: -1.9712074}
-      - {x: 0.7365861, y: -1.9942763}
+      - {x: -0.69765973, y: -1.9972588}
+      - {x: 0.6949034, y: -1.9994866}
       - {x: 0.6222272, y: -0.7864824}
       - {x: 0.60257995, y: -0.46664506}
-      - {x: 1.3125, y: -0.125}
-      - {x: 1.4394641, y: 0.2730688}
+      - {x: 0.7087353, y: -0.20106502}
+      - {x: 1.0175838, y: -0.18052287}
+      - {x: 1.1926637, y: -0.05726587}
+      - {x: 1.241473, y: 0.2886995}
   m_UseDelaunayMesh: 0
 --- !u!95 &6515004461817641431
 Animator:
@@ -342,7 +345,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691315094418630106}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -369,7 +372,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.007524073, y: -1.58244}
+  m_Offset: {x: -0.2, y: -0.45}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -379,7 +382,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.3761307, y: 0.89105535}
+  m_Size: {x: 2.05, y: 3.23}
   m_EdgeRadius: 0
 --- !u!114 &3123751741045454985
 MonoBehaviour:

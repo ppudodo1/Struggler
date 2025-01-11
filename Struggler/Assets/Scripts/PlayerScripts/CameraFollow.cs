@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     public float margin = 0.1f;
 
     private GameObject recentBarrier;
-    private Vector2 pointOfDetach = new Vector2();
+    private Vector2 pointOfDetach = Vector2.zero;
     public static bool touchedBarrier = false;
 
     private Camera mainCamera;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7631710085213644008}
   m_Layer: 0
   m_Name: ShieldingItem
-  m_TagString: GoldenHeal
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

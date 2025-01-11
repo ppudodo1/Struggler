@@ -52,24 +52,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!playerCanTakeDmg)
-        {
-            invincibilityTimer -= Time.deltaTime;
-        }
+        if(!PauseMenu.isPaused){
+            if (!playerCanTakeDmg)
+            {
+                invincibilityTimer -= Time.deltaTime;
+            }
 
-        horizontal = Input.GetAxisRaw("Horizontal");
+        
+            horizontal = Input.GetAxisRaw("Horizontal");
 
      
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            Jump(false);
-        }
-        else if (Input.GetButtonDown("Jump") && !isGrounded && hasSecondJump)
-        {
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                Jump(false);
+            }
+            else if (Input.GetButtonDown("Jump") && !isGrounded && hasSecondJump)
+            {
             
-            Jump(true);
-        }
-       
+                Jump(true);
+            }
+        
 
 
         Flip();
@@ -81,10 +83,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         wasGrounded = isGrounded;
+        }
     }
 
     private void FixedUpdate()
     {
+        
         if (!isBeingPushed)
         {
             rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
@@ -174,9 +178,21 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.CompareTag("Spikes"))
         {
+            playerCanTakeDmg = false;
             healthSystem.removeHeart();
             healthSystem.removeHeart();
             healthSystem.removeHeart();
+
+            
+            if (collision.gameObject.transform.position.x > transform.position.x)
+            {
+                StartCoroutine(PushBack(false));
+            }
+
+            else
+            {
+                StartCoroutine(PushBack(true));
+            }
 
         }
     }

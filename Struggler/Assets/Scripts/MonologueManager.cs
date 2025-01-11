@@ -5,6 +5,10 @@ public class MonologueManager : MonoBehaviour
     
     public GameObject textBoxToDisplay;
     public GameObject notification;
+    private bool thrownGrenade = false;
+
+
+    
 
     void Start()
     {
@@ -14,11 +18,18 @@ public class MonologueManager : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q)){
-            notification.SetActive(false);
-        }
-    }
+        if(Input.GetKeyDown(KeyCode.Q) && !thrownGrenade){
+            thrownGrenade = true;
+            notification.GetComponent<NotificationManager>().SetNotificationActive(false);
 
+            if(gameObject.name == "Monologue1"){
+                Destroy(gameObject);
+            }
+
+        }
+
+    }
+        //64.5 -75
     void OnTriggerEnter2D(Collider2D collision){
         Debug.Log("detected");
         if(collision.CompareTag("Player")){
@@ -32,9 +43,18 @@ public class MonologueManager : MonoBehaviour
             if(gameObject.name == "Monologue1"){
                 notification.SetActive(true);
 
+              //  notification.GetComponent<NotificationManager>().SetNotificationText("Press Q to throw a grenade!");
+                notification.GetComponent<NotificationManager>().SetNotificationActive(true);
                 //notification.GetComponent<TMP_Text>().text = "Press Q to throw a grenade!";
             }
-            Destroy(gameObject);
+            
+
+            if(gameObject.name != "Monologue1"){
+                Destroy(gameObject);
+                Destroy(textBoxToDisplay);
+            }
         }
     }
+
+
 }

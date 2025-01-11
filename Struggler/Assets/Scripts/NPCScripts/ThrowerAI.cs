@@ -32,7 +32,7 @@ public class ThrowerAI : MonoBehaviour
         defaultSwitchSidesTimer = switchSidestimer;
         
         jumpTimer  = UnityEngine.Random.Range(1f,4f);
-        attackTimer = UnityEngine.Random.Range(0.5f,3f);
+        attackTimer = UnityEngine.Random.Range(3f,5f);
 
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -87,7 +87,7 @@ public class ThrowerAI : MonoBehaviour
             rb.linearVelocity = new Vector2(-speed, rb.linearVelocity.y);
 
 
-        if(attackTimer < 0f){
+        if(attackTimer < 0f && Math.Abs(player.transform.position.x - transform.position.x ) < activationDistance ){
            
             attackTimer = UnityEngine.Random.Range(1f,3f);
 

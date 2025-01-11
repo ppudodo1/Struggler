@@ -19,12 +19,13 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime+attackCooldown ) {
-            Attack();
-            lastAttackTime = Time.time;
-        }
+        if(!PauseMenu.isPaused){
+            if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime+attackCooldown ) {
+                Attack();
+                lastAttackTime = Time.time;
+            }
             CheckAttackAnimationEnd();
-        
+        }
     }
     void Attack() {
         animator.SetTrigger("attack");
