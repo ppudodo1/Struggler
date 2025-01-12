@@ -22,7 +22,7 @@ public class HealthSystem : MonoBehaviour
     public Sprite emptyHeart;
     public Sprite shield;
     private List<Image> heartsList = new List<Image>();
-    private List<Image> shieldList = new List<Image>();
+    private List<GameObject> shieldList = new List<GameObject>();
     public AudioClip collectedHeartSFX;
     private AudioSource audioSource;
     private Vector2 startHeartPosition = new Vector2(-900f,385.5f);
@@ -38,7 +38,7 @@ public class HealthSystem : MonoBehaviour
 
         
         for(int i = 0; i < numberOfHearts; i ++){
-
+            
             GameObject heartObject = new GameObject("HeartImage"); 
             Image summonedImage = heartObject.AddComponent<Image>(); 
 
@@ -61,7 +61,7 @@ public class HealthSystem : MonoBehaviour
         }
 
         for(int i = 0; i < numberOfShield; i ++){
-
+            //brise sliku
             GameObject shieldObject = new GameObject("ShieldImage"); 
             Image summonedImage = shieldObject.AddComponent<Image>(); 
 
@@ -73,7 +73,7 @@ public class HealthSystem : MonoBehaviour
             rectTransform.anchoredPosition = new Vector2(startHeartPosition.x, positionOfLastHeart - i * 70f);
             rectTransform.localScale = new Vector3(0.6f, 0.6f, 1f);
 
-            shieldList.Add(summonedImage);
+            shieldList.Add(shieldObject);
 
             if(i == numberOfShield-1){
                 positionOfLastHeart = (positionOfLastHeart - i * 70f) - 70f;
@@ -84,6 +84,12 @@ public class HealthSystem : MonoBehaviour
 
     void Update(){
         
+        //provjera jesu li svi shieldovi unisteni
+        if(numberOfShield == 0 && shieldList.Count != 0){
+            foreach(GameObject shield in shieldList)
+                Destroy(shield);
+        }   
+
     }
 
     public void removeHeart(){
@@ -118,16 +124,21 @@ public class HealthSystem : MonoBehaviour
 
     public void removeShield(){
         numberOfShield--;
-        if(numberOfShield < 0){
-            numberOfShield = 0;
-        } 
+        
+    //    if(numberOfShield < 0) numberOfShield = 0;
 
         
         if(numberOfShield >= 0){
-            Image shieldToRemove = shieldList[numberOfShield];
-            positionOfLastHeart += 70f;
 
-            Destroy(shieldToRemove.gameObject);
+            GameObject shieldToRemove = shieldList[numberOfShield];
+            positionOfLastHeart += 70f;
+        /*
+            if(shieldToRemove == null){
+                Debug.Log("Shield not found");
+                return;
+            }
+        */
+            Destroy(shieldToRemove);
         }
     }
 
@@ -148,7 +159,7 @@ public class HealthSystem : MonoBehaviour
 
     public void addShield(){
         numberOfShield++;
-        Debug.Log(numberOfShield);
+       // Debug.Log(numberOfShield);
         audioSource.PlayOneShot(collectedHeartSFX,0.3f);
         GameObject shieldObject = new GameObject("ShieldImage"); 
         Image summonedImage = shieldObject.AddComponent<Image>(); 
@@ -162,7 +173,7 @@ public class HealthSystem : MonoBehaviour
         rectTransform.localScale = new Vector3(0.6f, 0.6f, 1f);
         
         positionOfLastHeart -= 70f;
-        shieldList.Add(summonedImage);
+        shieldList.Add(shieldObject);
 
     }
 

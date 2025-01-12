@@ -135,7 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6d040aa26f3874ebbf7a1b854f9d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
   invincibilityFrames: 4
+  playerCanTakeDmg: 1
   jumpingPower: 10
   pushBackForce: -3.5
   healthSystem: {fileID: 0}
