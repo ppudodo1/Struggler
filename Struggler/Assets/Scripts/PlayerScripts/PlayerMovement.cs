@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float invincibilityFrames = 2f;
     private float invincibilityTimer;
-    private bool playerCanTakeDmg = true;
+    public bool playerCanTakeDmg = true;
 
     public float jumpingPower = 4f;
     public float pushBackForce = -5f;
@@ -162,6 +162,30 @@ public class PlayerMovement : MonoBehaviour
             playerCanTakeDmg = false;
             healthSystem.removeHeart();
 
+            
+            if (collision.gameObject.transform.position.x > transform.position.x)
+            {
+                StartCoroutine(PushBack(false));
+            }
+
+            else
+            {
+                StartCoroutine(PushBack(true));
+            }
+            
+            if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Projectile")){
+                Destroy(collision.gameObject);
+            }
+            
+        }
+        else if (collision.CompareTag("Spikes"))
+        {
+            playerCanTakeDmg = false;
+            healthSystem.removeHeart();
+            healthSystem.removeHeart();
+            healthSystem.removeHeart();
+
+            
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
                 StartCoroutine(PushBack(false));
@@ -172,9 +196,30 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(PushBack(true));
             }
 
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision){
+        if (collision.CompareTag("Enemy") && playerCanTakeDmg || collision.CompareTag("EnemyProjectile") && playerCanTakeDmg || collision.CompareTag("Projectile") && playerCanTakeDmg)
+        {
+            playerCanTakeDmg = false;
+            healthSystem.removeHeart();
+
+            
+            if (collision.gameObject.transform.position.x > transform.position.x)
+            {
+                StartCoroutine(PushBack(false));
+            }
+
+            else
+            {
+                StartCoroutine(PushBack(true));
+            }
+            
             if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Projectile")){
                 Destroy(collision.gameObject);
             }
+            
         }
         else if (collision.CompareTag("Spikes"))
         {

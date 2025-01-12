@@ -8,6 +8,7 @@ public class GrenadeController : MonoBehaviour
     private float pushBackForce = -1f;
     private float jumpingPower = 2f;
 
+    
     void Start(){
 
 
@@ -38,6 +39,29 @@ public class GrenadeController : MonoBehaviour
         
         }
 
+        /* BRB
+        else if(collision.CompareTag("Player")){
+
+            Vector2 tempVector = transform.position;
+
+            PlayerMovement player = collision.GetComponent<PlayerMovement>();
+            HealthSystem hp = collision.GetComponent<HealthSystem>();
+
+            player.playerCanTakeDmg = false;
+            player.healthSystem.removeHeart();
+            if (collision.gameObject.transform.position.x > tempVector.x)
+            {
+                StartCoroutine(player.PushBack(true));
+            }
+
+            else
+            {
+                StartCoroutine(player.PushBack(false));
+            }
+            
+
+        }
+        */
       
     }
     
