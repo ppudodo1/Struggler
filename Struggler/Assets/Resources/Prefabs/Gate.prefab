@@ -4998,6 +4998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  healthSystem: {fileID: 0}
   activationDistance: 5
   particleActivation: 20
   speed: 10
