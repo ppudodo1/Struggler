@@ -33,8 +33,9 @@ public class FogManager : MonoBehaviour
         znaci da je opacity u floatu otprilike 0.2f i to podijeljeno otprilike 200 x blokova
         koliki je level daje increment od 0.001 po bloku u x smjeru
         
+        UPDATE, smanjia sam ga jer je prejak
         */
-        float opacityValue = 0.001f * (player.position.x - playerStartPosition.x);
+        float opacityValue = 0.0006f * (player.position.x - playerStartPosition.x);
         //kad player krene unatrag
         if(opacityValue < 0f){
             opacityValue = 0;

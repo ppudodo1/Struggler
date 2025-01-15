@@ -18,6 +18,7 @@ TagManager:
   - spikes
   - Barrier
   - Monologue
+  - Gate
   layers:
   - Default
   - TransparentFX

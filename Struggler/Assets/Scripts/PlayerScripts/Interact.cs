@@ -32,26 +32,34 @@ public class Interact : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.E) && summonedE){
-            Destroy(gameObject);
-            
+            Debug.Log("Level completed");
+
+           // Destroy(gameObject);
+            if(gameObject.CompareTag("Gate")){
+                GateController.levelCompleted = true;
+                Debug.Log("Level completed");
+                
+            }
         }
 
         playerPosition = player.transform.position;
-        playerPosition.y += 1;
+        playerPosition.y += 1.5f;
         if (initializedE != null){
-            initializedE.transform.position = playerPosition;  
+            initializedE.transform.position = playerPosition;
         }
 
         //levitating sword
+        /*
         float newY = itemPosition.y + Mathf.Sin(Time.time * floatSpeed) * floatHeight;
         transform.position = new Vector3(itemPosition.x, newY, itemPosition.z);
+        */
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.gameObject.CompareTag("Player"))
         { 
-            playerPosition.y += 1;
+            playerPosition.y += 1.5f;
             if(!summonedE){
                 initializedE = Instantiate(E,playerPosition,Quaternion.identity);
                 summonedE = true;
@@ -70,4 +78,6 @@ public class Interact : MonoBehaviour
             }
         }
     }
+
+
 }
