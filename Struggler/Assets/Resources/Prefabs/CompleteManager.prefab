@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2224494389113939727
+--- !u!1 &7005979912292676579
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3954496297469369508}
-  - component: {fileID: 3286354412546013006}
-  - component: {fileID: 1910257259606392915}
+  - component: {fileID: 3656593324687953225}
+  - component: {fileID: 7994185978424200924}
+  - component: {fileID: 2034172710457835206}
   m_Layer: 0
-  m_Name: PauseManager
+  m_Name: CompleteManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3954496297469369508
+--- !u!4 &3656593324687953225
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2224494389113939727}
+  m_GameObject: {fileID: 7005979912292676579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 435.72922, y: 235.85417, z: 1.3233483}
@@ -33,13 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &3286354412546013006
+--- !u!82 &7994185978424200924
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2224494389113939727}
+  m_GameObject: {fileID: 7005979912292676579}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -130,17 +130,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1910257259606392915
+--- !u!114 &2034172710457835206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2224494389113939727}
+  m_GameObject: {fileID: 7005979912292676579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5821714ed7ffaf0488082f952a9c8fdc, type: 3}
+  m_Script: {fileID: 11500000, guid: d6842b755406b3449956a089570a4838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  finishMenu: {fileID: 0}
   clickSound: {fileID: 8300000, guid: ecc34e078ec663d44a0f1ae0f0567280, type: 3}

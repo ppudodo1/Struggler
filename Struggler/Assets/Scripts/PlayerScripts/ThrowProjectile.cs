@@ -26,7 +26,7 @@ public class ThrowProjectile : MonoBehaviour
         
         count = GameObject.FindGameObjectsWithTag("Projectile").Length;
 
-        if(!PauseMenu.isPaused){
+        if(!GameManager.isPaused){
 
             //nazalost njega ne mogu drugacije blokirati, trebao bi i njemu dolje staviti da bool postaje true al onda ovaj if se nikad nebi izvrsio, probat cemo sutra
             if(count < maxGrenades && !notification.GetComponent<NotificationManager>().currentlyUsed){

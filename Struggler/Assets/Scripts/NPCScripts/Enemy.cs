@@ -32,6 +32,10 @@ public class Enemy : MonoBehaviour
         //da privremeno iskljuci skriptu tako da je bolji i cisci knockback
         if(gameObject.GetComponent<SkeletonAI>() != null)
             gameObject.GetComponent<SkeletonAI>().enabled = false;
+        else if(gameObject.GetComponent<ThrowerAI>() != null)
+            gameObject.GetComponent<ThrowerAI>().enabled = false;
+        else if(gameObject.GetComponent<SpiritScript>() != null)
+            gameObject.GetComponent<SpiritScript>().enabled = false;
 
         SpriteRenderer enemySpriteRenderer = GetComponent<SpriteRenderer>();
         if (enemySpriteRenderer != null){
@@ -51,6 +55,10 @@ public class Enemy : MonoBehaviour
         
         if(gameObject.GetComponent<SkeletonAI>() != null)
             gameObject.GetComponent<SkeletonAI>().enabled = true;
+        else if(gameObject.GetComponent<ThrowerAI>() != null)
+            gameObject.GetComponent<ThrowerAI>().enabled = true;
+        else if(gameObject.GetComponent<SpiritScript>() != null)
+            gameObject.GetComponent<SpiritScript>().enabled = true;
 
         if (enemySpriteRenderer != null){
         enemySpriteRenderer.color = enemyDefaultColor;

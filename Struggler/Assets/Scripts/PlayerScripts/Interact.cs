@@ -31,11 +31,16 @@ public class Interact : MonoBehaviour
    
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && summonedE){
+        if(Input.GetKeyDown(KeyCode.E) && summonedE && gameObject.name != "Sword"){
             Debug.Log("Level completed");
             GateController.levelCompleted = true;
                 
             
+        }
+        else if(Input.GetKeyDown(KeyCode.E) && summonedE && gameObject.name == "Sword"){
+
+            //kod za sword
+            Destroy(gameObject);
         }
 
         playerPosition = player.transform.position;

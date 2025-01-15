@@ -14,7 +14,7 @@ public class HealthSystem : MonoBehaviour
     private int numberOfHearts;
     private int numberOfCollectedHearts = 0;
 
-    private int numberOfShield;
+    public int numberOfShield;
     private string gameOver = "GameOver";
     private Image heartsPrefab;
     public Canvas HUD;

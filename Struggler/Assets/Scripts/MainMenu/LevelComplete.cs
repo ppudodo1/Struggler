@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-public class PauseMenu : MonoBehaviour
+public class LevelComplete: MonoBehaviour
 {
     public static bool changingLevels = false;
-    public GameObject pauseMenu;
+    public GameObject finishMenu;
     private AudioSource audioSource;
     public AudioClip clickSound;
     void Start(){
-        pauseMenu.SetActive(false);
+        finishMenu.SetActive(false);
         changingLevels = false;
         audioSource = GetComponent<AudioSource>();
 
@@ -21,12 +21,13 @@ public class PauseMenu : MonoBehaviour
     
     void Update(){
         
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(!GameManager.isPaused)
-                PauseGame();
-            else if(GameManager.isPaused)
-                ResumeGame();
+        if(GateController.levelCompleted){
+            GameManager.isPaused = true;
+            finishMenu.SetActive(true);
+
+            Time.timeScale = 0f;
         }
+
 
       
     }
@@ -42,7 +43,7 @@ public class PauseMenu : MonoBehaviour
         PlayClickSound();
 
         
-        pauseMenu.SetActive(true);
+        finishMenu.SetActive(true);
         GameManager.isPaused = true;
         Time.timeScale = 0f;
     }
@@ -50,7 +51,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame(){
        PlayClickSound();
 
-        pauseMenu.SetActive(false);
+        finishMenu.SetActive(false);
         GameManager.isPaused = false;
         Time.timeScale = 1f;
     }
