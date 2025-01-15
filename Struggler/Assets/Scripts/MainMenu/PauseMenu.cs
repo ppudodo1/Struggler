@@ -46,7 +46,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame(){
         PlayClickSound();
 
-
+        
         pauseMenu.SetActive(true);
         isPaused = true;
         Time.timeScale = 0f;

@@ -33,13 +33,9 @@ public class Interact : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && summonedE){
             Debug.Log("Level completed");
-
-           // Destroy(gameObject);
-            if(gameObject.CompareTag("Gate")){
-                GateController.levelCompleted = true;
-                Debug.Log("Level completed");
+            GateController.levelCompleted = true;
                 
-            }
+            
         }
 
         playerPosition = player.transform.position;

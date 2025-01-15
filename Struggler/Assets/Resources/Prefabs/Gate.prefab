@@ -4936,3 +4936,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   activationDistance: 1.5
+  particleActivation: 20
+  speed: 5
