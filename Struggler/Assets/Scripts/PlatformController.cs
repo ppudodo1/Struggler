@@ -3,30 +3,42 @@ using UnityEngine;
 public class PlatformController : MonoBehaviour
 {
    
-    public Transform posA, posB;
-    public int speed;
-    Vector2 targetPos;
-    private Vector2 lastPosition;
-    void Start()
+    public Transform posA, posB; // Start and end positions
+    public float speed; // Movement speed
+
+    private Vector2 targetPos; // Current target position
+    private Vector2 lastPosition; // Last recorded position
+    private Rigidbody2D rb;
+     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         targetPos = posB.position;
     }
 
-   
-    void Update(){
+    void FixedUpdate()
+    {
+        
+        Vector2 currentPosition = rb.position;
 
-        if (Vector2.Distance(transform.position, posA.position) < .1f) {
-            targetPos = posB.position;
-        }
-        if (Vector2.Distance(transform.position, posB.position) < .1f)
+        if (Vector2.Distance(currentPosition, posA.position) < 0.1f)
         {
-            targetPos = posA.position;
+            targetPos = posB.position; 
         }
-        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        if (Vector2.Distance(currentPosition, posB.position) < 0.1f)
+        {
+            targetPos = posA.position; 
+        }
+
+        Vector2 direction = ((Vector2)targetPos - currentPosition).normalized;
+        rb.linearVelocity = direction * speed;
+
+        // Update last position for velocity calculation
+        Vector2 platformVelocity = (currentPosition - lastPosition) / Time.fixedDeltaTime;
+        lastPosition = currentPosition;
     }
 
 
-
+    /*
     private void FixedUpdate(){
 
         Vector2 platformVelocity = ((Vector2)transform.position - lastPosition) / Time.deltaTime;
@@ -44,6 +56,7 @@ public class PlatformController : MonoBehaviour
             }
         }
     }
+    */
 
 
 
