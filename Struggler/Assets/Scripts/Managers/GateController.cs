@@ -24,6 +24,7 @@ public class GateController : MonoBehaviour
         distanceToPlayer = GetDistances();
         levelCompleted = false;
         GameManager.isPaused = false;
+        
     }
 
     void Update()

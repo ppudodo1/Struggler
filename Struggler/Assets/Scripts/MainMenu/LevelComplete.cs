@@ -11,7 +11,8 @@ public class LevelComplete: MonoBehaviour
         finishMenu.SetActive(false);
         changingLevels = false;
         audioSource = GetComponent<AudioSource>();
-
+        GateController.levelCompleted = false;
+    
     }
 
 
