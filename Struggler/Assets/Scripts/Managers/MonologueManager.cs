@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
-
+using UnityEngine.UI;
 public class MonologueManager : MonoBehaviour
 {
 
@@ -9,6 +9,7 @@ public class MonologueManager : MonoBehaviour
     private TextAsset textAsset;
     private string[] linesOfText;
     private bool wasActivated = false;
+    public bool hasCharacterImage = true;
 
 
     public int indexOfOperations = 0;
@@ -39,9 +40,13 @@ public class MonologueManager : MonoBehaviour
         if(collision.CompareTag("Player")){
             
             if(!wasActivated){
-                wasActivated = true;
-                notification.SetActive(true);
+                if(!hasCharacterImage){
+        //            notification.GetComponent<NotificationManager>().SetImageActive(false);
+                }
                 notification.GetComponent<NotificationManager>().SetNotificationText(linesOfText[indexOfOperations]);
+
+                notification.SetActive(true);
+
                // notification.GetComponent<NotificationManager>().SetActivation(true);
             }
 
@@ -52,8 +57,16 @@ public class MonologueManager : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision){
         if(collision.CompareTag("Player")){
-            notification.SetActive(false);
+
+            if(!wasActivated){
             notification.GetComponent<NotificationManager>().SetNotificationText("");
+         //   notification.GetComponent<NotificationManager>().SetImageActive(true);
+            notification.SetActive(false);
+            }
+
+            wasActivated = true;
+
+
 
         }
 

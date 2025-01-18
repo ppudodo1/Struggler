@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class NotificationManager : MonoBehaviour
 {
     public GameObject player;
@@ -11,8 +13,11 @@ public class NotificationManager : MonoBehaviour
 
     void Update()
     {
-        if(player.GetComponent<ThrowProjectile>().thrownFirstGrenade && GetComponentInChildren<TMP_Text>().text == grenadeTutorial)
+        if(player.GetComponent<ThrowProjectile>().thrownFirstGrenade && GetComponentInChildren<TMP_Text>().text == grenadeTutorial){
+
             gameObject.SetActive(false);
+            
+        }
 
 
     }
@@ -20,6 +25,19 @@ public class NotificationManager : MonoBehaviour
     public void SetNotificationText(string message){
         GetComponentInChildren<TMP_Text>().text = message;
 
+    }
+
+    public void SetImageActive(bool boolean){
+        Image[] childImages =  GetComponentsInChildren<Image>();
+        childImages[1].enabled = false;
+    }
+
+    void OnEnable(){
+
+    }
+
+    void OnDisable(){
+        
     }
 
     

@@ -63,11 +63,16 @@ public class ThrowProjectile : MonoBehaviour
             if(count < maxGrenades && moreThan2Grenades){
                 moreThan2Grenades = false;
                 notification.SetActive(false);
+           //     notification.GetComponent<NotificationManager>().SetImageActive(true);
+
+
 
             }
             else if(count == maxGrenades && Input.GetKeyDown(KeyCode.Q)){
                     moreThan2Grenades = true;
-                    notification.GetComponent<NotificationManager>().SetNotificationText("You can have 2 grenades active at the time");
+
+                //    notification.GetComponent<NotificationManager>().SetImageActive(false);
+                    notification.GetComponent<NotificationManager>().SetNotificationText("<i>You can have 2 grenades active at the time");
                     notification.SetActive(true);
             }
             
