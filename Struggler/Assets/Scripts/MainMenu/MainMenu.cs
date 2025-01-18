@@ -12,11 +12,16 @@ public class MainMenu : MonoBehaviour
     void Start(){
 
 
-        if(PauseMenu.changingLevels){
+        if(PauseMenu.changingLevels || LevelComplete.changingLevels){
             mainMenu.SetActive(false);
             playMenu.SetActive(true);
             settingsMenu.SetActive(false);
 
+        }
+        else{
+            mainMenu.SetActive(true);
+            playMenu.SetActive(false);
+            settingsMenu.SetActive(false);
         }
     }
    

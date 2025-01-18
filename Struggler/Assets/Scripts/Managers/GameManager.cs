@@ -8,14 +8,16 @@ public static class GameManager
     private static int numberOfShield;
     private static int unlockedLevels;
     private static bool mainMenuEasterEgg;
+    public static bool isPaused;
 
     static GameManager()
     {
         levelDiedOn = "Cutscene";
         numberOfHearts = 3;
-        numberOfShield = 1;
+        numberOfShield = 0;
         unlockedLevels = 1;
         mainMenuEasterEgg = false;
+        isPaused = false;
     }
     public static void SetMainMenuEasterEgg(bool boolean){
         mainMenuEasterEgg = boolean;
@@ -23,6 +25,7 @@ public static class GameManager
     public static bool GetMainMenuEasterEgg(){
         return mainMenuEasterEgg;
     }
+    
     public static void SetLevelDiedOn(string level){
         levelDiedOn = level;
     }

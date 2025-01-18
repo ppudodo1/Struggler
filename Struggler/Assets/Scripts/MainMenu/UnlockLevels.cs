@@ -31,9 +31,7 @@ public class UnlockLevels : MonoBehaviour
             txt.color = Color.white;
             txt.text = txt.text.Remove(7,7);
 
-            if(gameObject.name == "Lvl2"){
-                txt.color = Color.black;
-            }
+            
             if(gameObject.name == "Lvl4"){
                 txt.text = "Boss Fight";
             }

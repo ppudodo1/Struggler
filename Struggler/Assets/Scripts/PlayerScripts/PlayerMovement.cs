@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isOnMovingPlatform = false;
     private GameObject movingPlatform;
+    private float movementOnPlatform =5f;
 
     private SpriteRenderer spriteRenderer;
     private bool wasGrounded;
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(!PauseMenu.isPaused){
+        if(!GameManager.isPaused){
             if (!playerCanTakeDmg)
             {
                 invincibilityTimer -= Time.deltaTime;
@@ -92,6 +93,15 @@ public class PlayerMovement : MonoBehaviour
         if (!isBeingPushed)
         {
             rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        }
+
+        if(isOnMovingPlatform){
+            Debug.Log(movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x);
+
+            Vector2 velocity = rb.linearVelocity;   
+            if(isOnMovingPlatform && rb.linearVelocity.x < 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed; 
+            else if(isOnMovingPlatform && rb.linearVelocity.x > 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed; 
+            else if(isOnMovingPlatform && rb.linearVelocity.x == 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed;
         }
     }
     /*private void OnDrawGizmos()
@@ -141,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.CompareTag("MovingPlatform"))
         {
+           // Debug.Log("Detected platform!");
             movingPlatform = collision.gameObject;
             isOnMovingPlatform = true;
             Land();

@@ -15,7 +15,6 @@ TagManager:
   - EnemyProjectile
   - InvisibleWall
   - GameManager
-  - spikes
   - Barrier
   - Monologue
   - Gate
