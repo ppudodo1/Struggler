@@ -1,60 +1,63 @@
 using UnityEngine;
-using TMPro;
+using UnityEngine.SceneManagement;
+using System.IO;
+
 public class MonologueManager : MonoBehaviour
 {
-    
-    public GameObject textBoxToDisplay;
+
+    private string levelName;
+    private TextAsset textAsset;
+    private string[] linesOfText;
+    private bool wasActivated = false;
+
+
+    public int indexOfOperations = 0;
     public GameObject notification;
-    private bool thrownGrenade = false;
-
-
-    
 
     void Start()
     {
-       textBoxToDisplay.SetActive(false); 
+        levelName = SceneManager.GetActiveScene().name;
+        Debug.Log(levelName);
+        textAsset = Resources.Load<TextAsset>("TextFiles/"+levelName+"Text");
+
+        if (textAsset != null)
+        {
+            linesOfText = textAsset.text.Split(new[] { "\r\n", "\r", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else
+        {
+            Debug.LogError("TextAsset not found! Make sure the file is in the Resources folder.");
+        }
     }
 
-    
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && !thrownGrenade){
-            thrownGrenade = true;
-            notification.GetComponent<NotificationManager>().currentlyUsed = false;
-            notification.GetComponent<NotificationManager>().SetNotificationActive(false);
+        
+    }
+
+    void OnTriggerEnter2D(Collider2D collision){
+        if(collision.CompareTag("Player")){
             
-            if(gameObject.name == "Monologue1"){
-                Destroy(gameObject);
+            if(!wasActivated){
+                wasActivated = true;
+                notification.SetActive(true);
+                notification.GetComponent<NotificationManager>().SetNotificationText(linesOfText[indexOfOperations]);
+               // notification.GetComponent<NotificationManager>().SetActivation(true);
             }
 
         }
 
-    }
-        //64.5 -75
-    void OnTriggerEnter2D(Collider2D collision){
-        if(collision.CompareTag("Player")){
-            textBoxToDisplay.SetActive(true);
-        }
+
     }
 
     void OnTriggerExit2D(Collider2D collision){
         if(collision.CompareTag("Player")){
-            textBoxToDisplay.SetActive(false);
-            if(gameObject.name == "Monologue1"){
-                
-                notification.GetComponent<NotificationManager>().currentlyUsed = true;
-                notification.GetComponent<NotificationManager>().SetNotificationText("Press Q to throw a grenade!");
-                notification.GetComponent<NotificationManager>().SetNotificationActive(true);
-                //notification.GetComponent<TMP_Text>().text = "Press Q to throw a grenade!";
-            }
-            
+            notification.SetActive(false);
+            notification.GetComponent<NotificationManager>().SetNotificationText("");
 
-            if(gameObject.name != "Monologue1"){
-                Destroy(gameObject);
-                Destroy(textBoxToDisplay);
-            }
         }
-    }
 
+
+    }
 
 }

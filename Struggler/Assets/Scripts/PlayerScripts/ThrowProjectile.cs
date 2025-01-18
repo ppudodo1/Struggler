@@ -10,6 +10,8 @@ public class ThrowProjectile : MonoBehaviour
     
     public int maxGrenades = 2;
     public Vector3 rightThrowVector = new Vector3(5f,1f,0f);
+    public bool thrownFirstGrenade = false;
+    private bool moreThan2Grenades = false;
 
 
     //za funkcije notifikacije
@@ -28,13 +30,17 @@ public class ThrowProjectile : MonoBehaviour
 
         if(!GameManager.isPaused){
 
+                /*
             //nazalost njega ne mogu drugacije blokirati, trebao bi i njemu dolje staviti da bool postaje true al onda ovaj if se nikad nebi izvrsio, probat cemo sutra
             if(count < maxGrenades && !notification.GetComponent<NotificationManager>().currentlyUsed){
                 notification.GetComponent<NotificationManager>().SetNotificationActive(false);
             }
+            */
 
             if (Input.GetKeyDown(KeyCode.Q) && count < maxGrenades){
-                
+                notification.SetActive(false);
+
+                thrownFirstGrenade = true;
                 Vector3 localScale = transform.localScale;
 
                 //ovisno di sprite gleda
@@ -54,11 +60,17 @@ public class ThrowProjectile : MonoBehaviour
 
             
             }
-            else if(count == maxGrenades && Input.GetKeyDown(KeyCode.Q)){
-                
-                    notification.GetComponent<NotificationManager>().SetNotificationText("You can have 2 grenades active at the time");
-                    notification.GetComponent<NotificationManager>().SetNotificationActive(true);
+            if(count < maxGrenades && moreThan2Grenades){
+                moreThan2Grenades = false;
+                notification.SetActive(false);
+
             }
+            else if(count == maxGrenades && Input.GetKeyDown(KeyCode.Q)){
+                    moreThan2Grenades = true;
+                    notification.GetComponent<NotificationManager>().SetNotificationText("You can have 2 grenades active at the time");
+                    notification.SetActive(true);
+            }
+            
             
         }
     }
