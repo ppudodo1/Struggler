@@ -70,11 +70,11 @@ public class ThrowerAI : MonoBehaviour
         playerX = position.x;
 
         if (transform.position.x > playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
-            m_SpriteRenderer.flipX = true;
+            m_SpriteRenderer.flipX = false;
         
         }
         else if (transform.position.x < playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
-            m_SpriteRenderer.flipX = false;
+            m_SpriteRenderer.flipX = true;
 
         }
     }
@@ -93,17 +93,17 @@ public class ThrowerAI : MonoBehaviour
 
             if(m_SpriteRenderer.flipX){
 
-                instantiatedObject = Instantiate(grenade, new Vector2(transform.position.x - 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
-                grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
-
-                grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(-30, -20), UnityEngine.Random.Range(10, 20)), ForceMode2D.Impulse);
-            }
-
-            else if(!m_SpriteRenderer.flipX){
                 instantiatedObject = Instantiate(grenade, new Vector2(transform.position.x + 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
                 grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
 
-                grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(20,30),UnityEngine.Random.Range(10,20)), ForceMode2D.Impulse);
+                grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(20, 30), UnityEngine.Random.Range(10, 20)), ForceMode2D.Impulse);
+            }
+
+            else if(!m_SpriteRenderer.flipX){
+                instantiatedObject = Instantiate(grenade, new Vector2(transform.position.x - 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
+                grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
+
+                grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(-30,-20),UnityEngine.Random.Range(10,20)), ForceMode2D.Impulse);
             }
 
             grenadeRb.AddTorque(-2, ForceMode2D.Impulse);
