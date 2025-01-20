@@ -13,10 +13,12 @@ public class WizardAI : MonoBehaviour
     private SpriteRenderer m_SpriteRenderer;
     private float playerX;
     private Vector3 position;
+
     private bool isAttacking = false;
+
     private Animator animator;
 
-    private float timer = 2f;
+    private float timer = 2.08f;
 
     public float fireballSpeed = 5f;
 
@@ -36,51 +38,39 @@ public class WizardAI : MonoBehaviour
 
     void Update()
     {
-        /*
-         if (animator.GetCurrentAnimatorStateInfo(0).IsName("WizardAttack"))
+
+        if (!isWithinRange())
         {
-            }
-        else if (isPlayingWizardAttack)
-        {
-            Debug.Log("WizardAttack animation was interrupted or ended.");
-            isPlayingWizardAttack = false;
-        }
-
-            isPlayingWizardAttack = true;
-        
-        if(isWithinRange() && !isAttacking){
-
-            isAttacking = true;
-            Debug.Log("Attack initiated");
-
-
-            animator.SetBool("Attack", true);
-
-        }
-        else
+            timer = 2.08f;
             animator.SetBool("Attack", false);
-
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("WizardAttack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && isAttacking){
-
-            SummonFireball();
-
-
         }
 
-            */
+        else if (isWithinRange())
+        {
+            animator.SetBool("Attack", true);
+            timer -= Time.deltaTime;
 
-        timer -= Time.deltaTime;
+            if(timer < 1.04f && !isAttacking)
+            {
+                isAttacking = true;
+                SummonFireball();
+            }
+
+        }
+        
+        if (timer < 0f && isWithinRange()){
+            timer = 2.08f;
+            isAttacking = false;
+        }
+        
 
         SwitchSides();
-        if(timer < 0f){
-            timer = 2f;
-            if(isWithinRange())
-                SummonFireball();
-        }
-            
-        
 
     }
+
+
+
+
 
     public void SwitchSides(){
         position = player.transform.position;
@@ -97,7 +87,7 @@ public class WizardAI : MonoBehaviour
     }
 
     public void SummonFireball(){
-       Vector3 fireballVector = Vector3.zero;
+        Vector3 fireballVector = Vector3.zero;
 
     	if (m_SpriteRenderer.flipX)
         {

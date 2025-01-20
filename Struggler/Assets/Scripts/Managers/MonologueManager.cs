@@ -59,9 +59,10 @@ public class MonologueManager : MonoBehaviour
         if(collision.CompareTag("Player")){
 
             if(!wasActivated){
-            notification.GetComponent<NotificationManager>().SetNotificationText("");
+                if (notification == null) return;
+                notification.GetComponent<NotificationManager>().SetNotificationText("");
          //   notification.GetComponent<NotificationManager>().SetImageActive(true);
-            notification.SetActive(false);
+                notification.SetActive(false);
             }
 
             wasActivated = true;
