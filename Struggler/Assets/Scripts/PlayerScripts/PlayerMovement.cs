@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
     //VRLO JE BITAN OVAJ playerCanTakeDmg
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Scaffolding"))
         {
             Land();
         }

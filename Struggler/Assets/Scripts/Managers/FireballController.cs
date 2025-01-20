@@ -1,9 +1,7 @@
 using UnityEngine;
-using System.Collections;
-public class GrenadeController : MonoBehaviour
-{
 
-    private float timeToLive = 5f;
+public class FireballController : MonoBehaviour
+{
     private Enemy enemy;
     private float pushBackForce = -1f;
     private float jumpingPower = 2f;
@@ -17,8 +15,6 @@ public class GrenadeController : MonoBehaviour
 
     void Update(){
         
-        timeToLive -= Time.deltaTime;
-        if(timeToLive < 0) Destroy(gameObject);
 
     }
 
@@ -37,6 +33,10 @@ public class GrenadeController : MonoBehaviour
 
             }
         
+        }
+        else if(collision.CompareTag("Ground")){
+            Destroy(gameObject);
+
         }
         else if(collision.CompareTag("EnemyProjectile")){
             Destroy(gameObject);
@@ -92,22 +92,5 @@ public class GrenadeController : MonoBehaviour
             rb.linearVelocity = new Vector2(-pushBackForce, jumpingPower);
 
         }
-
-
-        
     }
-    // Ovdje je isto bug kad ubijes enemya da svejedno trazi unisteni enemy game object
-/*
-    private IEnumerator ChangeEnemyColor(SpriteRenderer enemySpriteRenderer){
-        Color enemyDefaultColor = enemySpriteRenderer.color;
-        enemySpriteRenderer.color = new Color(1f, 0.8f, 0.8f, 1f);
-
-        yield return new WaitForSeconds(0.5f);
-
-        if (enemySpriteRenderer != null){
-        enemySpriteRenderer.color = enemyDefaultColor;
-    }
-
-    }
-    */
 }

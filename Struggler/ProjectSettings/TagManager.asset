@@ -18,6 +18,8 @@ TagManager:
   - Barrier
   - Monologue
   - Gate
+  - spikes
+  - Scaffolding
   layers:
   - Default
   - TransparentFX

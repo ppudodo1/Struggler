@@ -5,6 +5,7 @@ public class WizardAI : MonoBehaviour
     public GameObject player;
 
     private GameObject fireball;
+    private Rigidbody2D fireballRb;
     private GameObject instantiatedObject;
 
 
@@ -12,10 +13,14 @@ public class WizardAI : MonoBehaviour
     private SpriteRenderer m_SpriteRenderer;
     private float playerX;
     private Vector3 position;
-    private bool isPlayingWizardAttack = false;
+    private bool isAttacking = false;
     private Animator animator;
 
+    private float timer = 2f;
 
+    public float fireballSpeed = 5f;
+
+/*animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && */
 
 
 
@@ -42,22 +47,36 @@ public class WizardAI : MonoBehaviour
         }
 
             isPlayingWizardAttack = true;
-        */
-            if (/*animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && */Math.Abs(transform.position.x - playerX) < activationDistance)
-            {
-                isPlayingWizardAttack = false;
-                SummonFireball();
-
-                animator.SetBool("Attack", true);
-
-            }
-            else
-                animator.SetBool("Attack", false);
-
         
+        if(isWithinRange() && !isAttacking){
+
+            isAttacking = true;
+            Debug.Log("Attack initiated");
+
+
+            animator.SetBool("Attack", true);
+
+        }
+        else
+            animator.SetBool("Attack", false);
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("WizardAttack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && isAttacking){
+
+            SummonFireball();
+
+
+        }
+
+            */
+
+        timer -= Time.deltaTime;
 
         SwitchSides();
-
+        if(timer < 0f){
+            timer = 2f;
+            if(isWithinRange())
+                SummonFireball();
+        }
             
         
 
@@ -78,20 +97,38 @@ public class WizardAI : MonoBehaviour
     }
 
     public void SummonFireball(){
-        if(m_SpriteRenderer.flipX){
+       Vector3 fireballVector = Vector3.zero;
 
-            instantiatedObject = Instantiate(fireball, new Vector2(transform.position.x + 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
-
-            //grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
-            //grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(20, 30), UnityEngine.Random.Range(10, 20)), ForceMode2D.Impulse);
+    	if (m_SpriteRenderer.flipX)
+        {
+            fireballVector = new Vector3(transform.position.x + 1.5f, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            fireballVector = new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z);
         }
 
-        else if(!m_SpriteRenderer.flipX){
+        instantiatedObject = Instantiate(fireball, fireballVector, Quaternion.identity);
 
-            instantiatedObject = Instantiate(fireball, new Vector2(transform.position.x - 1.5f,transform.position.y), Quaternion.Euler(0, 0, 0));
+        Rigidbody2D fireballRb = instantiatedObject.GetComponent<Rigidbody2D>();
+        Vector2 direction = (player.transform.position - fireballVector).normalized;
+        fireballRb.linearVelocity = direction * fireballSpeed;
+        
+        /*
+        Debug.Log("Nesto se dogodilo");
 
-            //grenadeRb = instantiatedObject.GetComponent<Rigidbody2D>();
-            //grenadeRb.AddForce(new Vector2(UnityEngine.Random.Range(-30,-20),UnityEngine.Random.Range(10,20)), ForceMode2D.Impulse);
+        if(isWithinRange()){
+            animator.SetBool("Attack",true);
         }
+
+        */
+    }
+
+    public bool isWithinRange(){
+        if(Math.Abs(transform.position.x - playerX) < activationDistance)
+            return true;
+        
+        else
+            return false;
     }
 }
