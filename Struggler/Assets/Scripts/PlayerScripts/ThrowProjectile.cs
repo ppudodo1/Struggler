@@ -72,7 +72,7 @@ public class ThrowProjectile : MonoBehaviour
                     moreThan2Grenades = true;
 
                 //    notification.GetComponent<NotificationManager>().SetImageActive(false);
-                    notification.GetComponent<NotificationManager>().SetNotificationText("<i>You can have 2 grenades active at the time");
+                    notification.GetComponent<NotificationManager>().SetNotificationText("<i>You can have 1 grenade active at the time");
                     notification.SetActive(true);
             }
             
