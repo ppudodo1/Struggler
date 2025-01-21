@@ -6,7 +6,7 @@ public class FireballController : MonoBehaviour
     private float pushBackForce = -1f;
     private float jumpingPower = 2f;
 
-    
+    private float ttl = 10f;
     void Start(){
 
 
@@ -14,8 +14,13 @@ public class FireballController : MonoBehaviour
     }
 
     void Update(){
-        
 
+        ttl -= Time.deltaTime;
+
+        if(ttl < 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
