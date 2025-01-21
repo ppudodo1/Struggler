@@ -64,4 +64,19 @@ public class Enemy : MonoBehaviour
         enemySpriteRenderer.color = enemyDefaultColor;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Spikes"))
+        {
+            TakeDamage(100);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Spikes"))
+        {
+            TakeDamage(100);
+        }
+    }
 }
