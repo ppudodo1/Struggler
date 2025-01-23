@@ -43,9 +43,10 @@ public class MonologueManager : MonoBehaviour
                 if(!hasCharacterImage){
         //            notification.GetComponent<NotificationManager>().SetImageActive(false);
                 }
+                notification.SetActive(true);
+
                 notification.GetComponent<NotificationManager>().SetNotificationText(linesOfText[indexOfOperations]);
 
-                notification.SetActive(true);
 
                // notification.GetComponent<NotificationManager>().SetActivation(true);
             }

@@ -121,6 +121,8 @@ public class CameraFollow : MonoBehaviour
     //igrac je desno od zida
     private bool IsPlayerBeyondDetachPoint()
     {
+        if (recentBarrier == null) return false;
+
         if(recentBarrier.transform.position.x > player.transform.position.x){
             return player.transform.position.x < pointOfDetach.x - margin;
         }
