@@ -31,22 +31,30 @@ public class Interact : MonoBehaviour
    
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && summonedE && gameObject.name != "Sword"){
-            Debug.Log("Level completed");
-            GateController.levelCompleted = true;
-                
-            
-        }
-        else if(Input.GetKeyDown(KeyCode.E) && summonedE && gameObject.name == "Sword"){
+        if (!PauseMenu.isPaused)
+        {
 
-            //kod za sword
-            Destroy(gameObject);
-        }
 
-        playerPosition = player.transform.position;
-        playerPosition.y += 1.5f;
-        if (initializedE != null){
-            initializedE.transform.position = playerPosition;
+            if (Input.GetKeyDown(KeyCode.E) && summonedE && gameObject.name != "Sword")
+            {
+                Debug.Log("Level completed");
+                GateController.levelCompleted = true;
+
+
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && summonedE && gameObject.name == "Sword")
+            {
+
+                //kod za sword
+                Destroy(gameObject);
+            }
+
+            playerPosition = player.transform.position;
+            playerPosition.y += 1.5f;
+            if (initializedE != null)
+            {
+                initializedE.transform.position = playerPosition;
+            }
         }
 
         //levitating sword
