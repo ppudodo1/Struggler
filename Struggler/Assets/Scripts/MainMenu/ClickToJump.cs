@@ -26,8 +26,14 @@ public class ClickToJump : MonoBehaviour
     void OnMouseDown(){
         clickCounter++;
         if(clickCounter == requiredClicks){
-            GameManager.SetUnlockedLevels(4);
-            GameManager.SetMainMenuEasterEgg(true);
+
+            PlayerPrefs.SetInt("UnlockedLevels", 4);
+            //  GameManager.SetUnlockedLevels(4);
+
+            PlayerPrefs.SetInt("MainMenuEasterEgg", 1);
+            //  GameManager.SetMainMenuEasterEgg(true);
+            PlayerPrefs.Save();
+
             audio.pitch = 0.60f;
             audio.PlayOneShot(theme,0.1f);
 

@@ -5,12 +5,17 @@ public class GameActiveManager : MonoBehaviour
    
     void Start()
     {
-        GameManager.isPaused = false;
+        PauseMenu.isPaused = false;
         Time.timeScale = 1f;
 
+        //OVO POKRENUT PRIJE BUILDANJA IGRICE
+        #if UNITY_EDITOR
+        PlayerPrefs.DeleteAll();
+        Debug.Log("PlayerPrefs cleared in Editor mode");
+        #endif
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         

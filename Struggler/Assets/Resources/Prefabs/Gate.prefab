@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb72a10e7d344b649b7472bf2e01549b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasCharacterImage: 1
+  isItalic: 0
   indexOfOperations: 5
   notification: {fileID: 0}
 --- !u!1 &7513286368351399951

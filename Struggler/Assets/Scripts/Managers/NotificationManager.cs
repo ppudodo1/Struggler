@@ -6,7 +6,7 @@ using System.Collections;
 public class NotificationManager : MonoBehaviour
 {
     public GameObject player;
-    private string grenadeTutorial = "<i>press [Q] to throw a grenade";
+    private string grenadeTutorial = "Press [Q] to throw a grenade";
     public float typingSpeed = 0.3f;
     void Start()
     {
@@ -28,7 +28,11 @@ public class NotificationManager : MonoBehaviour
 
     }
 
-    public void SetNotificationText(string message){
+    public void SetNotificationText(string message,bool isItalic)
+    {
+
+        if(isItalic)
+            GetComponentInChildren<TMP_Text>().fontStyle = FontStyles.Italic;
 
         StartCoroutine(TypeText(message, GetComponentInChildren<TMP_Text>()));
        // GetComponentInChildren<TMP_Text>().text = message;
@@ -38,6 +42,14 @@ public class NotificationManager : MonoBehaviour
     public void SetImageActive(bool boolean){
         Image[] childImages =  GetComponentsInChildren<Image>();
         childImages[1].enabled = false;
+    }
+
+    public void ResetNotificationText()
+    {
+        
+
+        GetComponentInChildren<TMP_Text>().text = "";
+        GetComponentInChildren<TMP_Text>().fontStyle = FontStyles.Bold;
     }
 
     void OnEnable(){

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TMPro;
 public class ThrowProjectile : MonoBehaviour
 {
     private GameObject grenade;
@@ -28,7 +29,7 @@ public class ThrowProjectile : MonoBehaviour
         
         count = GameObject.FindGameObjectsWithTag("Projectile").Length;
 
-        if(!GameManager.isPaused){
+        if(!PauseMenu.isPaused){
 
                 /*
             //nazalost njega ne mogu drugacije blokirati, trebao bi i njemu dolje staviti da bool postaje true al onda ovaj if se nikad nebi izvrsio, probat cemo sutra
@@ -68,12 +69,14 @@ public class ThrowProjectile : MonoBehaviour
 
 
             }
-            else if(count == maxGrenades && Input.GetKeyDown(KeyCode.Q)){
+            else if(count == maxGrenades && Input.GetKeyDown(KeyCode.Q) && !moreThan2Grenades){
                     moreThan2Grenades = true;
+                    
 
                 //    notification.GetComponent<NotificationManager>().SetImageActive(false);
-                    notification.GetComponent<NotificationManager>().SetNotificationText("<i>You can have 1 grenade active at the time");
-                    notification.SetActive(true);
+                notification.SetActive(true);
+
+                notification.GetComponent<NotificationManager>().SetNotificationText("You can have 2 grenades active at the time",true);
             }
             
             

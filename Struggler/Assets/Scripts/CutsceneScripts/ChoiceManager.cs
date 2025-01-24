@@ -23,7 +23,9 @@ public class ChoiceManager : MonoBehaviour
     private string choiceResponseGivenUp = "I see,\nanother victim of casuality";
     private string choiceResponseArised = "Very well then,\nStruggler";
 
-    private string ariseScene = GameManager.GetLevelDiedOn();
+    // private string ariseScene = GameManager.GetLevelDiedOn();
+
+    private string ariseScene;
    // private string ariseScene;
     public string giveUpScene = "Cutscene";
 
@@ -33,8 +35,9 @@ public class ChoiceManager : MonoBehaviour
     void Start(){
 
 
-       // ariseScene = GameManager.Instance.levelDiedOn;
+        // ariseScene = GameManager.Instance.levelDiedOn;
 
+        ariseScene = PlayerPrefs.GetString("LevelDiedOn", "Cutscene");
 
         gameOverTop.text = "";
         gameOverBot.text = "";

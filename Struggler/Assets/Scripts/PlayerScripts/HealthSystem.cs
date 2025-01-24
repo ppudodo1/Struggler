@@ -11,7 +11,7 @@ public class HealthSystem : MonoBehaviour
 {
 
     //razlog float jer ako cemo dodavat difficulty onda na easy mode moze gubiti pola srca
-    private int numberOfHearts;
+    private int numberOfHearts = 3;
     private int numberOfCollectedHearts = 0;
 
     public int numberOfShield;
@@ -29,8 +29,7 @@ public class HealthSystem : MonoBehaviour
     float positionOfLastHeart = 385.5f;
     void Start()
     {
-        numberOfHearts = GameManager.GetNumberOfHearts();
-        numberOfShield = GameManager.GetNumberOfShield();
+        numberOfShield = PlayerPrefs.GetInt("NumberOfShield", 0);
         Debug.Log("Number of shield" + numberOfShield);
 
         audioSource = GetComponent<AudioSource>();
@@ -109,10 +108,12 @@ public class HealthSystem : MonoBehaviour
         }
         if(numberOfHearts <= 0){
 
-           // GameManager.Instance.levelDiedOn = SceneManager.GetActiveScene().name;
+            // GameManager.Instance.levelDiedOn = SceneManager.GetActiveScene().name;
             //StartCoroutine(transitionToGameOver());
             //Debug.Log(GameManager.Instance.levelDiedOn);
-            GameManager.SetLevelDiedOn(SceneManager.GetActiveScene().name);
+            PlayerPrefs.SetString("LevelDiedOn", SceneManager.GetActiveScene().name);
+            PlayerPrefs.Save();
+          //  GameManager.SetLevelDiedOn();
 
             SceneManager.LoadScene(gameOver);
             

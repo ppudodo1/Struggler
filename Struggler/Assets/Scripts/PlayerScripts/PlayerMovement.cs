@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(!GameManager.isPaused){
+        if(!PauseMenu.isPaused){
             if (!playerCanTakeDmg)
             {
                 invincibilityTimer -= Time.deltaTime;

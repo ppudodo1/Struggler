@@ -4,6 +4,7 @@ using System.Collections;
 public class PauseMenu : MonoBehaviour
 {
     public static bool changingLevels = false;
+    public static bool isPaused = false;
     public GameObject pauseMenu;
     private AudioSource audioSource;
     public AudioClip clickSound;
@@ -22,9 +23,9 @@ public class PauseMenu : MonoBehaviour
     void Update(){
         
         if(Input.GetKeyDown(KeyCode.Escape)){
-            if(!GameManager.isPaused)
+            if(!isPaused)
                 PauseGame();
-            else if(GameManager.isPaused)
+            else if(isPaused)
                 ResumeGame();
         }
 
@@ -43,7 +44,7 @@ public class PauseMenu : MonoBehaviour
 
         
         pauseMenu.SetActive(true);
-        GameManager.isPaused = true;
+        isPaused = true;
         Time.timeScale = 0f;
     }
 
@@ -51,7 +52,7 @@ public class PauseMenu : MonoBehaviour
        PlayClickSound();
 
         pauseMenu.SetActive(false);
-        GameManager.isPaused = false;
+        isPaused = false;
         Time.timeScale = 1f;
     }
 

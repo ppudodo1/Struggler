@@ -9,8 +9,11 @@ public class MonologueManager : MonoBehaviour
     private TextAsset textAsset;
     private string[] linesOfText;
     private bool wasActivated = false;
-    public bool hasCharacterImage = true;
+    //public bool hasCharacterImage = true;
 
+    public bool isItalic = false;
+
+    private bool hitFirstPlayerCollider = false;
 
     public int indexOfOperations = 0;
     public GameObject notification;
@@ -38,14 +41,19 @@ public class MonologueManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision){
         if(collision.CompareTag("Player")){
-            
-            if(!wasActivated){
-                if(!hasCharacterImage){
+            if(!wasActivated && !hitFirstPlayerCollider){
+
+                hitFirstPlayerCollider = true;
+
+                /*
+                if (!hasCharacterImage){
         //            notification.GetComponent<NotificationManager>().SetImageActive(false);
                 }
+                */
+                
                 notification.SetActive(true);
 
-                notification.GetComponent<NotificationManager>().SetNotificationText(linesOfText[indexOfOperations]);
+                notification.GetComponent<NotificationManager>().SetNotificationText(linesOfText[indexOfOperations],isItalic);
 
 
                // notification.GetComponent<NotificationManager>().SetActivation(true);
@@ -58,10 +66,11 @@ public class MonologueManager : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision){
         if(collision.CompareTag("Player")){
-
+            hitFirstPlayerCollider = false;
             if(!wasActivated){
                 if (notification == null) return;
-                notification.GetComponent<NotificationManager>().SetNotificationText("");
+
+                notification.GetComponent<NotificationManager>().ResetNotificationText();
          //   notification.GetComponent<NotificationManager>().SetImageActive(true);
                 notification.SetActive(false);
             }

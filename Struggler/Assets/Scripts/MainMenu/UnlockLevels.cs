@@ -16,7 +16,9 @@ public class UnlockLevels : MonoBehaviour
         Image imageToDarken = GetComponent<Image>();
         Button button = GetComponent<Button>();
 
-        unlockedLevels = GameManager.GetUnlockedLevels();
+        unlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 1);
+        //unlockedLevels = GameManager.GetUnlockedLevels();
+
         int levelNumber = int.Parse(gameObject.name[gameObject.name.Length - 1].ToString());
 
         if(gameObject.active){
@@ -45,7 +47,7 @@ public class UnlockLevels : MonoBehaviour
    
     void Update()
     {
-        if(GameManager.GetMainMenuEasterEgg()){
+        if (PlayerPrefs.GetInt("MainMenuEasterEgg", 0) == 1){
             CheckUnlockedLevels();
         }
     }

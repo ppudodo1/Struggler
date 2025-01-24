@@ -23,7 +23,7 @@ public class LevelComplete: MonoBehaviour
     void Update(){
         
         if(GateController.levelCompleted){
-            GameManager.isPaused = true;
+            PauseMenu.isPaused = true;
             finishMenu.SetActive(true);
 
             Time.timeScale = 0f;
@@ -45,7 +45,7 @@ public class LevelComplete: MonoBehaviour
 
         
         finishMenu.SetActive(true);
-        GameManager.isPaused = true;
+        PauseMenu.isPaused = true;
         Time.timeScale = 0f;
     }
 
@@ -53,7 +53,7 @@ public class LevelComplete: MonoBehaviour
        PlayClickSound();
 
         finishMenu.SetActive(false);
-        GameManager.isPaused = false;
+        PauseMenu.isPaused = false;
         Time.timeScale = 1f;
     }
 

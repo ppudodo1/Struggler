@@ -65,18 +65,20 @@ public class GateController : MonoBehaviour
 
     public void UpdateGameManagerValues(){
 
-        int unlockedLevels = GameManager.GetUnlockedLevels();
+        //int unlockedLevels = GameManager.GetUnlockedLevels();
+        int unlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 1);
 
-        if(SceneManager.GetActiveScene().name.EndsWith(unlockedLevels.ToString()))
+        if (SceneManager.GetActiveScene().name.EndsWith(unlockedLevels.ToString()))
             unlockedLevels++;
 
         if(unlockedLevels > 4) unlockedLevels = 4;
         else if(unlockedLevels < 1) unlockedLevels = 1;
 
-        GameManager.SetUnlockedLevels(unlockedLevels);
+        PlayerPrefs.SetInt("UnlockedLevels", unlockedLevels);
+        //GameManager.SetUnlockedLevels(unlockedLevels);
 
-
-        GameManager.SetNumberOfShield(healthSystem.GetComponent<HealthSystem>().numberOfShield);
+        PlayerPrefs.SetInt("NumberOfShield", healthSystem.GetComponent<HealthSystem>().numberOfShield);
+        //GameManager.SetNumberOfShield(healthSystem.GetComponent<HealthSystem>().numberOfShield);
             
     }
 
