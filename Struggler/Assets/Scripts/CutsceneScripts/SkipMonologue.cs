@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class EndingSceneTimelineBehaviour : MonoBehaviour{
     
@@ -13,11 +14,15 @@ public PlayableDirector timeline;
 public ParticleSystem fairyDust;
 public GameObject skipText;
 
+    private bool creditsEnded = false;
+
     void Start(){
         defaultTimerValue = timer;
     }
     
     void Update(){
+
+        Debug.Log(timeline.time);
         if (Input.GetKey(KeyCode.E)){
             timer -= Time.deltaTime;
         }
@@ -38,6 +43,20 @@ public GameObject skipText;
             fairyDust.Stop();
             Destroy(skipText);
 
+        }
+
+        if(timeline.time > 199f)
+        {
+            creditsEnded = true;
+        }
+        if(Input.GetKeyDown(KeyCode.Q) && creditsEnded)
+        {
+            
+            Application.Quit();
+        }
+        if(Input.GetKeyDown(KeyCode.M) && creditsEnded)
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

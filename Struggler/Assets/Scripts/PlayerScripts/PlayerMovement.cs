@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isOnMovingPlatform = false;
     private GameObject movingPlatform;
-    private float movementOnPlatform =5f;
+    private float movementOnPlatform = 5f;
 
     private SpriteRenderer spriteRenderer;
     private bool wasGrounded;
@@ -53,55 +53,57 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(!PauseMenu.isPaused){
+        if (!PauseMenu.isPaused)
+        {
             if (!playerCanTakeDmg)
             {
                 invincibilityTimer -= Time.deltaTime;
             }
 
-        
+
             horizontal = Input.GetAxisRaw("Horizontal");
 
-     
+
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 Jump(false);
             }
             else if (Input.GetButtonDown("Jump") && !isGrounded && hasSecondJump)
             {
-            
+
                 Jump(true);
             }
-        
 
 
-        Flip();
 
-        animator.SetFloat("MoveValue", Mathf.Abs(horizontal));
-        if (isGrounded && !wasGrounded) 
-        {
-            Land();
-        }
+            Flip();
 
-        wasGrounded = isGrounded;
+            animator.SetFloat("MoveValue", Mathf.Abs(horizontal));
+            if (isGrounded && !wasGrounded)
+            {
+                Land();
+            }
+
+            wasGrounded = isGrounded;
         }
     }
 
     private void FixedUpdate()
     {
-        
+
         if (!isBeingPushed)
         {
             rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
         }
 
-        if(isOnMovingPlatform){
+        if (isOnMovingPlatform)
+        {
             Debug.Log(movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x);
 
-            Vector2 velocity = rb.linearVelocity;   
-            if(isOnMovingPlatform && rb.linearVelocity.x < 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed; 
-            else if(isOnMovingPlatform && rb.linearVelocity.x > 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed; 
-            else if(isOnMovingPlatform && rb.linearVelocity.x == 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed;
+            Vector2 velocity = rb.linearVelocity;
+            if (isOnMovingPlatform && rb.linearVelocity.x < 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed;
+            else if (isOnMovingPlatform && rb.linearVelocity.x > 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed;
+            else if (isOnMovingPlatform && rb.linearVelocity.x == 0) velocity.x = (movingPlatform.GetComponent<Rigidbody2D>().linearVelocity.x) * speed;
         }
     }
     /*private void OnDrawGizmos()
@@ -114,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         audioSource.PlayOneShot(isDoubleJump ? dashSound : jumpSound);
         animator.SetBool("isJumping", true);
 
-        
+
         StartCoroutine(DelayedJump(isDoubleJump));
 
         if (isDoubleJump)
@@ -124,10 +126,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator DelayedJump(bool isDoubleJump)
     {
-        
+
         yield return new WaitForSeconds(0.2f);
 
-      
+
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower + (isDoubleJump ? 3f : 0f));
     }
     private void Flip()
@@ -151,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.CompareTag("MovingPlatform"))
         {
-           // Debug.Log("Detected platform!");
+            // Debug.Log("Detected platform!");
             movingPlatform = collision.gameObject;
             isOnMovingPlatform = true;
             Land();
@@ -167,13 +169,13 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.addShield();
             Destroy(collision.gameObject);
         }
-        
+
         else if (collision.CompareTag("Enemy") && playerCanTakeDmg || collision.CompareTag("EnemyProjectile") && playerCanTakeDmg || collision.CompareTag("Projectile") && playerCanTakeDmg)
         {
             playerCanTakeDmg = false;
             healthSystem.removeHeart();
 
-            
+
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
                 StartCoroutine(PushBack(false));
@@ -183,11 +185,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(PushBack(true));
             }
-            
-            if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Projectile")){
+
+            if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Projectile"))
+            {
                 Destroy(collision.gameObject);
             }
-            
+
         }
         else if (collision.CompareTag("Spikes"))
         {
@@ -196,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.removeHeart();
             healthSystem.removeHeart();
 
-            
+
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
                 StartCoroutine(PushBack(false));
@@ -210,13 +213,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision){
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (collision.CompareTag("Enemy") && playerCanTakeDmg || collision.CompareTag("EnemyProjectile") && playerCanTakeDmg || collision.CompareTag("Projectile") && playerCanTakeDmg)
         {
             playerCanTakeDmg = false;
             healthSystem.removeHeart();
 
-            
+
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
                 StartCoroutine(PushBack(false));
@@ -226,11 +230,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(PushBack(true));
             }
-            
-            if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Projectile")){
+
+            if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Projectile"))
+            {
                 Destroy(collision.gameObject);
             }
-            
+
         }
         else if (collision.CompareTag("Spikes"))
         {
@@ -239,7 +244,7 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.removeHeart();
             healthSystem.removeHeart();
 
-            
+
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
                 StartCoroutine(PushBack(false));
@@ -269,56 +274,64 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public IEnumerator PushBack(bool pushRight){
+    public IEnumerator PushBack(bool pushRight)
+    {
 
 
-        isBeingPushed = true; 
+        isBeingPushed = true;
         Color currentColor = spriteRenderer.color;
 
         audioSource.PlayOneShot(hurtSound, 0.3f);
 
 
-        if(defaultColor == spriteRenderer.color){
-            spriteRenderer.color = new Color(currentColor.r + 0.5f, currentColor.g * 0.7f,currentColor.b * 0.7f);
+        if (defaultColor == spriteRenderer.color)
+        {
+            spriteRenderer.color = new Color(currentColor.r + 0.5f, currentColor.g * 0.7f, currentColor.b * 0.7f);
         }
 
         gameObject.GetComponent<Animator>().SetBool("isJumping", true);
-        if (!pushRight){
+        if (!pushRight)
+        {
 
             rb.linearVelocity = new Vector2(pushBackForce, jumpingPower * 0.6f);
 
         }
 
-        else{
+        else
+        {
 
             rb.linearVelocity = new Vector2(-pushBackForce, jumpingPower * 0.6f);
 
         }
 
         yield return new WaitForSeconds(0.5f);
-    
+
         spriteRenderer.color = defaultColor;
-        isBeingPushed = false; 
+        isBeingPushed = false;
 
         StartCoroutine(FadingInAnOut());
     }
 
-    
 
-    public IEnumerator FadingInAnOut(){
-        while (invincibilityTimer > 0){
 
-            if (spriteRenderer.color.a == 1f){
+    public IEnumerator FadingInAnOut()
+    {
+        while (invincibilityTimer > 0)
+        {
+
+            if (spriteRenderer.color.a == 1f)
+            {
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.6f); // Half transparent
             }
-            else{
+            else
+            {
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f); // Fully opaque
             }
 
             yield return new WaitForSeconds(0.3f);
         }
-            playerCanTakeDmg = true;
-            invincibilityTimer = invincibilityFrames;
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+        playerCanTakeDmg = true;
+        invincibilityTimer = invincibilityFrames;
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
     }
 }

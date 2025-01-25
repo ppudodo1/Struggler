@@ -19,7 +19,7 @@ public class FallingObjectScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the player triggered the collider
-        Debug.Log("Collision");
+        //Debug.Log("Collision");
         if (other.CompareTag("Player"))
         {
             rb.gravityScale = gravtiyMulitiplier;

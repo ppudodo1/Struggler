@@ -23,7 +23,7 @@ public class GateController : MonoBehaviour
         gateParticles = GetComponent<ParticleSystem>();
         distanceToPlayer = GetDistances();
         levelCompleted = false;
-        GameManager.isPaused = false;
+        PauseMenu.isPaused = false;
         
     }
 
