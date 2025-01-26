@@ -33,6 +33,9 @@ public class NotificationManager : MonoBehaviour
 
         if(isItalic)
             GetComponentInChildren<TMP_Text>().fontStyle = FontStyles.Italic;
+        else
+            GetComponentInChildren<TMP_Text>().fontStyle = FontStyles.Bold;
+
 
         StartCoroutine(TypeText(message, GetComponentInChildren<TMP_Text>()));
        // GetComponentInChildren<TMP_Text>().text = message;

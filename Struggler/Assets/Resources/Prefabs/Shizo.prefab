@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 8199009080313264488}
   - component: {fileID: 6515004461817641431}
   - component: {fileID: 8403594456151714336}
-  - component: {fileID: 3328501948789511667}
+  - component: {fileID: 5360173321321917201}
   - component: {fileID: 3123751741045454985}
+  - component: {fileID: 2246114727528417197}
   m_Layer: 0
   m_Name: Shizo
   m_TagString: Player
@@ -83,8 +84,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2040768151
-  m_SortingLayer: 2
-  m_SortingOrder: 4
+  m_SortingLayer: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5b3a682f6aaf0cc4b852f067c67e9ed0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -112,7 +113,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: aaa5cd24b027c5e459d595c5938fcc6a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -135,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6d040aa26f3874ebbf7a1b854f9d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6.5
   invincibilityFrames: 4
   playerCanTakeDmg: 1
   jumpingPower: 10
@@ -196,8 +197,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.2498832, y: 0.47920564}
-      - {x: 1.0154669, y: 0.50521064}
+    - - {x: 0.54449797, y: 0.20631918}
+      - {x: 0.54692435, y: 0.30955625}
       - {x: 0.54394543, y: 0.36322042}
       - {x: 0.54607713, y: 0.64513445}
       - {x: 0.4952607, y: 1.0952244}
@@ -216,10 +217,10 @@ PolygonCollider2D:
       - {x: 0.6949034, y: -1.9994866}
       - {x: 0.6222272, y: -0.7864824}
       - {x: 0.60257995, y: -0.46664506}
-      - {x: 0.7087353, y: -0.20106502}
-      - {x: 1.0175838, y: -0.18052287}
-      - {x: 1.1926637, y: -0.05726587}
-      - {x: 1.241473, y: 0.2886995}
+      - {x: 0.5851641, y: -0.3143386}
+      - {x: 0.5850854, y: -0.23201086}
+      - {x: 0.57995653, y: -0.11905146}
+      - {x: 0.561831, y: 0.0827474}
   m_UseDelaunayMesh: 0
 --- !u!95 &6515004461817641431
 Animator:
@@ -264,7 +265,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.000001
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -340,14 +341,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!61 &3328501948789511667
+--- !u!61 &5360173321321917201
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691315094418630106}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -374,7 +375,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.2, y: -0.45}
+  m_Offset: {x: -0.02, y: -1.99}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -384,7 +385,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.05, y: 3.23}
+  m_Size: {x: 0.92, y: 0.19}
   m_EdgeRadius: 0
 --- !u!114 &3123751741045454985
 MonoBehaviour:
@@ -407,6 +408,23 @@ MonoBehaviour:
     m_Bits: 128
   attackCooldown: 0.5
   lastAttackTime: 0
+--- !u!114 &2246114727528417197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691315094418630106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aded00811b35084e9b31257c35dc765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  maxGrenades: 2
+  rightThrowVector: {x: 50, y: 10, z: 0}
+  thrownFirstGrenade: 0
+  notification: {fileID: 0}
 --- !u!1 &6639466059474255246
 GameObject:
   m_ObjectHideFlags: 0

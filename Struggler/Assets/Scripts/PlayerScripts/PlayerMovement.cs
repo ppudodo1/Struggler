@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private GameObject movingPlatform;
     private float movementOnPlatform = 5f;
 
+    private BoxCollider2D footCollider;
+
     private SpriteRenderer spriteRenderer;
     private bool wasGrounded;
     private Color defaultColor;
@@ -40,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
-    private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, 1f, groundLayer);
+    //private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, 1f, groundLayer);
+    private bool isGrounded = true;
 
     private void Start()
     {
@@ -49,6 +52,10 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         defaultColor = spriteRenderer.color;
+
+        //BoxCollider2D[] boxColliders = GetComponents<BoxCollider2D>();
+        footCollider = GetComponent<BoxCollider2D>();
+       // Debug.Log(footCollider.bounds.size.x);
     }
 
     private void Update()
@@ -79,12 +86,14 @@ public class PlayerMovement : MonoBehaviour
             Flip();
 
             animator.SetFloat("MoveValue", Mathf.Abs(horizontal));
+            /*
             if (isGrounded && !wasGrounded)
             {
                 Land();
             }
 
             wasGrounded = isGrounded;
+            */
         }
     }
 
@@ -147,8 +156,9 @@ public class PlayerMovement : MonoBehaviour
     //VRLO JE BITAN OVAJ playerCanTakeDmg
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Scaffolding"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Scaffolding") && footCollider.IsTouching(collision))
         {
+            isGrounded = true;
             Land();
         }
         else if (collision.CompareTag("MovingPlatform"))
@@ -260,6 +270,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if(other.CompareTag("Ground") || other.CompareTag("Scaffolding"))
+        {
+            isGrounded = false;
+        }
         if (other.CompareTag("MovingPlatform"))
         {
             isOnMovingPlatform = false;
