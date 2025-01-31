@@ -28,4 +28,8 @@ public class FallingObjectScript : MonoBehaviour
             //rb.AddForce(customGravity, ForceMode.Acceleration);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //GetComponent<>
+    }
 }
