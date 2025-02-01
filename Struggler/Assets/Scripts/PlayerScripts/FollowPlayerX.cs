@@ -8,6 +8,6 @@ public class FollowPlayerX : MonoBehaviour
         float targetX = player.transform.position.x;
        
         if(!CameraFollow.touchedBarrier)
-            transform.position = new Vector2(targetX + optionalXOffset, transform.position.y);
+            transform.position = new Vector3(targetX + optionalXOffset, transform.position.y,10f);
     }
 }

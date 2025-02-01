@@ -39,9 +39,13 @@ public class ThrowProjectile : MonoBehaviour
             */
 
             if (Input.GetKeyDown(KeyCode.Q) && count < maxGrenades){
-                notification.SetActive(false);
+                if (!thrownFirstGrenade)
+                {
+                    notification.SetActive(false);
 
-                thrownFirstGrenade = true;
+                    thrownFirstGrenade = true;
+                }
+                
                 Vector3 localScale = transform.localScale;
 
                 //ovisno di sprite gleda

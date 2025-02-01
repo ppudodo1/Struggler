@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
+
 public class CameraFollow : MonoBehaviour
 {
     public Transform player; // The player to follow
@@ -13,10 +15,20 @@ public class CameraFollow : MonoBehaviour
     private Camera mainCamera;
     private BoxCollider2D boxCollider;
 
+    private bool bossFightSettings = false;
+    
     
 
     void Start()
     {
+
+        if (SceneManager.GetActiveScene().name == "Level4")
+        {
+            Debug.Log(SceneManager.GetActiveScene().name);
+            bossFightSettings = true;
+        }
+            
+
         LockOnPlayer();
 
         mainCamera = GetComponent<Camera>();
@@ -39,7 +51,8 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(transform.position.x,player.transform.position.y + offset.y,transform.position.z);
+        
+       // transform.position = new Vector3(transform.position.x,player.transform.position.y + offset.y,transform.position.z);
 
         if (!touchedBarrier || IsPlayerBeyondDetachPoint())
         {
@@ -51,11 +64,25 @@ public class CameraFollow : MonoBehaviour
     }
 
     void LockOnPlayer(){
-        transform.position = new Vector3(
+
+
+        if (bossFightSettings)
+        {
+            transform.position = new Vector3(
+            player.position.x + offset.x,
+            transform.position.y + offset.y,
+            transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(
             player.position.x + offset.x,
             player.position.y + offset.y,
             transform.position.z
         );
+        }
+
+        
     }
 
     void UpdateColliderSize()
@@ -96,16 +123,43 @@ public class CameraFollow : MonoBehaviour
             Vector3 barrierCameraPosition = Vector3.zero;
 
             if(player.transform.position.x - other.transform.position.x > 0){
-                barrierCameraPosition = new Vector3(
-                other.transform.position.x + (player.transform.position.x - other.transform.position.x),
-                player.position.y + offset.y,
-                transform.position.z);
+
+                if (!bossFightSettings)
+                {
+
+                    barrierCameraPosition = new Vector3(
+                    other.transform.position.x + (player.transform.position.x - other.transform.position.x),
+                    player.position.y + offset.y,
+                    transform.position.z);
+
+                }
+                else
+                {
+                    barrierCameraPosition = new Vector3(
+                    other.transform.position.x + (player.transform.position.x - other.transform.position.x),
+                    transform.position.y + offset.y,
+                    transform.position.z);
+
+                }
+
             }
             else if(player.transform.position.x - other.transform.position.x < 0){
-                barrierCameraPosition = new Vector3(
-                other.transform.position.x - Math.Abs(player.transform.position.x - other.transform.position.x),
-                player.position.y + offset.y,
-                transform.position.z);
+
+                if (!bossFightSettings)
+                {
+                    barrierCameraPosition = new Vector3(
+                    other.transform.position.x - Math.Abs(player.transform.position.x - other.transform.position.x),
+                    player.position.y + offset.y,
+                    transform.position.z);
+                }
+                else
+                {
+                    barrierCameraPosition = new Vector3(
+                    other.transform.position.x + (player.transform.position.x - other.transform.position.x),
+                    transform.position.y + offset.y,
+                    transform.position.z);
+
+                }
             }
 
             transform.position = barrierCameraPosition;
