@@ -23,20 +23,46 @@ public class GriffithAI : MonoBehaviour
 
     public float jumpForce = 5f;
 
+    private GameObject fireball;
+    private Rigidbody2D fireballRb;
+    private GameObject instantiatedObject;
+    public float fireballSpeed = 5f;
 
-   
+    private bool spawnerTrigger = false;
+    public GameObject skeleton;
+    private float spawnerTimer;
+    public float defaultSpawnerTimer = 2f;
+
+
     void Start()
     {
+        spawnerTimer = defaultSpawnerTimer;
         startPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
         enemyScript = GetComponent<Enemy>();
+        fireball = Resources.Load<GameObject>("Prefabs/Fireball");
 
-        Debug.Log("Udaljenost "+Mathf.Abs(transform.position.x - player.transform.position.x));
-    }
 
-    void Update()
+    // Debug.Log("Udaljenost "+Mathf.Abs(transform.position.x - player.transform.position.x));
+}
+
+void Update()
     {
-        Debug.Log(enemyScript.currentHealth);
+        
+    
+
+        if (spawnerTrigger)
+        {
+            spawnerTimer -= Time.deltaTime;
+            
+        }
+        if(spawnerTimer < 0f)
+        {
+            spawnerTimer = defaultSpawnerTimer;
+            SkeletonSpawner();
+        }
+
+
         if(enemyScript.currentHealth > 1300f)
         {
 
@@ -44,7 +70,7 @@ public class GriffithAI : MonoBehaviour
             {
                 Debug.Log("Attack 1");
                 attackInProgress = true;
-                StartCoroutine(JumpOnPlayer());
+                StartCoroutine(FirstPhase());
             }
 
 
@@ -52,12 +78,13 @@ public class GriffithAI : MonoBehaviour
         else if(enemyScript.currentHealth > 700f && !attackInProgress)
         {
             attackInProgress = true;
-            StartCoroutine(JumpOverPlayer());
-
+            StartCoroutine(SecondPhase());
+            spawnerTrigger = true;
 
         }
         else if(enemyScript.currentHealth <= 700f && !attackInProgress)
         {
+            spawnerTrigger = false;
             attackInProgress = true;
             Eclipse();
 
@@ -69,8 +96,8 @@ public class GriffithAI : MonoBehaviour
     }
 
  
-
-    private IEnumerator JumpOnPlayer()
+    //prva faza
+    private IEnumerator FirstPhase()
     {
         attackInProgress = true;
 
@@ -96,7 +123,7 @@ public class GriffithAI : MonoBehaviour
             yield return null; 
         }
 
-        rb.linearVelocity = Vector2.down * 8f;
+        rb.linearVelocity = Vector2.down * 6f;
 
         yield return new WaitUntil(() => isGrounded);
 
@@ -123,12 +150,13 @@ public class GriffithAI : MonoBehaviour
         attackInProgress = false;
     }
 
-    private IEnumerator JumpOverPlayer()
+    //druga faza
+    private IEnumerator SecondPhase()
     {
         attackInProgress = true;
+        isGrounded = false;
 
-
-
+        
         float targetX = player.transform.position.x;
         float jumpHeight = 10f;
 
@@ -137,19 +165,64 @@ public class GriffithAI : MonoBehaviour
 
         float horizontalVelocity = (targetX - transform.position.x);
 
-        rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity/1.5f);
+        rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity/1.3f);
+
+        float timeout = 1f;
+        float timeElapsed = 0f;
+
+
+        while (!AbovePlayer() && timeElapsed < timeout)
+        {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+       // FireFireball();
+        yield return new WaitForSeconds(0.3f);
+        FireFireball();
+
 
         yield return new WaitUntil(() => isGrounded);
 
-        attackInProgress = false;
+        StartCoroutine(WalkToCloserChamberEdge());
 
     }
 
-
-    void SecondPhase()
+    private IEnumerator WalkToCloserChamberEdge()
     {
+        nextCorner = mapEdges[0];
+        foreach(Transform edge in mapEdges)
+        {
+            if(Mathf.Abs(edge.position.x-transform.position.x) < Mathf.Abs(nextCorner.position.x - transform.position.x))
+            {
+                nextCorner = edge;
+            }
+        }
 
+
+        Vector2 direction = (nextCorner.position - transform.position).normalized;
+
+        rb.linearVelocity = direction * moveSpeed;
+
+        while (Vector2.Distance(transform.position, nextCorner.position) > 0.2f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, nextCorner.position, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+
+        attackInProgress = false;
     }
+
+    private void SkeletonSpawner()
+    {
+        float randomNumber = UnityEngine.Random.Range(-14f, -1f);
+        while(Mathf.Abs(randomNumber-player.transform.position.x) < 2f)
+            randomNumber = UnityEngine.Random.Range(-14f, -1f);
+
+        Instantiate(skeleton, new Vector3(randomNumber,-3.5f,0f), Quaternion.identity);
+    }
+
 
     void Eclipse()
     {
@@ -169,12 +242,27 @@ public class GriffithAI : MonoBehaviour
         return (Mathf.Abs(transform.position.x - player.transform.position.x) < 0.5f) && transform.position.y > player.transform.position.y;
     }
 
+    private void FireFireball()
+    {
+        Vector3 fireballVector = new Vector3(transform.position.x, transform.position.y - 1.7f, transform.position.z);
+      
+
+        instantiatedObject = Instantiate(fireball, fireballVector, Quaternion.identity);
+
+        Rigidbody2D fireballRb = instantiatedObject.GetComponent<Rigidbody2D>();
+        Vector2 direction = (player.transform.position - fireballVector).normalized;
+        fireballRb.linearVelocity = direction * fireballSpeed;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+        else if (collision.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 

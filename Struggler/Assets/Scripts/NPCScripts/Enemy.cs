@@ -1,28 +1,45 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 public class Enemy : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
     private GameObject droppedHeart;
+
+    //samo za griffitha potreban
+    public Slider healthBar;
     void Start()
     {
         droppedHeart = Resources.Load<GameObject>("Prefabs/HealingItem");
         currentHealth = maxHealth;
+
+        if(gameObject.name == "Griffith")
+        {
+            healthBar.maxValue = maxHealth;
+            healthBar.value = maxHealth;
+        }
     }
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
+
+        if(gameObject.name == "Griffith")
+            healthBar.value = currentHealth;
+
         if (currentHealth <= 0) {
+
+            Destroy(gameObject);
+
             
-        Destroy(gameObject);
 
-        int randomNumber = UnityEngine.Random.Range(1, 6);
-        Vector2 spawnPosition = new Vector2(transform.position.x,transform.position.y);
+            int randomNumber = UnityEngine.Random.Range(1, 6);
+            Vector2 spawnPosition = new Vector2(transform.position.x,transform.position.y);
 
-        if(randomNumber < 3){
-            Instantiate(droppedHeart, spawnPosition, Quaternion.Euler(0, 0, 0));
-        }
+            if(randomNumber < 3){
+                Instantiate(droppedHeart, spawnPosition, Quaternion.Euler(0, 0, 0));
+            }
 
         }
     }
