@@ -7,6 +7,7 @@ public class LevelComplete: MonoBehaviour
     public GameObject finishMenu;
     private AudioSource audioSource;
     public AudioClip clickSound;
+    public GameObject notification;
     void Start(){
         finishMenu.SetActive(false);
         changingLevels = false;
@@ -24,8 +25,9 @@ public class LevelComplete: MonoBehaviour
         
         if(GateController.levelCompleted){
             PauseMenu.isPaused = true;
+            notification.SetActive(false);
             finishMenu.SetActive(true);
-
+            
             Time.timeScale = 0f;
         }
 
