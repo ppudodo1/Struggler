@@ -115,7 +115,7 @@ public class CameraFollow : MonoBehaviour
             pointOfDetach = new Vector2(player.transform.position.x + margin,player.transform.position.y);
 
             recentBarrier = other.gameObject;
-            Debug.Log("Camera touched barrier and detached\n" + pointOfDetach);
+          //  Debug.Log("Camera touched barrier and detached\n" + pointOfDetach);
 
 
             touchedBarrier = true;

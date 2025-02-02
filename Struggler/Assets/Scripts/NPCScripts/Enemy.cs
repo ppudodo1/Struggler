@@ -47,7 +47,6 @@ public class Enemy : MonoBehaviour
     }
 
     private IEnumerator ChangeColorCoroutine(SpriteRenderer enemySpriteRenderer){
-        Color enemyDefaultColor = enemySpriteRenderer.color;
         enemySpriteRenderer.color = new Color(1f, 0.8f, 0.8f, 1f);
 
         yield return new WaitForSeconds(0.5f);
@@ -61,7 +60,7 @@ public class Enemy : MonoBehaviour
             gameObject.GetComponent<SpiritScript>().enabled = true;
 
         if (enemySpriteRenderer != null){
-        enemySpriteRenderer.color = enemyDefaultColor;
+        enemySpriteRenderer.color = Color.white;
         }
     }
 
