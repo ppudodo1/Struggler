@@ -34,9 +34,13 @@ public class GriffithAI : MonoBehaviour
     public float defaultSpawnerTimer = 2f;
 
 
-    public GameObject crystal;
+    private GameObject crystal;
+    private GameObject instantiatedCrystal;
     private bool crystalActive = false;
+    public Transform[] chandelierSpawnAreas;
+    private GameObject chandelier;
 
+    private bool eclipseTriggered = false;
 
     void Start()
     {
@@ -45,10 +49,11 @@ public class GriffithAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemyScript = GetComponent<Enemy>();
         fireball = Resources.Load<GameObject>("Prefabs/Fireball");
+        chandelier = Resources.Load<GameObject>("Prefabs/BossFightChandelier");
+        crystal = Resources.Load<GameObject>("Prefabs/Crystal");
 
-
-    // Debug.Log("Udaljenost "+Mathf.Abs(transform.position.x - player.transform.position.x));
-}
+        // Debug.Log("Udaljenost "+Mathf.Abs(transform.position.x - player.transform.position.x));
+    }
 
 void Update()
     {
@@ -86,13 +91,22 @@ void Update()
             spawnerTrigger = true;
 
         }
-        else if(enemyScript.currentHealth <= 700f && !attackInProgress)
+        else if(enemyScript.currentHealth <= 700f && !attackInProgress && !eclipseTriggered)
         {
+            eclipseTriggered = true;
             spawnerTrigger = false;
             attackInProgress = true;
             Eclipse();
 
 
+        }
+        else if(enemyScript.currentHealth <= 700f && eclipseTriggered)
+        {
+            if (!attackInProgress && isGrounded)
+            {
+                attackInProgress = true;
+                StartCoroutine(FirstPhase());
+            }
         }
 
 
@@ -233,17 +247,72 @@ void Update()
     private void Eclipse()
     {
         Crystalize();
+        StartCoroutine(ChandelierDrop());
     }
 
     private void Crystalize()
     {
         if (!crystalActive)
         {
-            Instantiate(crystal, new Vector3(transform.position.x + 1f,transform.position.y + 1f,transform.position.z), Quaternion.identity);
+            instantiatedCrystal = Instantiate(crystal, new Vector3(transform.position.x,transform.position.y + 1f,transform.position.z), Quaternion.identity);
             crystalActive = true;
         }
 
     }
+
+    private IEnumerator ChandelierDrop()
+    {
+        float summonTimeDefault = 2f;
+        float chandelierTimer = 60f;
+        float summonTime = summonTimeDefault;
+
+        while (chandelierTimer > 0)
+        {
+            summonTime -= Time.deltaTime;
+            chandelierTimer -= Time.deltaTime;
+
+            if (summonTime <= 0f)
+            {
+                summonTime = summonTimeDefault;
+
+                int randomNumber = UnityEngine.Random.Range(2, 5);
+
+                int[] randomNumbers = new int[randomNumber];
+
+                for (int i = 0; i < randomNumber; i++)
+                {
+                    bool unique;
+                    do
+                    {
+                        unique = true;
+                        randomNumbers[i] = UnityEngine.Random.Range(0, chandelierSpawnAreas.Length);
+
+                        for (int j = 0; j < i; j++)
+                        {
+                            if (randomNumbers[i] == randomNumbers[j])
+                            {
+                                unique = false;
+                                break;
+                            }
+                        }
+                    } while (!unique);
+                }
+
+                for (int i = 0; i < randomNumber; i++)
+                {
+                    Instantiate(chandelier, chandelierSpawnAreas[randomNumbers[i]].position, Quaternion.identity);
+                }
+
+            }
+
+            yield return null;
+        }
+
+        yield return new WaitUntil(() => chandelierTimer < 0f);
+        Destroy(instantiatedCrystal);
+        attackInProgress = false;
+    }
+
 
     private bool WithinReach()
     {
