@@ -106,6 +106,7 @@ MonoBehaviour:
   posA: {fileID: 2465624391477350287}
   posB: {fileID: 4540968000844367246}
   speed: 4
+  player: {fileID: 0}
 --- !u!61 &5960414662218963020
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  bossBar: {fileID: 0}
 --- !u!95 &5506829503708589947
 Animator:
   serializedVersion: 7

@@ -5,7 +5,7 @@ public class PlatformController : MonoBehaviour
    
     public Transform posA, posB; // Start and end positions
     public float speed; // Movement speed
-
+    //public GameObject player;
     private Vector2 targetPos; // Current target position
     private Vector2 lastPosition; // Last recorded position
     private Rigidbody2D rb;
@@ -14,32 +14,41 @@ public class PlatformController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         targetPos = posB.position;
     }
-
-    void FixedUpdate()
+    private void Update()
     {
-        
-        Vector2 currentPosition = rb.position;
-
-        if (Vector2.Distance(currentPosition, posA.position) < 0.1f)
-        {
-            targetPos = posB.position; 
+        if (Vector2.Distance(transform.position,posA.position)<.1f) {
+            targetPos = posB.position;
         }
-        if (Vector2.Distance(currentPosition, posB.position) < 0.1f)
-        {
-            targetPos = posA.position; 
+        if (Vector2.Distance(transform.position, posB.position) < .1f) {
+            targetPos = posA.position;
         }
-
-        Vector2 direction = ((Vector2)targetPos - currentPosition).normalized;
-        rb.linearVelocity = direction * speed;
-
-        // Update last position for velocity calculation
-        Vector2 platformVelocity = (currentPosition - lastPosition) / Time.fixedDeltaTime;
-        lastPosition = currentPosition;
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
+    /* void FixedUpdate()
+     {
+
+         Vector2 currentPosition = rb.position;
+
+         if (Vector2.Distance(currentPosition, posA.position) < 0.1f)
+         {
+             targetPos = posB.position; 
+         }
+         if (Vector2.Distance(currentPosition, posB.position) < 0.1f)
+         {
+             targetPos = posA.position; 
+         }
+
+         Vector2 direction = ((Vector2)targetPos - currentPosition).normalized;
+         rb.linearVelocity = direction * speed;
+
+         // Update last position for velocity calculation
+         Vector2 platformVelocity = (currentPosition - lastPosition) / Time.fixedDeltaTime;
+         lastPosition = currentPosition;
+     }*/
 
 
-    /*
-    private void FixedUpdate(){
+
+    /*private void FixedUpdate(){
 
         Vector2 platformVelocity = ((Vector2)transform.position - lastPosition) / Time.deltaTime;
 
@@ -55,19 +64,19 @@ public class PlatformController : MonoBehaviour
                 playerRb.linearVelocity = new Vector2(platformVelocity.x, playerRb.linearVelocity.y);
             }
         }
-    }
-    */
+    }*/
 
 
 
-/*
-    void OnTriggerStay2D(Collider2D collision){
+
+
+    /*void OnTriggerStay2D(Collider2D collision){
         if (collision.CompareTag("Player"))
         {
             player.transform.position = new Vector2(transform.position.x, player.transform.position.y);
         }
-    }
-    
+    }*/
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -83,5 +92,5 @@ public class PlatformController : MonoBehaviour
             collision.transform.SetParent(null); // Detach the player from the platform
         }
     }
-    */
+    
 }
