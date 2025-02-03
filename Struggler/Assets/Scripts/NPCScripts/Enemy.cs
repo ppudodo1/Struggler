@@ -9,14 +9,17 @@ public class Enemy : MonoBehaviour
     private GameObject droppedHeart;
 
     //samo za griffitha potreban
-    public Slider healthBar;
+    public GameObject bossBar;
+    private Slider healthBar;
     void Start()
     {
+
         droppedHeart = Resources.Load<GameObject>("Prefabs/HealingItem");
         currentHealth = maxHealth;
 
         if(gameObject.name == "Griffith")
         {
+            healthBar = bossBar.GetComponentInChildren<Slider>();
             healthBar.maxValue = maxHealth;
             healthBar.value = maxHealth;
         }
@@ -24,15 +27,19 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
-
+        
         if(gameObject.name == "Griffith")
             healthBar.value = currentHealth;
-
+        
         if (currentHealth <= 0) {
+            
+            if(gameObject.name == "Griffith")
+            {
+                bossBar.SetActive(false);
+            }
+
 
             Destroy(gameObject);
-
-            
 
             int randomNumber = UnityEngine.Random.Range(1, 6);
             Vector2 spawnPosition = new Vector2(transform.position.x,transform.position.y);

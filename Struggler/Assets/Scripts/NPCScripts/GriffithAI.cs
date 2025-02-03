@@ -34,6 +34,10 @@ public class GriffithAI : MonoBehaviour
     public float defaultSpawnerTimer = 2f;
 
 
+    public GameObject crystal;
+    private bool crystalActive = false;
+
+
     void Start()
     {
         spawnerTimer = defaultSpawnerTimer;
@@ -48,8 +52,8 @@ public class GriffithAI : MonoBehaviour
 
 void Update()
     {
-        
-    
+
+        Debug.Log(enemyScript.currentHealth);
 
         if (spawnerTrigger)
         {
@@ -114,7 +118,7 @@ void Update()
         rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity);
 
 
-        float timeout = 2f;
+        float timeout = 1.5f;
         float timeElapsed = 0f;
 
         while (!AbovePlayer() && timeElapsed < timeout)
@@ -127,7 +131,9 @@ void Update()
 
         yield return new WaitUntil(() => isGrounded);
 
-        StartCoroutine(WalkToChamberEdge());
+        if(timeElapsed >= timeout)
+            StartCoroutine(WalkToCloserChamberEdge());
+        else StartCoroutine(WalkToChamberEdge());
     }
 
     private IEnumerator WalkToChamberEdge()
@@ -177,7 +183,7 @@ void Update()
             yield return null;
         }
 
-       // FireFireball();
+        FireFireball();
         yield return new WaitForSeconds(0.3f);
         FireFireball();
 
@@ -224,8 +230,18 @@ void Update()
     }
 
 
-    void Eclipse()
+    private void Eclipse()
     {
+        Crystalize();
+    }
+
+    private void Crystalize()
+    {
+        if (!crystalActive)
+        {
+            Instantiate(crystal, new Vector3(transform.position.x + 1f,transform.position.y + 1f,transform.position.z), Quaternion.identity);
+            crystalActive = true;
+        }
 
     }
 
