@@ -41,7 +41,8 @@ public class GriffithAI : MonoBehaviour
     private GameObject chandelier;
 
     private bool eclipseTriggered = false;
-
+    private float horizontal;
+    Animator animator;
     void Start()
     {
         spawnerTimer = defaultSpawnerTimer;
@@ -51,7 +52,7 @@ public class GriffithAI : MonoBehaviour
         fireball = Resources.Load<GameObject>("Prefabs/Fireball");
         chandelier = Resources.Load<GameObject>("Prefabs/BossFightChandelier");
         crystal = Resources.Load<GameObject>("Prefabs/Crystal");
-
+        animator = GetComponent<Animator>();
         // Debug.Log("Udaljenost "+Mathf.Abs(transform.position.x - player.transform.position.x));
     }
 
@@ -59,24 +60,33 @@ public class GriffithAI : MonoBehaviour
     {
 
         Debug.Log(enemyScript.currentHealth);
-
+        horizontal = rb.linearVelocity.x;
+        if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetFloat("MoveValue", Mathf.Abs(horizontal));
+        }
+        else {
+            animator.SetBool("isJumping", true);
+        }
+       
         if (spawnerTrigger)
         {
             spawnerTimer -= Time.deltaTime;
-            
+
         }
-        if(spawnerTimer < 0f)
+        if (spawnerTimer < 0f)
         {
             spawnerTimer = defaultSpawnerTimer;
             SkeletonSpawner();
         }
 
 
-            
-       
 
 
-        if(enemyScript.currentHealth > 1300f)
+
+
+        if (enemyScript.currentHealth > 1300f)
         {
 
             if (!attackInProgress && isGrounded)
@@ -88,14 +98,14 @@ public class GriffithAI : MonoBehaviour
 
 
         }
-        else if(enemyScript.currentHealth > 700f && !attackInProgress)
+        else if (enemyScript.currentHealth > 700f && !attackInProgress)
         {
             attackInProgress = true;
             StartCoroutine(SecondPhase());
             spawnerTrigger = true;
 
         }
-        else if(enemyScript.currentHealth <= 700f && !attackInProgress && !eclipseTriggered)
+        else if (enemyScript.currentHealth <= 700f && !attackInProgress && !eclipseTriggered)
         {
             eclipseTriggered = true;
             spawnerTrigger = false;
@@ -104,7 +114,7 @@ public class GriffithAI : MonoBehaviour
 
 
         }
-        else if(enemyScript.currentHealth <= 700f && eclipseTriggered)
+        else if (enemyScript.currentHealth <= 700f && eclipseTriggered)
         {
             if (!attackInProgress && isGrounded)
             {
@@ -115,7 +125,7 @@ public class GriffithAI : MonoBehaviour
 
     }
 
- 
+
 
     //prva faza
     private IEnumerator FirstPhase()
@@ -133,7 +143,7 @@ public class GriffithAI : MonoBehaviour
         float horizontalVelocity = (targetX - transform.position.x) * 2f;
 
         rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity);
-
+        animator.SetBool("isJumping", true);
 
         float timeout = 1.5f;
         float timeElapsed = 0f;
@@ -141,14 +151,14 @@ public class GriffithAI : MonoBehaviour
         while (!AbovePlayer() && timeElapsed < timeout)
         {
             timeElapsed += Time.deltaTime;
-            yield return null; 
+            yield return null;
         }
 
         rb.linearVelocity = Vector2.down * 6f;
 
         yield return new WaitUntil(() => isGrounded);
 
-        if(timeElapsed >= timeout)
+        if (timeElapsed >= timeout)
             StartCoroutine(WalkToCloserChamberEdge());
         else StartCoroutine(WalkToChamberEdge());
     }
@@ -157,7 +167,7 @@ public class GriffithAI : MonoBehaviour
     {
         jumpCounter++;
 
-        nextCorner = mapEdges[jumpCounter%2];
+        nextCorner = mapEdges[jumpCounter % 2];
 
         Vector2 direction = (nextCorner.position - transform.position).normalized;
 
@@ -179,7 +189,7 @@ public class GriffithAI : MonoBehaviour
         attackInProgress = true;
         isGrounded = false;
 
-        
+
         float targetX = player.transform.position.x;
         float jumpHeight = 10f;
 
@@ -188,7 +198,7 @@ public class GriffithAI : MonoBehaviour
 
         float horizontalVelocity = (targetX - transform.position.x);
 
-        rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity/1.3f);
+        rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity / 1.3f);
 
         float timeout = 1f;
         float timeElapsed = 0f;
@@ -215,9 +225,9 @@ public class GriffithAI : MonoBehaviour
     {
         nextCorner = mapEdges[0];
 
-        foreach(Transform edge in mapEdges)
+        foreach (Transform edge in mapEdges)
         {
-            if(Mathf.Abs(edge.position.x-transform.position.x) < Mathf.Abs(nextCorner.position.x - transform.position.x))
+            if (Mathf.Abs(edge.position.x - transform.position.x) < Mathf.Abs(nextCorner.position.x - transform.position.x))
             {
                 nextCorner = edge;
             }
@@ -225,10 +235,10 @@ public class GriffithAI : MonoBehaviour
 
         if (enemyScript.currentHealth <= 700f)
             nextCorner = mapEdges[1];
-        
 
 
-            Vector2 direction = (nextCorner.position - transform.position).normalized;
+
+        Vector2 direction = (nextCorner.position - transform.position).normalized;
 
         rb.linearVelocity = direction * moveSpeed;
 
@@ -245,10 +255,10 @@ public class GriffithAI : MonoBehaviour
     private void SkeletonSpawner()
     {
         float randomNumber = UnityEngine.Random.Range(-14f, -1f);
-        while(Mathf.Abs(randomNumber-player.transform.position.x) < 2f)
+        while (Mathf.Abs(randomNumber - player.transform.position.x) < 2f)
             randomNumber = UnityEngine.Random.Range(-14f, -1f);
 
-        Instantiate(skeleton, new Vector3(randomNumber,-3.5f,0f), Quaternion.identity);
+        Instantiate(skeleton, new Vector3(randomNumber, -3.5f, 0f), Quaternion.identity);
     }
 
 
@@ -262,7 +272,7 @@ public class GriffithAI : MonoBehaviour
     {
         if (!crystalActive)
         {
-            instantiatedCrystal = Instantiate(crystal, new Vector3(transform.position.x,transform.position.y + 1f,transform.position.z), Quaternion.identity);
+            instantiatedCrystal = Instantiate(crystal, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
             crystalActive = true;
         }
 
@@ -271,7 +281,7 @@ public class GriffithAI : MonoBehaviour
     private IEnumerator ChandelierDrop()
     {
         float summonTimeDefault = 2f;
-        float chandelierTimer = 60f;
+        float chandelierTimer = 40f;
         float summonTime = summonTimeDefault;
 
         while (chandelierTimer > 0)
@@ -295,7 +305,7 @@ public class GriffithAI : MonoBehaviour
                         unique = true;
 
                         randomNumbers[i] = UnityEngine.Random.Range(0, chandelierSpawnAreas.Length);
-                        
+
 
                         for (int j = 0; j < i; j++)
                         {
@@ -333,14 +343,14 @@ public class GriffithAI : MonoBehaviour
 
     public bool AbovePlayer()
     {
-       
+
         return (Mathf.Abs(transform.position.x - player.transform.position.x) < 0.5f) && transform.position.y > player.transform.position.y;
     }
 
     private void FireFireball()
     {
         Vector3 fireballVector = new Vector3(transform.position.x, transform.position.y - 1.7f, transform.position.z);
-      
+
 
         instantiatedObject = Instantiate(fireball, fireballVector, Quaternion.identity);
 
