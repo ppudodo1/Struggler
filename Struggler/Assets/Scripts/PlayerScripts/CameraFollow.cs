@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player; // The player to follow
-    public Vector3 offset;   // Offset from the player's position
+    public Transform player;
+    public Vector3 offset;
     public float margin = 0.1f;
 
     private GameObject recentBarrier;
@@ -16,20 +16,16 @@ public class CameraFollow : MonoBehaviour
     private BoxCollider2D boxCollider;
 
     private bool bossFightSettings = false;
-    
-    
+    private bool isStuckToBarrier = false; // Flag to track when camera should stay at barrier
 
     void Start()
     {
+        FindPlayer();
 
         if (SceneManager.GetActiveScene().name == "Level4")
         {
-            Debug.Log(SceneManager.GetActiveScene().name);
             bossFightSettings = true;
         }
-            
-
-        LockOnPlayer();
 
         mainCamera = GetComponent<Camera>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -46,144 +42,142 @@ public class CameraFollow : MonoBehaviour
             return;
         }
 
+        ResetCamera();
         UpdateColliderSize();
     }
 
     void Update()
     {
-        
-       // transform.position = new Vector3(transform.position.x,player.transform.position.y + offset.y,transform.position.z);
+        if (player == null) return;
 
-        if (!touchedBarrier || IsPlayerBeyondDetachPoint())
+ 
+        if (isStuckToBarrier)
         {
-            LockOnPlayer();
-            touchedBarrier = false;
+            if (IsPlayerBeyondDetachPoint())
+            {
+                isStuckToBarrier = false;
+                touchedBarrier = false;
+            }
+            else
+            {
+                return;
+            }
         }
 
+        
+        LockOnPlayer();
         UpdateColliderSize();
     }
 
-    void LockOnPlayer(){
-
+    void LockOnPlayer()
+    {
+        if (player == null) return;
 
         if (bossFightSettings)
         {
             transform.position = new Vector3(
-            player.position.x + offset.x,
-            transform.position.y + offset.y,
-            transform.position.z);
+                player.position.x + offset.x,
+                transform.position.y + offset.y,
+                transform.position.z
+            );
         }
         else
         {
             transform.position = new Vector3(
-            player.position.x + offset.x,
-            player.position.y + offset.y,
-            transform.position.z
-        );
+                player.position.x + offset.x,
+                player.position.y + offset.y,
+                transform.position.z
+            );
         }
-
-        
     }
 
     void UpdateColliderSize()
     {
-       
-        float height = 2f * mainCamera.orthographicSize; 
-        float width = height * mainCamera.aspect;        
+        if (mainCamera == null) return;
 
-        
+        float height = 2f * mainCamera.orthographicSize;
+        float width = height * mainCamera.aspect;
+
         boxCollider.size = new Vector2(width - 1.7f, height);
-        boxCollider.offset = Vector2.zero; 
+        boxCollider.offset = Vector2.zero;
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-        
-        if (other.CompareTag("Barrier")){
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Barrier"))
+        {
             AttachCameraToBarrier(other);
         }
-   
     }
 
-    public void AttachCameraToBarrier(Collider2D other){
-
-        // barijera je na desno
-         if(other.transform.position.x > player.transform.position.x)
-                pointOfDetach = new Vector2(player.transform.position.x - margin,player.transform.position.y);
-
-        //barijera je na lijevo
-        else 
-            pointOfDetach = new Vector2(player.transform.position.x + margin,player.transform.position.y);
-
-            recentBarrier = other.gameObject;
-          //  Debug.Log("Camera touched barrier and detached\n" + pointOfDetach);
+    public void AttachCameraToBarrier(Collider2D other)
+    {
+        if (player == null) return;
 
 
-            touchedBarrier = true;
+        if (other.transform.position.x > player.transform.position.x)
+            pointOfDetach = new Vector2(player.transform.position.x - margin, player.transform.position.y);
+        else
+            pointOfDetach = new Vector2(player.transform.position.x + margin, player.transform.position.y);
 
-            Vector3 barrierCameraPosition = Vector3.zero;
+        recentBarrier = other.gameObject;
+        touchedBarrier = true;
+        isStuckToBarrier = true;
 
-            if(player.transform.position.x - other.transform.position.x > 0){
 
-                if (!bossFightSettings)
-                {
+        Vector3 barrierCameraPosition;
+        if (player.transform.position.x > other.transform.position.x)
+        {
+            barrierCameraPosition = new Vector3(
+                other.transform.position.x + (player.transform.position.x - other.transform.position.x),
+                bossFightSettings ? transform.position.y + offset.y : player.position.y + offset.y,
+                transform.position.z
+            );
+        }
+        else
+        {
+            barrierCameraPosition = new Vector3(
+                other.transform.position.x - Math.Abs(player.transform.position.x - other.transform.position.x),
+                bossFightSettings ? transform.position.y + offset.y : player.position.y + offset.y,
+                transform.position.z
+            );
+        }
 
-                    barrierCameraPosition = new Vector3(
-                    other.transform.position.x + (player.transform.position.x - other.transform.position.x),
-                    player.position.y + offset.y,
-                    transform.position.z);
-
-                }
-                else
-                {
-                    barrierCameraPosition = new Vector3(
-                    other.transform.position.x + (player.transform.position.x - other.transform.position.x),
-                    transform.position.y + offset.y,
-                    transform.position.z);
-
-                }
-
-            }
-            else if(player.transform.position.x - other.transform.position.x < 0){
-
-                if (!bossFightSettings)
-                {
-                    barrierCameraPosition = new Vector3(
-                    other.transform.position.x - Math.Abs(player.transform.position.x - other.transform.position.x),
-                    player.position.y + offset.y,
-                    transform.position.z);
-                }
-                else
-                {
-                    barrierCameraPosition = new Vector3(
-                    other.transform.position.x + (player.transform.position.x - other.transform.position.x),
-                    transform.position.y + offset.y,
-                    transform.position.z);
-
-                }
-            }
-
-            transform.position = barrierCameraPosition;
-
+        transform.position = barrierCameraPosition;
     }
 
-    private bool IsPlayerInMiddle(){
-        Vector3 viewportPosition = mainCamera.WorldToViewportPoint(player.position);
-
-        float xDifference = Mathf.Abs(viewportPosition.x - 0.5f);
-        return xDifference < margin;
-    }
-    //igrac je desno od zida
     private bool IsPlayerBeyondDetachPoint()
     {
         if (recentBarrier == null) return false;
 
-        if(recentBarrier.transform.position.x > player.transform.position.x){
+        if (recentBarrier.transform.position.x > player.transform.position.x)
+        {
             return player.transform.position.x < pointOfDetach.x - margin;
         }
-        else{
-            return player.transform.position.x > pointOfDetach.x + margin;;
+        else
+        {
+            return player.transform.position.x > pointOfDetach.x + margin;
         }
-            
     }
 
+    public void ResetCamera()
+    {
+ 
+        FindPlayer();
+        touchedBarrier = false;
+        isStuckToBarrier = false;
+        LockOnPlayer();
+    }
+
+    private void FindPlayer()
+    {
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+                player = playerObj.transform;
+            else
+                Debug.LogError("Player not found in scene!");
+        }
+    }
 }

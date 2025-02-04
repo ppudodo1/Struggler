@@ -121,8 +121,7 @@ public class ChoiceManager : MonoBehaviour
 
     yield return StartCoroutine(TypeText(message, textComponent));
 
-    //Destroy(GameManager.Instance.gameObject);
-
-    SceneManager.LoadScene(sceneName);
+        //Destroy(GameManager.Instance.gameObject);
+        SceneManager.LoadScene(sceneName);
     }
 }

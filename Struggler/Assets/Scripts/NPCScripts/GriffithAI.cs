@@ -41,7 +41,6 @@ public class GriffithAI : MonoBehaviour
     private GameObject chandelier;
 
     private bool eclipseTriggered = false;
-    public GameObject gate;
 
     void Start()
     {
@@ -113,13 +112,10 @@ public class GriffithAI : MonoBehaviour
                 StartCoroutine(FirstPhase());
             }
         }
+
     }
 
-    private void OnDestroy()
-    {
-        gate.SetActive(true);
-    }
-
+ 
 
     //prva faza
     private IEnumerator FirstPhase()

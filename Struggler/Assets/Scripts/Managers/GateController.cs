@@ -18,8 +18,16 @@ public class GateController : MonoBehaviour
     private float yDistance;
     private bool increasedLevel = false;
     private Vector3 gatePosition, playerPosition;
+
+    //samo za bossfight
+    private AudioSource mainCameraAudio;
+
     void Start()
     {
+        //samo za bossfight
+        mainCameraAudio = Camera.main.GetComponent<AudioSource>();
+
+
         gateParticles = GetComponent<ParticleSystem>();
         distanceToPlayer = GetDistances();
         levelCompleted = false;
@@ -29,6 +37,16 @@ public class GateController : MonoBehaviour
 
     void Update()
     {
+        //samo za bossfight
+        if (SceneManager.GetActiveScene().name == "Level4")
+        {
+            if (CheckIfBossDefeated())
+            {
+                transform.position = new Vector3(-8.02284813f, -2.50999999f, 0);
+                mainCameraAudio.Stop();
+            }
+        }
+
         distanceToPlayer = GetDistances();
 
         if(distanceToPlayer > particleActivation){
@@ -80,6 +98,20 @@ public class GateController : MonoBehaviour
         PlayerPrefs.SetInt("NumberOfShield", healthSystem.GetComponent<HealthSystem>().numberOfShield);
         //GameManager.SetNumberOfShield(healthSystem.GetComponent<HealthSystem>().numberOfShield);
             
+    }
+
+    public bool CheckIfBossDefeated()
+    {
+        GameObject griffithObject = GameObject.Find("Griffith");
+
+        if (griffithObject != null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
 

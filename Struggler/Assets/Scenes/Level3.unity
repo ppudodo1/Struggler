@@ -3491,6 +3491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform Vertical
       objectReference: {fileID: 0}
+    - target: {fileID: 6241243318649161486, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8016390358024418772, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 9.79
@@ -14545,6 +14549,10 @@ PrefabInstance:
     - target: {fileID: 6241243318649161486, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
       propertyPath: m_Name
       value: Platform Vertical (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241243318649161486, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 8016390358024418772, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -43334,6 +43342,14 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 1022447067}
+    - target: {fileID: 4599373330953246469, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1941.141
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599373330953246469, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.033
+      objectReference: {fileID: 0}
     - target: {fileID: 5175109428303751786, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 5.241089
@@ -56031,9 +56047,17 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4369962308936315105, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 6241243318649161486, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
       propertyPath: m_Name
       value: Platform Vertical (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241243318649161486, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 8016390358024418772, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -57435,6 +57459,10 @@ PrefabInstance:
     - target: {fileID: 6241243318649161486, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
       propertyPath: m_Name
       value: Platform Vertical (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241243318649161486, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 8016390358024418772, guid: d9855c59183609848aebdfa90ac839b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -61785,6 +61813,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 691315094418630106, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4938361451462548415}
+    - targetCorrespondingSourceObject: {fileID: 691315094418630106, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4938361451462548416}
   m_SourcePrefab: {fileID: 100100000, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
 --- !u!1 &4938361451462548414 stripped
 GameObject:
@@ -61808,6 +61839,43 @@ MonoBehaviour:
   rightThrowVector: {x: 50, y: 10, z: 0}
   thrownFirstGrenade: 0
   notification: {fileID: 1140082961}
+--- !u!70 &4938361451462548416
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4938361451462548414}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.12, y: -0.5}
+  m_Size: {x: 1.93, y: 3.57}
+  m_Direction: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

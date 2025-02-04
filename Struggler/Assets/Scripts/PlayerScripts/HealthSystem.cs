@@ -11,7 +11,7 @@ public class HealthSystem : MonoBehaviour
 {
 
     //razlog float jer ako cemo dodavat difficulty onda na easy mode moze gubiti pola srca
-    private int numberOfHearts = 3;
+    public int numberOfHearts = 3;
     private int numberOfCollectedHearts = 0;
 
     public int numberOfShield;

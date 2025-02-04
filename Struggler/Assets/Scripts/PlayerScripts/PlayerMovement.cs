@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     //private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, 1f, groundLayer);
-    private bool isGrounded = true;
+    private bool isGrounded = false;
 
     private void Start()
     {
@@ -156,12 +156,17 @@ public class PlayerMovement : MonoBehaviour
     //VRLO JE BITAN OVAJ playerCanTakeDmg
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Scaffolding") && footCollider.IsTouching(collision))
+        if (footCollider.IsTouching(collision)) 
         {
-            isGrounded = true;
-            Land();
+            if (collision.CompareTag("Ground") || collision.CompareTag("Scaffolding"))
+            {
+                Debug.Log("We touched ground");
+                isGrounded = true;
+                Land();
+            }
         }
-        else if (collision.CompareTag("MovingPlatform"))
+
+        if (collision.CompareTag("MovingPlatform"))
         {
             // Debug.Log("Detected platform!");
             movingPlatform = collision.gameObject;
@@ -173,24 +178,20 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.addHeart();
             Destroy(collision.gameObject);
         }
-
         else if (collision.CompareTag("Shield"))
         {
             healthSystem.addShield();
             Destroy(collision.gameObject);
         }
-
-        else if (collision.CompareTag("Enemy") && playerCanTakeDmg || collision.CompareTag("EnemyProjectile") && playerCanTakeDmg || collision.CompareTag("Projectile") && playerCanTakeDmg)
+        else if ((collision.CompareTag("Enemy") || collision.CompareTag("EnemyProjectile") || collision.CompareTag("Projectile")) && playerCanTakeDmg)
         {
             playerCanTakeDmg = false;
             healthSystem.removeHeart();
-
 
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
                 StartCoroutine(PushBack(false));
             }
-
             else
             {
                 StartCoroutine(PushBack(true));
@@ -200,7 +201,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 Destroy(collision.gameObject);
             }
-
         }
         else if (collision.CompareTag("Spikes"))
         {
@@ -209,19 +209,17 @@ public class PlayerMovement : MonoBehaviour
             healthSystem.removeHeart();
             healthSystem.removeHeart();
 
-
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
                 StartCoroutine(PushBack(false));
             }
-
             else
             {
                 StartCoroutine(PushBack(true));
             }
-
         }
     }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {

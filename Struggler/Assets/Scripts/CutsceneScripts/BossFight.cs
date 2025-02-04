@@ -14,11 +14,18 @@ public class BossFight : MonoBehaviour
     private NotificationManager notManager;
 
     private bool dialogueEnded = false;
+
+    public GameObject skipCutscene;
+    private float skipTimerDefault = 2f;
+   private float skipTimer;
     void Start()
     {
+        skipTimer = skipTimerDefault;
+        skipCutscene.SetActive(false);
+
         mainCameraAudio = Camera.main.GetComponent<AudioSource>();
         mainCameraAudio.volume = 0.05f;  
-        mainCameraAudio.pitch = 0.8f;
+        mainCameraAudio.pitch = 1f;
 
         player.GetComponent<ThrowProjectile>().enabled = false;
 
@@ -26,12 +33,32 @@ public class BossFight : MonoBehaviour
         griffith.GetComponent<GriffithAI>().enabled = false;
 
         notManager = notification.GetComponent<NotificationManager>();
+
+
     }
 
     void Update()
     {
+        if (skipCutscene.activeSelf && Input.GetKey(KeyCode.E))
+        {
+            skipTimer -= Time.deltaTime;
+            if (skipTimer <= 0f)
+            {
+                dialogueEnded = true;
+                skipCutscene.SetActive(false);
+            }
+                
+        }
+        else
+            skipTimer = skipTimerDefault;
+
+
+
         if (dialogueEnded)
         {
+
+            notification.SetActive(false);
+            mainCameraAudio.Play();
             Destroy(gameObject);
 
             player.GetComponent<PlayerMovement>().enabled = true;
@@ -51,7 +78,9 @@ public class BossFight : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             player.GetComponent<PlayerMovement>().enabled = false;
-            player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+
+            player.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+            player.GetComponent<Animator>().SetFloat("MoveValue",0f);
             
 
             player.GetComponent<ThrowProjectile>().enabled = false;
@@ -66,6 +95,7 @@ public class BossFight : MonoBehaviour
 
     private IEnumerator Dialogue()
     {
+        skipCutscene.SetActive(true);
         notManager.SetNotificationText("I've come to settle this, Griffith!",false);
         yield return new WaitForSeconds(4);
 
