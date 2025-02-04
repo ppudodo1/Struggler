@@ -41,6 +41,7 @@ public class GriffithAI : MonoBehaviour
     private GameObject chandelier;
 
     private bool eclipseTriggered = false;
+    public GameObject gate;
 
     void Start()
     {
@@ -55,7 +56,7 @@ public class GriffithAI : MonoBehaviour
         // Debug.Log("Udaljenost "+Mathf.Abs(transform.position.x - player.transform.position.x));
     }
 
-void Update()
+    void Update()
     {
 
         Debug.Log(enemyScript.currentHealth);
@@ -70,6 +71,10 @@ void Update()
             spawnerTimer = defaultSpawnerTimer;
             SkeletonSpawner();
         }
+
+
+            
+       
 
 
         if(enemyScript.currentHealth > 1300f)
@@ -108,12 +113,14 @@ void Update()
                 StartCoroutine(FirstPhase());
             }
         }
-
-
-
     }
 
- 
+    private void OnDestroy()
+    {
+        gate.SetActive(true);
+    }
+
+
     //prva faza
     private IEnumerator FirstPhase()
     {
@@ -211,6 +218,7 @@ void Update()
     private IEnumerator WalkToCloserChamberEdge()
     {
         nextCorner = mapEdges[0];
+
         foreach(Transform edge in mapEdges)
         {
             if(Mathf.Abs(edge.position.x-transform.position.x) < Mathf.Abs(nextCorner.position.x - transform.position.x))
@@ -219,8 +227,12 @@ void Update()
             }
         }
 
+        if (enemyScript.currentHealth <= 700f)
+            nextCorner = mapEdges[1];
+        
 
-        Vector2 direction = (nextCorner.position - transform.position).normalized;
+
+            Vector2 direction = (nextCorner.position - transform.position).normalized;
 
         rb.linearVelocity = direction * moveSpeed;
 
@@ -285,7 +297,9 @@ void Update()
                     do
                     {
                         unique = true;
+
                         randomNumbers[i] = UnityEngine.Random.Range(0, chandelierSpawnAreas.Length);
+                        
 
                         for (int j = 0; j < i; j++)
                         {

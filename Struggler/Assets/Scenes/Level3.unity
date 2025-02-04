@@ -42817,9 +42817,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1910257259606392915, guid: f88bdba3e18d4fb4d848760f72119042, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1140082960}
     - target: {fileID: 2224494389113939727, guid: f88bdba3e18d4fb4d848760f72119042, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3164287098535147901, guid: f88bdba3e18d4fb4d848760f72119042, type: 3}
       propertyPath: pauseMenu
@@ -43316,7 +43320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2787649798151761997, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3908911683403916262, guid: 0d48c28a12a52f24094f63bf0d732ac2, type: 3}
       propertyPath: m_Material
@@ -61687,11 +61691,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7391533517411551822, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.41
+      value: 188.83
       objectReference: {fileID: 0}
     - target: {fileID: 7391533517411551822, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.13
+      value: 10.15
       objectReference: {fileID: 0}
     - target: {fileID: 7391533517411551822, guid: e9702f9341b2a7549bf659258a3cb007, type: 3}
       propertyPath: m_LocalPosition.z

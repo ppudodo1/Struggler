@@ -9,11 +9,13 @@ public class GameActiveManager : MonoBehaviour
         Time.timeScale = 1f;
 
         //OVO POKRENUT PRIJE BUILDANJA IGRICE
+
+        /*
         #if UNITY_EDITOR
         PlayerPrefs.DeleteAll();
         Debug.Log("PlayerPrefs cleared in Editor mode");
         #endif
-        
+        */
     }
 
     void Update()
