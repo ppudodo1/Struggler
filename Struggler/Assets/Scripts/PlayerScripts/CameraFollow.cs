@@ -16,7 +16,11 @@ public class CameraFollow : MonoBehaviour
     private BoxCollider2D boxCollider;
 
     private bool bossFightSettings = false;
+
     private bool isStuckToBarrier = false; // Flag to track when camera should stay at barrier
+    private bool isFollowingYAxis = false; // New flag for following the player's Y-axis
+
+    private float lockedX; // Stores the X position to lock to
 
     void Start()
     {
@@ -24,6 +28,7 @@ public class CameraFollow : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Level4")
         {
+            Debug.Log(SceneManager.GetActiveScene().name);
             bossFightSettings = true;
         }
 
@@ -50,21 +55,29 @@ public class CameraFollow : MonoBehaviour
     {
         if (player == null) return;
 
- 
         if (isStuckToBarrier)
         {
             if (IsPlayerBeyondDetachPoint())
             {
                 isStuckToBarrier = false;
                 touchedBarrier = false;
+                isFollowingYAxis = false; // Stop following Y when detaching
             }
             else
             {
+                if (isFollowingYAxis)
+                {
+                    // Keep updating camera Y position while X stays locked
+                    transform.position = new Vector3(
+                        lockedX, // X stays locked
+                        player.position.y + offset.y, // Y follows player
+                        transform.position.z
+                    );
+                }
                 return;
             }
         }
 
-        
         LockOnPlayer();
         UpdateColliderSize();
     }
@@ -107,6 +120,11 @@ public class CameraFollow : MonoBehaviour
         if (other.CompareTag("Barrier"))
         {
             AttachCameraToBarrier(other);
+
+            if (!bossFightSettings)
+            {
+                isFollowingYAxis = true;
+            }
         }
     }
 
@@ -114,7 +132,7 @@ public class CameraFollow : MonoBehaviour
     {
         if (player == null) return;
 
-
+        
         if (other.transform.position.x > player.transform.position.x)
             pointOfDetach = new Vector2(player.transform.position.x - margin, player.transform.position.y);
         else
@@ -124,26 +142,22 @@ public class CameraFollow : MonoBehaviour
         touchedBarrier = true;
         isStuckToBarrier = true;
 
-
-        Vector3 barrierCameraPosition;
-        if (player.transform.position.x > other.transform.position.x)
+       
+        if (player.position.x > other.transform.position.x)
         {
-            barrierCameraPosition = new Vector3(
-                other.transform.position.x + (player.transform.position.x - other.transform.position.x),
-                bossFightSettings ? transform.position.y + offset.y : player.position.y + offset.y,
-                transform.position.z
-            );
+            lockedX = other.transform.position.x + Mathf.Abs(player.transform.position.x - other.transform.position.x);
         }
         else
         {
-            barrierCameraPosition = new Vector3(
-                other.transform.position.x - Math.Abs(player.transform.position.x - other.transform.position.x),
-                bossFightSettings ? transform.position.y + offset.y : player.position.y + offset.y,
-                transform.position.z
-            );
+            lockedX = other.transform.position.x - Mathf.Abs(player.transform.position.x - other.transform.position.x);
         }
 
-        transform.position = barrierCameraPosition;
+        
+        transform.position = new Vector3(
+            lockedX,
+            bossFightSettings ? transform.position.y + offset.y : player.position.y + offset.y, // Set initial Y position
+            transform.position.z
+        );
     }
 
     private bool IsPlayerBeyondDetachPoint()
@@ -162,10 +176,10 @@ public class CameraFollow : MonoBehaviour
 
     public void ResetCamera()
     {
- 
         FindPlayer();
         touchedBarrier = false;
         isStuckToBarrier = false;
+        isFollowingYAxis = false;
         LockOnPlayer();
     }
 

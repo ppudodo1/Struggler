@@ -8,7 +8,10 @@ public class ThrowProjectile : MonoBehaviour
     private Rigidbody2D grenadeRb;
     private SpriteRenderer sr;
     public int count;
-    
+
+    private float grenadeTimer;
+    public float defaultGrenadeTimer = 2f;
+
     public int maxGrenades = 2;
     public Vector3 rightThrowVector = new Vector3(5f,1f,0f);
     public bool thrownFirstGrenade = false;
@@ -19,6 +22,9 @@ public class ThrowProjectile : MonoBehaviour
     public GameObject notification;
 
     void Start(){
+
+        grenadeTimer = defaultGrenadeTimer;
+
         count  = GameObject.FindGameObjectsWithTag("Projectile").Length;
         grenade = Resources.Load<GameObject>("Prefabs/grenade");
         sr = GetComponent<SpriteRenderer>();
@@ -26,7 +32,9 @@ public class ThrowProjectile : MonoBehaviour
     }
 
     void Update(){
-        
+
+        grenadeTimer -= Time.deltaTime;
+
         count = GameObject.FindGameObjectsWithTag("Projectile").Length;
 
         if(!PauseMenu.isPaused){
@@ -38,10 +46,11 @@ public class ThrowProjectile : MonoBehaviour
             }
             */
 
-            if (Input.GetKeyDown(KeyCode.Q) && count < maxGrenades){
+            if (Input.GetKeyDown(KeyCode.Q) && grenadeTimer <= 0f){
+                grenadeTimer = defaultGrenadeTimer;
                 if (!thrownFirstGrenade)
                 {
-                    notification.SetActive(false);
+                 //   notification.SetActive(false);
 
                     thrownFirstGrenade = true;
                 }
@@ -65,25 +74,27 @@ public class ThrowProjectile : MonoBehaviour
 
             
             }
+            /*
             if(count < maxGrenades && moreThan2Grenades){
                 moreThan2Grenades = false;
                 notification.SetActive(false);
            //     notification.GetComponent<NotificationManager>().SetImageActive(true);
-
+            */
 
 
             }
-            else if(count == maxGrenades && Input.GetKeyDown(KeyCode.Q) && !moreThan2Grenades){
-                    moreThan2Grenades = true;
-                    
+        /*
+        else if(count == maxGrenades && Input.GetKeyDown(KeyCode.Q) && !moreThan2Grenades){
+                moreThan2Grenades = true;
 
-                //    notification.GetComponent<NotificationManager>().SetImageActive(false);
-                notification.SetActive(true);
 
-                notification.GetComponent<NotificationManager>().SetNotificationText("You can have 2 grenades active at the time",true);
-            }
-            
-            
+            //    notification.GetComponent<NotificationManager>().SetImageActive(false);
+            notification.SetActive(true);
+
+            notification.GetComponent<NotificationManager>().SetNotificationText("You can have 2 grenades active at the time",true);
         }
+
+
+    }*/
     }
 }
