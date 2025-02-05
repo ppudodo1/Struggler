@@ -147,11 +147,11 @@ public class GriffithAI : MonoBehaviour
 
         if(transform.position.x > player.transform.position.x)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<SpriteRenderer>().flipX = false;
 
         }
         else
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<SpriteRenderer>().flipX = true;
 
 
         float timeout = 1.5f;
@@ -179,9 +179,9 @@ public class GriffithAI : MonoBehaviour
         nextCorner = mapEdges[jumpCounter % 2];
 
         if (nextCorner == mapEdges[0])
-            GetComponent<SpriteRenderer>().flipX = true;
-        else
             GetComponent<SpriteRenderer>().flipX = false;
+        else
+            GetComponent<SpriteRenderer>().flipX = true;
 
 
         Vector2 direction = (nextCorner.position - transform.position).normalized;
@@ -215,11 +215,11 @@ public class GriffithAI : MonoBehaviour
 
         if (transform.position.x > player.transform.position.x)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<SpriteRenderer>().flipX = false;
 
         }
         else
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<SpriteRenderer>().flipX = true;
 
         rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity / 1.3f);
 
@@ -260,9 +260,9 @@ public class GriffithAI : MonoBehaviour
             nextCorner = mapEdges[1];
 
         if (nextCorner == mapEdges[0])
-            GetComponent<SpriteRenderer>().flipX = true;
-        else
             GetComponent<SpriteRenderer>().flipX = false;
+        else
+            GetComponent<SpriteRenderer>().flipX = true;
 
         Vector2 direction = (nextCorner.position - transform.position).normalized;
 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GriffithProfilePic_0: 3527645146181806812
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

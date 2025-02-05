@@ -60,7 +60,7 @@ public class BossFight : MonoBehaviour
 
         if (dialogueEnded)
         {
-
+            skipCutscene.SetActive(false);
             notification.SetActive(false);
             mainCameraAudio.Play();
             Destroy(gameObject);
