@@ -8,12 +8,17 @@ public class LevelComplete: MonoBehaviour
     private AudioSource audioSource;
     public AudioClip clickSound;
     public GameObject notification;
+
+    private AudioSource mainCameraAudio;
     void Start(){
         finishMenu.SetActive(false);
         changingLevels = false;
         audioSource = GetComponent<AudioSource>();
         GateController.levelCompleted = false;
-    
+
+        mainCameraAudio = Camera.main.GetComponent<AudioSource>();
+
+
     }
 
 
@@ -27,7 +32,9 @@ public class LevelComplete: MonoBehaviour
             PauseMenu.isPaused = true;
             notification.SetActive(false);
             finishMenu.SetActive(true);
-            
+
+            mainCameraAudio.Stop();
+
             Time.timeScale = 0f;
         }
 

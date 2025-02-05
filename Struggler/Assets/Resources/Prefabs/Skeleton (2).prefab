@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1434087108413197024}
   - component: {fileID: 5351325223374020019}
   - component: {fileID: 881841228977135105}
+  - component: {fileID: -4791055911944068961}
   m_Layer: 7
   m_Name: Skeleton (2)
   m_TagString: Enemy
@@ -199,3 +200,25 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   bossBar: {fileID: 0}
+--- !u!95 &-4791055911944068961
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089999608489640181}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc7ec26210785254d94963fd08103ff9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

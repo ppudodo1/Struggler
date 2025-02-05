@@ -145,6 +145,15 @@ public class GriffithAI : MonoBehaviour
         rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity);
         animator.SetBool("isJumping", true);
 
+        if(transform.position.x > player.transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+
+        }
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
+
+
         float timeout = 1.5f;
         float timeElapsed = 0f;
 
@@ -168,6 +177,12 @@ public class GriffithAI : MonoBehaviour
         jumpCounter++;
 
         nextCorner = mapEdges[jumpCounter % 2];
+
+        if (nextCorner == mapEdges[0])
+            GetComponent<SpriteRenderer>().flipX = true;
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
+
 
         Vector2 direction = (nextCorner.position - transform.position).normalized;
 
@@ -197,6 +212,14 @@ public class GriffithAI : MonoBehaviour
         float verticalVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);
 
         float horizontalVelocity = (targetX - transform.position.x);
+
+        if (transform.position.x > player.transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+
+        }
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
 
         rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity / 1.3f);
 
@@ -236,7 +259,10 @@ public class GriffithAI : MonoBehaviour
         if (enemyScript.currentHealth <= 700f)
             nextCorner = mapEdges[1];
 
-
+        if (nextCorner == mapEdges[0])
+            GetComponent<SpriteRenderer>().flipX = true;
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
 
         Vector2 direction = (nextCorner.position - transform.position).normalized;
 

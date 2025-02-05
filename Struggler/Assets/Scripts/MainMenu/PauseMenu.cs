@@ -7,11 +7,14 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused = false;
     public GameObject pauseMenu;
     private AudioSource audioSource;
+    private AudioSource mainCameraAudio;
     public AudioClip clickSound;
+
     void Start(){
         pauseMenu.SetActive(false);
         changingLevels = false;
         audioSource = GetComponent<AudioSource>();
+        mainCameraAudio = Camera.main.GetComponent<AudioSource>();
 
     }
 
@@ -42,7 +45,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame(){
         PlayClickSound();
 
-        
+        mainCameraAudio.Pause();
         pauseMenu.SetActive(true);
         isPaused = true;
         Time.timeScale = 0f;
@@ -50,6 +53,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame(){
        PlayClickSound();
+
+        mainCameraAudio.UnPause();
 
         pauseMenu.SetActive(false);
         isPaused = false;

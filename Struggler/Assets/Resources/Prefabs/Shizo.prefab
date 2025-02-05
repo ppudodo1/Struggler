@@ -421,6 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 0
+  defaultGrenadeTimer: 2
   maxGrenades: 2
   rightThrowVector: {x: 50, y: 10, z: 0}
   thrownFirstGrenade: 0

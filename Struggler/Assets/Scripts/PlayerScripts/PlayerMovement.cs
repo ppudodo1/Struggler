@@ -282,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("isJumping", false);
         hasSecondJump = true;
-        audioSource.PlayOneShot(landingSound);
+        audioSource.PlayOneShot(landingSound,0.5f);
     }
 
 

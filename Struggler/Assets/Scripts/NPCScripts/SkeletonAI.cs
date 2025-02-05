@@ -31,14 +31,19 @@ public class SkeletonAI : MonoBehaviour
         position = player.transform.position;
         playerX = position.x;
 
-        if (transform.position.x > playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
+        if (transform.position.x > playerX && Math.Abs(transform.position.x - playerX) < activationDistance)
+        {
+            GetComponent<Animator>().SetBool("Walk", true);
             m_SpriteRenderer.flipX = false;
-        
-        }
-        else if (transform.position.x < playerX && Math.Abs(transform.position.x - playerX) < activationDistance){
-            m_SpriteRenderer.flipX = true;
 
         }
+        else if (transform.position.x < playerX && Math.Abs(transform.position.x - playerX) < activationDistance)
+        {
+            
+            GetComponent<Animator>().SetBool("Walk", true);
+            m_SpriteRenderer.flipX = true;
+        }
+        else GetComponent<Animator>().SetBool("Walk", false);
 
 
         if(m_SpriteRenderer.flipX){

@@ -10,7 +10,7 @@ public class ThrowProjectile : MonoBehaviour
     public int count;
 
     private float grenadeTimer;
-    public float defaultGrenadeTimer = 2f;
+    public float defaultGrenadeTimer = 1f;
 
     public int maxGrenades = 2;
     public Vector3 rightThrowVector = new Vector3(5f,1f,0f);
