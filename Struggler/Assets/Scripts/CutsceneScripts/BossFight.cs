@@ -15,6 +15,10 @@ public class BossFight : MonoBehaviour
 
     private bool dialogueEnded = false;
 
+    public GameObject griffithPic;
+    public GameObject gutsPic;
+
+
     public GameObject skipCutscene;
     private float skipTimerDefault = 2f;
    private float skipTimer;
@@ -99,9 +103,11 @@ public class BossFight : MonoBehaviour
         notManager.SetNotificationText("I've come to settle this, Griffith!",false);
         yield return new WaitForSeconds(4);
 
+        SwitchImages();
         notManager.SetNotificationText("I was expecting you, Shizo", false);
         yield return new WaitForSeconds(4);
 
+        SwitchImages();
         notManager.SetNotificationText("I won't forgive you what you did to me", false);
         yield return new WaitForSeconds(3);
         notManager.SetNotificationText("To her", false);
@@ -109,6 +115,7 @@ public class BossFight : MonoBehaviour
         notManager.SetNotificationText("To us", false);
         yield return new WaitForSeconds(2);
 
+        SwitchImages();
         notManager.SetNotificationText("I told you Shizo", false);
         yield return new WaitForSeconds(3);
         notManager.SetNotificationText("I will do anything to achieve my dream", false);
@@ -116,9 +123,26 @@ public class BossFight : MonoBehaviour
         notManager.SetNotificationText("Even if it means sacrificing everything", false);
         yield return new WaitForSeconds(4);
 
+        SwitchImages();
         notManager.SetNotificationText("I hope you are ready!", false);
         yield return new WaitForSeconds(4);
 
+
+
         dialogueEnded = true;
+    }
+
+    public void SwitchImages()
+    {
+        if (gutsPic.activeSelf)
+        {
+            gutsPic.SetActive(false);
+            griffithPic.SetActive(true);
+        }
+        else
+        {
+            gutsPic.SetActive(true);
+            griffithPic.SetActive(false);
+        }
     }
 }
