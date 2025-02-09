@@ -46,7 +46,7 @@ public class ThrowProjectile : MonoBehaviour
             }
             */
 
-            if (Input.GetKeyDown(KeyCode.Q) && grenadeTimer <= 0f){
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton1) && grenadeTimer <= 0f){
                 grenadeTimer = defaultGrenadeTimer;
                 if (!thrownFirstGrenade)
                 {

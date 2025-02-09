@@ -20,7 +20,7 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         if(!PauseMenu.isPaused){
-            if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime+attackCooldown ) {
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton5) && Time.time >= lastAttackTime+attackCooldown ) {
                 Attack();
                 lastAttackTime = Time.time;
             }
